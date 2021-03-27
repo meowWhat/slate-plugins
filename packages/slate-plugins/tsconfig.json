@@ -1,0 +1,12 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "paths": {
+      "slate-plugins-core": ["./packages/core/src"]
+    }
+  },
+  "include": [
+    "src",
+    "typings"
+  ]
+}
