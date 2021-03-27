@@ -1,12 +1,12 @@
-import * as React from 'react';
-import { render } from '@testing-library/react';
-import * as SlateReact from 'slate-react';
-import { MentionElement } from '../../components/index';
-import { ELEMENT_MENTION } from '../../index';
+import * as React from 'react'
+import { render } from '@testing-library/react'
+import * as SlateReact from 'meow-slate-react'
+import { MentionElement } from '../../components/index'
+import { ELEMENT_MENTION } from '../../index'
 
 it('should render', () => {
-  jest.spyOn(SlateReact, 'useSelected').mockReturnValue(true);
-  jest.spyOn(SlateReact, 'useFocused').mockReturnValue(true);
+  jest.spyOn(SlateReact, 'useSelected').mockReturnValue(true)
+  jest.spyOn(SlateReact, 'useFocused').mockReturnValue(true)
 
   const { getByTestId } = render(
     <MentionElement
@@ -22,8 +22,8 @@ it('should render', () => {
       }}
     >
       @t2
-    </MentionElement>
-  );
+    </MentionElement>,
+  )
 
-  expect(getByTestId('MentionElement')).toBeVisible();
-});
+  expect(getByTestId('MentionElement')).toBeVisible()
+})

@@ -1,15 +1,15 @@
-import castArray from 'lodash/castArray';
-import { Editor, Range } from 'slate';
+import castArray from 'lodash/castArray'
+import { Editor, Range } from 'meow-slate'
 import {
   getRangeBefore,
   getRangeFromBlockStart,
   someNode,
-} from '../../common/queries';
-import { getText } from '../../common/queries/getText';
-import { isCollapsed } from '../../common/queries/isCollapsed';
-import { autoformatBlock } from './transforms/autoformatBlock';
-import { autoformatInline } from './transforms/autoformatInline';
-import { WithAutoformatOptions } from './types';
+} from '../../common/queries'
+import { getText } from '../../common/queries/getText'
+import { isCollapsed } from '../../common/queries/isCollapsed'
+import { autoformatBlock } from './transforms/autoformatBlock'
+import { autoformatInline } from './transforms/autoformatInline'
+import { WithAutoformatOptions } from './types'
 
 /**
  * Enables support for autoformatting actions.
@@ -20,10 +20,10 @@ export const withAutoformat = ({ rules }: WithAutoformatOptions) => <
 >(
   editor: T
 ) => {
-  const { insertText } = editor;
+  const { insertText } = editor
 
   editor.insertText = (text) => {
-    if (!isCollapsed(editor.selection)) return insertText(text);
+    if (!isCollapsed(editor.selection)) return insertText(text)
 
     for (const { query, ...rule } of rules) {
       const {
@@ -38,53 +38,53 @@ export const withAutoformat = ({ rules }: WithAutoformatOptions) => <
         between,
         ignoreTrim,
         insertTrigger,
-      } = rule;
+      } = rule
 
-      if (query && !query(editor, rule)) continue;
+      if (query && !query(editor, rule)) continue
 
-      const triggers: string[] = castArray(trigger);
+      const triggers: string[] = castArray(trigger)
 
       // Check trigger
-      if (!triggers.includes(text)) continue;
+      if (!triggers.includes(text)) continue
 
-      const valid = () => insertTrigger && insertText(text);
+      const valid = () => insertTrigger && insertText(text)
 
       if (mode === 'block') {
-        const markups: string[] = castArray(markup);
-        let markupRange: Range | undefined;
+        const markups: string[] = castArray(markup)
+        let markupRange: Range | undefined
 
         if (triggerAtBlockStart) {
-          markupRange = getRangeFromBlockStart(editor) as Range;
+          markupRange = getRangeFromBlockStart(editor) as Range
 
           // Don't autoformat if there is void nodes.
           const hasVoidNode = someNode(editor, {
             at: markupRange,
             match: (n) => Editor.isVoid(editor, n),
-          });
-          if (hasVoidNode) continue;
+          })
+          if (hasVoidNode) continue
 
-          const textFromBlockStart = getText(editor, markupRange);
+          const textFromBlockStart = getText(editor, markupRange)
 
-          if (!markups.includes(textFromBlockStart)) continue;
+          if (!markups.includes(textFromBlockStart)) continue
         } else {
           markupRange = getRangeBefore(editor, editor.selection as Range, {
             matchString: markup,
-          });
-          if (!markupRange) continue;
+          })
+          if (!markupRange) continue
         }
 
         if (!allowSameTypeAbove) {
           // Don't autoformat if already in a block of the same type.
-          const isBelowSameBlockType = someNode(editor, { match: { type } });
-          if (isBelowSameBlockType) continue;
+          const isBelowSameBlockType = someNode(editor, { match: { type } })
+          if (isBelowSameBlockType) continue
         }
 
         // Start of the block
         autoformatBlock(editor, type, markupRange, {
           preFormat,
           format,
-        });
-        return valid();
+        })
+        return valid()
       }
 
       if (mode === 'inline') {
@@ -96,13 +96,13 @@ export const withAutoformat = ({ rules }: WithAutoformatOptions) => <
             markup: Array.isArray(markup) ? markup[0] : markup,
           })
         ) {
-          return valid();
+          return valid()
         }
       }
     }
 
-    insertText(text);
-  };
+    insertText(text)
+  }
 
-  return editor;
-};
+  return editor
+}

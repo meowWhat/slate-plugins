@@ -1,7 +1,7 @@
 /** @jsx jsx */
 
-import { Editor } from 'slate';
-import { withReact } from 'slate-react';
+import { Editor } from 'meow-slate';
+import { withReact } from 'meow-slate-react';
 import { jsx } from '../../../../__test-utils__/jsx';
 import { withInlineVoid } from '../../../../common/plugins/inline-void/withInlineVoid';
 import { MediaEmbedPlugin } from '../../../../elements/media-embed/index';

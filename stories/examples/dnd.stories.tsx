@@ -1,11 +1,11 @@
-import 'tippy.js/dist/tippy.css';
-import React, { useMemo, useState } from 'react';
-import { DndProvider } from 'react-dnd';
-import { HTML5Backend } from 'react-dnd-html5-backend';
-import { boolean } from '@storybook/addon-knobs';
-import { CodeAlt } from '@styled-icons/boxicons-regular/CodeAlt';
-import { CodeBlock } from '@styled-icons/boxicons-regular/CodeBlock';
-import { Subscript, Superscript } from '@styled-icons/foundation';
+import 'tippy.js/dist/tippy.css'
+import React, { useMemo, useState } from 'react'
+import { DndProvider } from 'react-dnd'
+import { HTML5Backend } from 'react-dnd-html5-backend'
+import { boolean } from '@storybook/addon-knobs'
+import { CodeAlt } from '@styled-icons/boxicons-regular/CodeAlt'
+import { CodeBlock } from '@styled-icons/boxicons-regular/CodeBlock'
+import { Subscript, Superscript } from '@styled-icons/foundation'
 import {
   FormatAlignCenter,
   FormatAlignJustify,
@@ -27,8 +27,8 @@ import {
   LooksOne,
   LooksTwo,
   Search,
-} from '@styled-icons/material';
-import { DragIndicator } from '@styled-icons/material/DragIndicator';
+} from '@styled-icons/material'
+import { DragIndicator } from '@styled-icons/material/DragIndicator'
 import {
   AlignPlugin,
   BalloonToolbar,
@@ -90,11 +90,11 @@ import {
   withNormalizeTypes,
   withTable,
   withTrailingNode,
-} from '@udecode/slate-plugins';
-import { createEditor } from 'slate';
-import { withHistory } from 'slate-history';
-import { Slate, withReact } from 'slate-react';
-import { autoformatRules } from '../config/autoformatRules';
+} from '@udecode/slate-plugins'
+import { createEditor } from 'meow-slate'
+import { withHistory } from 'meow-slate-history'
+import { Slate, withReact } from 'meow-slate-react'
+import { autoformatRules } from '../config/autoformatRules'
 import {
   headingTypes,
   initialValueAutoformat,
@@ -113,12 +113,12 @@ import {
   initialValueTables,
   options as defaultOptions,
   optionsResetBlockTypes,
-} from '../config/initialValues';
-import { MENTIONABLES } from '../config/mentionables';
+} from '../config/initialValues'
+import { MENTIONABLES } from '../config/mentionables'
 
 export default {
   title: 'Examples/Drag & Drop',
-};
+}
 
 const draggableComponentOptions = [
   { ...defaultOptions.p, level: 1 },
@@ -137,57 +137,46 @@ const draggableComponentOptions = [
   defaultOptions.table,
   defaultOptions.media_embed,
   defaultOptions.code_block,
-].map(
-  ({
-    type,
-    level,
-    component,
-    ...options
-  }: {
-    type: string;
-    level?: number;
-    component: any;
-  }) => [
-    type,
-    {
-      ...options,
-      component: getSelectableElement({
-        component,
-        level,
-        dragIcon: (
-          <DragIndicator
-            style={{
-              width: 18,
-              height: 18,
-              color: 'rgba(55, 53, 47, 0.3)',
-            }}
-          />
-        ),
-        styles: {
-          blockAndGutter: {
-            padding: '4px 0',
-          },
-          blockToolbarWrapper: {
-            height: '1.5em',
-          },
+].map(({ type, level, component, ...options }: { type: string; level?: number; component: any }) => [
+  type,
+  {
+    ...options,
+    component: getSelectableElement({
+      component,
+      level,
+      dragIcon: (
+        <DragIndicator
+          style={{
+            width: 18,
+            height: 18,
+            color: 'rgba(55, 53, 47, 0.3)',
+          }}
+        />
+      ),
+      styles: {
+        blockAndGutter: {
+          padding: '4px 0',
         },
-      }),
-      rootProps: {
-        styles: {
-          root: {
-            margin: 0,
-            lineHeight: '1.5',
-          },
+        blockToolbarWrapper: {
+          height: '1.5em',
+        },
+      },
+    }),
+    rootProps: {
+      styles: {
+        root: {
+          margin: 0,
+          lineHeight: '1.5',
         },
       },
     },
-  ]
-);
+  },
+])
 
 const options = {
   ...defaultOptions,
   ...Object.fromEntries(draggableComponentOptions),
-};
+}
 
 const initialValue: any[] = [
   ...initialValueForcedLayout,
@@ -204,52 +193,46 @@ const initialValue: any[] = [
   ...initialValueSoftBreak,
   ...initialValueExitBreak,
   ...initialValuePasteHtml,
-];
+]
 
 const setNodeId = (nodes: any[]) => {
-  let id = 10000;
+  let id = 10000
   nodes.forEach((node) => {
-    const children = node.children as any[];
+    const children = node.children as any[]
     children?.forEach((block) => {
-      block.id = id;
-      id++;
-    });
-  });
-};
+      block.id = id
+      id++
+    })
+  })
+}
 
-setNodeId(initialValue);
+setNodeId(initialValue)
 
 export const Example = () => {
-  const plugins: any[] = [];
+  const plugins: any[] = []
 
-  if (boolean('ParagraphPlugin', true)) plugins.push(ParagraphPlugin(options));
-  if (boolean('BlockquotePlugin', true))
-    plugins.push(BlockquotePlugin(options));
-  if (boolean('TodoListPlugin', true)) plugins.push(TodoListPlugin(options));
-  if (boolean('HeadingPlugin', true)) plugins.push(HeadingPlugin(options));
-  if (boolean('ImagePlugin', true)) plugins.push(ImagePlugin(options));
-  if (boolean('LinkPlugin', true)) plugins.push(LinkPlugin(options));
-  if (boolean('ListPlugin', true)) plugins.push(ListPlugin(options));
-  if (boolean('MentionPlugin', true)) plugins.push(MentionPlugin(options));
-  if (boolean('TablePlugin', true)) plugins.push(TablePlugin(options));
-  if (boolean('MediaEmbedPlugin', true))
-    plugins.push(MediaEmbedPlugin(options));
-  if (boolean('CodeBlockPlugin', true)) plugins.push(CodeBlockPlugin(options));
-  if (boolean('AlignPlugin', true)) plugins.push(AlignPlugin(options));
-  if (boolean('BoldPlugin', true)) plugins.push(BoldPlugin(options));
-  if (boolean('CodePlugin', true)) plugins.push(CodePlugin(options));
-  if (boolean('ItalicPlugin', true)) plugins.push(ItalicPlugin(options));
-  if (boolean('HighlightPlugin', true)) plugins.push(HighlightPlugin(options));
-  if (boolean('SearchHighlightPlugin', true))
-    plugins.push(SearchHighlightPlugin(options));
-  if (boolean('UnderlinePlugin', true)) plugins.push(UnderlinePlugin(options));
-  if (boolean('StrikethroughPlugin', true))
-    plugins.push(StrikethroughPlugin(options));
-  if (boolean('SubscriptPlugin', true)) plugins.push(SubscriptPlugin(options));
-  if (boolean('SuperscriptPlugin', true))
-    plugins.push(SuperscriptPlugin(options));
-  if (boolean('ResetBlockTypePlugin', true))
-    plugins.push(ResetBlockTypePlugin(optionsResetBlockTypes));
+  if (boolean('ParagraphPlugin', true)) plugins.push(ParagraphPlugin(options))
+  if (boolean('BlockquotePlugin', true)) plugins.push(BlockquotePlugin(options))
+  if (boolean('TodoListPlugin', true)) plugins.push(TodoListPlugin(options))
+  if (boolean('HeadingPlugin', true)) plugins.push(HeadingPlugin(options))
+  if (boolean('ImagePlugin', true)) plugins.push(ImagePlugin(options))
+  if (boolean('LinkPlugin', true)) plugins.push(LinkPlugin(options))
+  if (boolean('ListPlugin', true)) plugins.push(ListPlugin(options))
+  if (boolean('MentionPlugin', true)) plugins.push(MentionPlugin(options))
+  if (boolean('TablePlugin', true)) plugins.push(TablePlugin(options))
+  if (boolean('MediaEmbedPlugin', true)) plugins.push(MediaEmbedPlugin(options))
+  if (boolean('CodeBlockPlugin', true)) plugins.push(CodeBlockPlugin(options))
+  if (boolean('AlignPlugin', true)) plugins.push(AlignPlugin(options))
+  if (boolean('BoldPlugin', true)) plugins.push(BoldPlugin(options))
+  if (boolean('CodePlugin', true)) plugins.push(CodePlugin(options))
+  if (boolean('ItalicPlugin', true)) plugins.push(ItalicPlugin(options))
+  if (boolean('HighlightPlugin', true)) plugins.push(HighlightPlugin(options))
+  if (boolean('SearchHighlightPlugin', true)) plugins.push(SearchHighlightPlugin(options))
+  if (boolean('UnderlinePlugin', true)) plugins.push(UnderlinePlugin(options))
+  if (boolean('StrikethroughPlugin', true)) plugins.push(StrikethroughPlugin(options))
+  if (boolean('SubscriptPlugin', true)) plugins.push(SubscriptPlugin(options))
+  if (boolean('SuperscriptPlugin', true)) plugins.push(SuperscriptPlugin(options))
+  if (boolean('ResetBlockTypePlugin', true)) plugins.push(ResetBlockTypePlugin(optionsResetBlockTypes))
   if (boolean('SoftBreakPlugin', true))
     plugins.push(
       SoftBreakPlugin({
@@ -258,16 +241,12 @@ export const Example = () => {
           {
             hotkey: 'enter',
             query: {
-              allow: [
-                options.code_block.type,
-                options.blockquote.type,
-                options.td.type,
-              ],
+              allow: [options.code_block.type, options.blockquote.type, options.td.type],
             },
           },
         ],
-      })
-    );
+      }),
+    )
   if (boolean('ExitBreakPlugin', true))
     plugins.push(
       ExitBreakPlugin({
@@ -288,8 +267,8 @@ export const Example = () => {
             },
           },
         ],
-      })
-    );
+      }),
+    )
 
   const withPlugins = [
     withReact,
@@ -308,33 +287,28 @@ export const Example = () => {
     }),
     withTrailingNode({ type: options.p.type, level: 1 }),
     withInlineVoid({ plugins }),
-  ] as const;
+  ] as const
 
   const createReactEditor = () => () => {
-    const decorate: any = [];
-    const onKeyDown: any = [];
+    const decorate: any = []
+    const onKeyDown: any = []
 
-    const [value, setValue] = useState(initialValue);
+    const [value, setValue] = useState(initialValue)
 
-    const editor = useMemo(() => pipe(createEditor(), ...withPlugins), []);
+    const editor = useMemo(() => pipe(createEditor(), ...withPlugins), [])
 
-    const [search, setSearchHighlight] = useState('');
+    const [search, setSearchHighlight] = useState('')
 
-    if (boolean('decorateSearchHighlight', true))
-      decorate.push(decorateSearchHighlight({ search }));
+    if (boolean('decorateSearchHighlight', true)) decorate.push(decorateSearchHighlight({ search }))
 
-    const {
-      index,
-      search: mentionSearch,
-      target,
-      values,
-      onChangeMention,
-      onKeyDownMention,
-    } = useMention(MENTIONABLES, {
-      maxSuggestions: 10,
-    });
+    const { index, search: mentionSearch, target, values, onChangeMention, onKeyDownMention } = useMention(
+      MENTIONABLES,
+      {
+        maxSuggestions: 10,
+      },
+    )
 
-    if (boolean('onKeyDownMentions', true)) onKeyDown.push(onKeyDownMention);
+    if (boolean('onKeyDownMentions', true)) onKeyDown.push(onKeyDownMention)
 
     return (
       <DndProvider backend={HTML5Backend}>
@@ -342,15 +316,12 @@ export const Example = () => {
           editor={editor}
           value={value}
           onChange={(newValue) => {
-            setValue(newValue as SlateDocument);
+            setValue(newValue as SlateDocument)
 
-            onChangeMention(editor);
+            onChangeMention(editor)
           }}
         >
-          <ToolbarSearchHighlight
-            icon={Search}
-            setSearch={setSearchHighlight}
-          />
+          <ToolbarSearchHighlight icon={Search} setSearch={setSearchHighlight} />
           <HeadingToolbar styles={{ root: { flexWrap: 'wrap' } }}>
             {/* Elements */}
             <ToolbarElement type={options.h1.type} icon={<LooksOne />} />
@@ -359,75 +330,30 @@ export const Example = () => {
             <ToolbarElement type={options.h4.type} icon={<Looks4 />} />
             <ToolbarElement type={options.h5.type} icon={<Looks5 />} />
             <ToolbarElement type={options.h6.type} icon={<Looks6 />} />
-            <ToolbarList
-              {...options}
-              typeList={options.ul.type}
-              icon={<FormatListBulleted />}
-            />
-            <ToolbarList
-              {...options}
-              typeList={options.ol.type}
-              icon={<FormatListNumbered />}
-            />
-            <ToolbarElement
-              type={options.blockquote.type}
-              icon={<FormatQuote />}
-            />
-            <ToolbarCodeBlock
-              type={options.code_block.type}
-              icon={<CodeBlock />}
-              options={options}
-            />
+            <ToolbarList {...options} typeList={options.ul.type} icon={<FormatListBulleted />} />
+            <ToolbarList {...options} typeList={options.ol.type} icon={<FormatListNumbered />} />
+            <ToolbarElement type={options.blockquote.type} icon={<FormatQuote />} />
+            <ToolbarCodeBlock type={options.code_block.type} icon={<CodeBlock />} options={options} />
 
             {/* Marks */}
             <ToolbarMark type={MARK_BOLD} icon={<FormatBold />} />
             <ToolbarMark type={MARK_ITALIC} icon={<FormatItalic />} />
             <ToolbarMark type={MARK_UNDERLINE} icon={<FormatUnderlined />} />
-            <ToolbarMark
-              type={MARK_STRIKETHROUGH}
-              icon={<FormatStrikethrough />}
-            />
+            <ToolbarMark type={MARK_STRIKETHROUGH} icon={<FormatStrikethrough />} />
             <ToolbarMark type={MARK_CODE} icon={<CodeAlt />} />
-            <ToolbarMark
-              type={MARK_SUPERSCRIPT}
-              clear={MARK_SUBSCRIPT}
-              icon={<Superscript />}
-            />
-            <ToolbarMark
-              type={MARK_SUBSCRIPT}
-              clear={MARK_SUPERSCRIPT}
-              icon={<Subscript />}
-            />
+            <ToolbarMark type={MARK_SUPERSCRIPT} clear={MARK_SUBSCRIPT} icon={<Superscript />} />
+            <ToolbarMark type={MARK_SUBSCRIPT} clear={MARK_SUPERSCRIPT} icon={<Subscript />} />
 
             <ToolbarAlign icon={<FormatAlignLeft />} />
-            <ToolbarAlign
-              type={options.align_center.type}
-              icon={<FormatAlignCenter />}
-            />
-            <ToolbarAlign
-              type={options.align_right.type}
-              icon={<FormatAlignRight />}
-            />
-            <ToolbarAlign
-              type={options.align_justify.type}
-              icon={<FormatAlignJustify />}
-            />
+            <ToolbarAlign type={options.align_center.type} icon={<FormatAlignCenter />} />
+            <ToolbarAlign type={options.align_right.type} icon={<FormatAlignRight />} />
+            <ToolbarAlign type={options.align_justify.type} icon={<FormatAlignJustify />} />
             <ToolbarLink {...options} icon={<Link />} />
             <ToolbarImage {...options} icon={<Image />} />
           </HeadingToolbar>
           <BalloonToolbar arrow>
-            <ToolbarMark
-              reversed
-              type={MARK_BOLD}
-              icon={<FormatBold />}
-              tooltip={{ content: 'Bold (⌘B)' }}
-            />
-            <ToolbarMark
-              reversed
-              type={MARK_ITALIC}
-              icon={<FormatItalic />}
-              tooltip={{ content: 'Italic (⌘I)' }}
-            />
+            <ToolbarMark reversed type={MARK_BOLD} icon={<FormatBold />} tooltip={{ content: 'Bold (⌘B)' }} />
+            <ToolbarMark reversed type={MARK_ITALIC} icon={<FormatItalic />} tooltip={{ content: 'Italic (⌘I)' }} />
             <ToolbarMark
               reversed
               type={MARK_UNDERLINE}
@@ -451,10 +377,10 @@ export const Example = () => {
           />
         </Slate>
       </DndProvider>
-    );
-  };
+    )
+  }
 
-  const Editor = createReactEditor();
+  const Editor = createReactEditor()
 
-  return <Editor />;
-};
+  return <Editor />
+}

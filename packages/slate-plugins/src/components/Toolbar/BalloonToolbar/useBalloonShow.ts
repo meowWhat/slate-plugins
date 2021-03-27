@@ -1,8 +1,8 @@
-import { useCallback, useEffect, useState } from 'react';
-import { useTimeoutFn } from 'react-use';
-import { Editor } from 'slate';
-import { isSelectionExpanded } from '../../../common/queries';
-import { getSelectionText } from '../../../common/queries/getSelectionText';
+import { useCallback, useEffect, useState } from 'react'
+import { useTimeoutFn } from 'react-use'
+import { Editor } from 'meow-slate'
+import { isSelectionExpanded } from '../../../common/queries'
+import { getSelectionText } from '../../../common/queries/getSelectionText'
 
 /**
  * Hide if not selecting.
@@ -14,37 +14,37 @@ export const useBalloonShow = ({
   ref,
   hiddenDelay,
 }: {
-  editor: Editor;
-  ref: any;
-  hiddenDelay: number;
+  editor: Editor
+  ref: any
+  hiddenDelay: number
 }) => {
-  const [hidden, setHidden] = useState(true);
+  const [hidden, setHidden] = useState(true)
 
-  const selectionExpanded = isSelectionExpanded(editor);
-  const selectionText = getSelectionText(editor);
+  const selectionExpanded = isSelectionExpanded(editor)
+  const selectionText = getSelectionText(editor)
 
   const show = useCallback(() => {
     if (ref.current && hidden && selectionExpanded) {
-      setHidden(false);
+      setHidden(false)
     }
-  }, [hidden, ref, selectionExpanded]);
+  }, [hidden, ref, selectionExpanded])
 
-  const [, , reset] = useTimeoutFn(show, hiddenDelay);
+  const [, , reset] = useTimeoutFn(show, hiddenDelay)
 
   useEffect(() => {
     if (!hiddenDelay) {
-      show();
+      show()
     }
-  }, [selectionText.length, reset, hiddenDelay, show]);
+  }, [selectionText.length, reset, hiddenDelay, show])
 
   /**
    * Hide if not selecting.
    */
   useEffect(() => {
     if (!hidden && !selectionExpanded) {
-      setHidden(true);
+      setHidden(true)
       if (ref.current) {
-        ref.current.removeAttribute('style');
+        ref.current.removeAttribute('style')
       }
     }
   }, [
@@ -55,18 +55,18 @@ export const useBalloonShow = ({
     show,
     selectionText.length,
     ref,
-  ]);
+  ])
 
   /**
    * If hiddenDelay > 0:
    * Hide when the selection length changes.
    */
   useEffect(() => {
-    if (!hiddenDelay) return;
+    if (!hiddenDelay) return
 
-    reset();
-    setHidden(true);
-  }, [hiddenDelay, selectionText.length, reset]);
+    reset()
+    setHidden(true)
+  }, [hiddenDelay, selectionText.length, reset])
 
-  return [hidden];
-};
+  return [hidden]
+}

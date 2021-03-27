@@ -1,5 +1,5 @@
-import { useDrag } from 'react-dnd';
-import { Editor } from 'slate';
+import { useDrag } from 'react-dnd'
+import { Editor } from 'meow-slate'
 
 export const useDragBlock = (editor: Editor, id: string) => {
   return useDrag(
@@ -9,12 +9,12 @@ export const useDragBlock = (editor: Editor, id: string) => {
         isDragging: monitor.isDragging(),
       }),
       begin: () => {
-        document.body.classList.add('dragging');
+        document.body.classList.add('dragging')
       },
       end: () => {
-        document.body.classList.remove('dragging');
+        document.body.classList.remove('dragging')
       },
     }),
     []
-  );
-};
+  )
+}

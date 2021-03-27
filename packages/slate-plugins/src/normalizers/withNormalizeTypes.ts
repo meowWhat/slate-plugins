@@ -1,20 +1,20 @@
-import { Editor, Path, Transforms } from 'slate';
-import { getNode } from '../common/queries';
-import { ErrorHandler } from '../common/types/ErrorHandler';
+import { Editor, Path, Transforms } from 'meow-slate'
+import { getNode } from '../common/queries'
+import { ErrorHandler } from '../common/types/ErrorHandler'
 
 interface Rule {
   /**
    * Force the type of the node at the given path
    */
-  strictType?: string;
+  strictType?: string
   /**
    * Type of the inserted node at the given path if `strictType` is not provided
    */
-  type?: string;
+  type?: string
   /**
    * Path where the rule applies
    */
-  path: Path;
+  path: Path
 }
 
 export interface WithNormalizeTypes extends ErrorHandler {
@@ -26,7 +26,7 @@ export interface WithNormalizeTypes extends ErrorHandler {
    * If there is a node existing at `path` but its type is not `strictType` or `type`:
    * set the node type to `strictType` or `type`.
    */
-  rules: Rule[];
+  rules: Rule[]
 }
 
 export const withNormalizeTypes = ({ rules, onError }: WithNormalizeTypes) => <
@@ -34,18 +34,18 @@ export const withNormalizeTypes = ({ rules, onError }: WithNormalizeTypes) => <
 >(
   editor: T
 ) => {
-  const { normalizeNode } = editor;
+  const { normalizeNode } = editor
 
   editor.normalizeNode = ([currentNode, currentPath]) => {
     if (!currentPath.length) {
       const endCurrentNormalizationPass = rules.some(
         ({ strictType, type, path }) => {
-          const node = getNode(editor, path);
+          const node = getNode(editor, path)
 
           if (node) {
             if (strictType && node.type !== strictType) {
-              Transforms.setNodes(editor, { type: strictType }, { at: path });
-              return true;
+              Transforms.setNodes(editor, { type: strictType }, { at: path })
+              return true
             }
           } else {
             try {
@@ -56,24 +56,24 @@ export const withNormalizeTypes = ({ rules, onError }: WithNormalizeTypes) => <
                   children: [{ text: '' }],
                 },
                 { at: path }
-              );
-              return true;
+              )
+              return true
             } catch (err) {
-              onError?.(err);
+              onError?.(err)
             }
           }
 
-          return false;
+          return false
         }
-      );
+      )
 
       if (endCurrentNormalizationPass) {
-        return;
+        return
       }
     }
 
-    return normalizeNode([currentNode, currentPath]);
-  };
+    return normalizeNode([currentNode, currentPath])
+  }
 
-  return editor;
-};
+  return editor
+}

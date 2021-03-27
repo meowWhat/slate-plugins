@@ -1,6 +1,6 @@
-import { Editor } from 'slate';
-import { getNodes } from '../../common/queries/getNodes';
-import { EditorNodesOptions } from '../../common/types/Editor.types';
+import { Editor } from 'meow-slate'
+import { getNodes } from '../../common/queries/getNodes'
+import { EditorNodesOptions } from '../../common/types/Editor.types'
 
 /**
  * Get blocks with an id
@@ -14,5 +14,5 @@ export const getBlocksWithId = (
       match: (n) => Editor.isBlock(editor, n) && !!n.id,
       ...options,
     }),
-  ];
-};
+  ]
+}

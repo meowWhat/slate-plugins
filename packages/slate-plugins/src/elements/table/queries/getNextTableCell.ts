@@ -1,5 +1,5 @@
-import { Editor, NodeEntry, Path } from 'slate';
-import { getCellInNextTableRow } from './getCellInNextTableRow';
+import { Editor, NodeEntry, Path } from 'meow-slate'
+import { getCellInNextTableRow } from './getCellInNextTableRow'
 
 export function getNextTableCell(
   editor: Editor,
@@ -8,9 +8,9 @@ export function getNextTableCell(
   currentRow: NodeEntry
 ): NodeEntry | undefined {
   try {
-    return Editor.node(editor, Path.next(currentPath));
+    return Editor.node(editor, Path.next(currentPath))
   } catch (err) {
-    const [, currentRowPath] = currentRow;
-    return getCellInNextTableRow(editor, currentRowPath);
+    const [, currentRowPath] = currentRow
+    return getCellInNextTableRow(editor, currentRowPath)
   }
 }

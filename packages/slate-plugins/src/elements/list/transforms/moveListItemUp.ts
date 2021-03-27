@@ -1,17 +1,17 @@
-import { Ancestor, Editor, NodeEntry, Path, Transforms } from 'slate';
-import { getAbove } from '../../../common/queries/getAbove';
-import { isLastChild } from '../../../common/queries/getLastChild';
-import { getNode } from '../../../common/queries/getNode';
-import { setDefaults } from '../../../common/utils/setDefaults';
-import { DEFAULTS_LIST } from '../defaults';
-import { hasListChild } from '../queries/hasListChild';
-import { ListOptions } from '../types';
-import { moveListItemsToList } from './moveListItemsToList';
-import { unwrapList } from './unwrapList';
+import { Ancestor, Editor, NodeEntry, Path, Transforms } from 'meow-slate'
+import { getAbove } from '../../../common/queries/getAbove'
+import { isLastChild } from '../../../common/queries/getLastChild'
+import { getNode } from '../../../common/queries/getNode'
+import { setDefaults } from '../../../common/utils/setDefaults'
+import { DEFAULTS_LIST } from '../defaults'
+import { hasListChild } from '../queries/hasListChild'
+import { ListOptions } from '../types'
+import { moveListItemsToList } from './moveListItemsToList'
+import { unwrapList } from './unwrapList'
 
 export interface MoveListItemUpOptions {
-  list: NodeEntry<Ancestor>;
-  listItem: NodeEntry<Ancestor>;
+  list: NodeEntry<Ancestor>
+  listItem: NodeEntry<Ancestor>
 }
 
 /**
@@ -23,20 +23,20 @@ export const moveListItemUp = (
   options?: ListOptions
 ) => {
   const move = () => {
-    const { li } = setDefaults(options, DEFAULTS_LIST);
+    const { li } = setDefaults(options, DEFAULTS_LIST)
 
-    const [listNode, listPath] = list;
-    const [liNode, liPath] = listItem;
+    const [listNode, listPath] = list
+    const [liNode, liPath] = listItem
 
     const liParent = getAbove(editor, {
       at: listPath,
       match: { type: li.type },
-    });
+    })
     if (!liParent) {
-      const toListPath = Path.next(listPath);
+      const toListPath = Path.next(listPath)
 
-      const condA = hasListChild(liNode, options);
-      const condB = !isLastChild(list, liPath);
+      const condA = hasListChild(liNode, options)
+      const condB = !isLastChild(list, liPath)
 
       if (condA || condB) {
         // Insert a new list next to `list`
@@ -47,12 +47,12 @@ export const moveListItemUp = (
             children: [],
           },
           { at: toListPath }
-        );
+        )
       }
 
       if (condA) {
-        const toListNode = getNode(editor, toListPath) as Ancestor;
-        if (!toListNode) return;
+        const toListNode = getNode(editor, toListPath) as Ancestor
+        if (!toListNode) return
 
         // Move li sub-lis to the new list
         moveListItemsToList(
@@ -62,13 +62,13 @@ export const moveListItemUp = (
             toList: [toListNode, toListPath],
           },
           options
-        );
+        )
       }
 
       // If there is siblings li, move them to the new list
       if (condB) {
-        const toListNode = getNode(editor, toListPath) as Ancestor;
-        if (!toListNode) return;
+        const toListNode = getNode(editor, toListPath) as Ancestor
+        if (!toListNode) return
 
         // Move next lis to the new list
         moveListItemsToList(
@@ -80,17 +80,17 @@ export const moveListItemUp = (
             deleteFromList: false,
           },
           options
-        );
+        )
       }
 
       // Finally, unwrap the list
-      unwrapList(editor, options);
+      unwrapList(editor, options)
 
-      return true;
+      return true
     }
-    const [, liParentPath] = liParent;
+    const [, liParentPath] = liParent
 
-    const toListPath = liPath.concat([1]);
+    const toListPath = liPath.concat([1])
 
     // If li has next siblings, we need to move them.
     if (!isLastChild(list, liPath)) {
@@ -103,11 +103,11 @@ export const moveListItemUp = (
             children: [],
           },
           { at: toListPath }
-        );
+        )
       }
 
-      const toListNode = getNode(editor, toListPath) as Ancestor;
-      if (!toListNode) return;
+      const toListNode = getNode(editor, toListPath) as Ancestor
+      if (!toListNode) return
 
       // Move next siblings to li sublist.
       moveListItemsToList(
@@ -119,25 +119,25 @@ export const moveListItemUp = (
           deleteFromList: false,
         },
         options
-      );
+      )
     }
 
-    const movedUpLiPath = Path.next(liParentPath);
+    const movedUpLiPath = Path.next(liParentPath)
 
     // Move li one level up: next to the li parent.
     Transforms.moveNodes(editor, {
       at: liPath,
       to: movedUpLiPath,
-    });
+    })
 
-    return true;
-  };
+    return true
+  }
 
-  let moved: boolean | undefined = false;
+  let moved: boolean | undefined = false
 
   Editor.withoutNormalizing(editor, () => {
-    moved = move();
-  });
+    moved = move()
+  })
 
-  return moved;
-};
+  return moved
+}

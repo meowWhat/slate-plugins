@@ -1,5 +1,5 @@
-import { Editor, Path, Point } from 'slate';
-import { getBlockAbove } from './getBlockAbove';
+import { Editor, Path, Point } from 'meow-slate'
+import { getBlockAbove } from './getBlockAbove'
 
 /**
  * If the start point is inside an inline void, get the point before or after it.
@@ -10,24 +10,24 @@ export const getPointNextToVoid = (
     at,
     after,
   }: {
-    at: Point;
+    at: Point
     /**
      * Get the point after (instead of before) the void node.
      */
-    after?: boolean;
+    after?: boolean
   }
 ) => {
-  const startVoid = Editor.void(editor, { at, mode: 'highest' });
+  const startVoid = Editor.void(editor, { at, mode: 'highest' })
 
   if (startVoid) {
-    const blockAbove = getBlockAbove(editor, { at });
+    const blockAbove = getBlockAbove(editor, { at })
 
     if (blockAbove) {
-      let nextPoint: Point | undefined;
+      let nextPoint: Point | undefined
       if (after) {
-        nextPoint = Editor.after(editor, at);
+        nextPoint = Editor.after(editor, at)
       } else {
-        nextPoint = Editor.before(editor, at);
+        nextPoint = Editor.before(editor, at)
       }
 
       if (
@@ -35,10 +35,10 @@ export const getPointNextToVoid = (
         blockAbove &&
         Path.isAncestor(blockAbove[1], nextPoint.path)
       ) {
-        at = nextPoint;
+        at = nextPoint
       }
     }
   }
 
-  return at;
-};
+  return at
+}

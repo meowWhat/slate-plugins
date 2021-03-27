@@ -2,9 +2,9 @@
  * Iterate through all of the nodes in the editor and return the first match. If
  * no match is found, return undefined.
  */
-import { Editor, Node, NodeEntry, Path, Range, Span } from 'slate';
-import { match } from '../utils/match';
-import { FindNodeOptions } from './findNode';
+import { Editor, Node, NodeEntry, Path, Range, Span } from 'meow-slate'
+import { match } from '../utils/match'
+import { FindNodeOptions } from './findNode'
 
 /**
  * Get the first descendant node matching the condition.
@@ -20,24 +20,24 @@ export const findDescendant = <T extends Node = Node>(
       at = editor.selection,
       reverse = false,
       voids = false,
-    } = options;
+    } = options
 
-    if (!at) return;
+    if (!at) return
 
-    let from;
-    let to;
+    let from
+    let to
     if (Span.isSpan(at)) {
-      [from, to] = at;
+      [from, to] = at
     } else if (Range.isRange(at)) {
-      const first = Editor.path(editor, at, { edge: 'start' });
-      const last = Editor.path(editor, at, { edge: 'end' });
-      from = reverse ? last : first;
-      to = reverse ? first : last;
+      const first = Editor.path(editor, at, { edge: 'start' })
+      const last = Editor.path(editor, at, { edge: 'end' })
+      from = reverse ? last : first
+      to = reverse ? first : last
     }
 
-    let root: NodeEntry = [editor, []];
+    let root: NodeEntry = [editor, []]
     if (Path.isPath(at)) {
-      root = Editor.node(editor, at);
+      root = Editor.node(editor, at)
     }
 
     const nodeEntries = Node.descendants(root[0], {
@@ -45,14 +45,14 @@ export const findDescendant = <T extends Node = Node>(
       from,
       to,
       pass: ([n]) => (voids ? false : Editor.isVoid(editor, n)),
-    });
+    })
 
     for (const [node, path] of nodeEntries) {
       if (match<Node>(node, _match)) {
-        return [node as any, (at as Path).concat(path)];
+        return [node as any, (at as Path).concat(path)]
       }
     }
   } catch (error) {
-    return undefined;
+    return undefined
   }
-};
+}

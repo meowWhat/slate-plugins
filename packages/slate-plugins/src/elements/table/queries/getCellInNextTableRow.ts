@@ -1,4 +1,4 @@
-import { Ancestor, Editor, NodeEntry, Path } from 'slate';
+import { Ancestor, Editor, NodeEntry, Path } from 'meow-slate'
 
 export function getCellInNextTableRow(
   editor: Editor,
@@ -8,14 +8,14 @@ export function getCellInNextTableRow(
     const nextRow = Editor.node(
       editor,
       Path.next(currentRowPath)
-    ) as NodeEntry<Ancestor>;
+    ) as NodeEntry<Ancestor>
     // TODO: Many tables in rich text editors (Google Docs, Word),
     // add a new row if we're in the last cell. Should we do the same?
-    const [nextRowNode, nextRowPath] = nextRow;
-    const nextCell = nextRowNode?.children?.[0];
-    const nextCellPath = nextRowPath.concat(0);
+    const [nextRowNode, nextRowPath] = nextRow
+    const nextCell = nextRowNode?.children?.[0]
+    const nextCellPath = nextRowPath.concat(0)
     if (nextCell && nextCellPath) {
-      return Editor.node(editor, nextCellPath);
+      return Editor.node(editor, nextCellPath)
     }
-  } catch (err) {}
+  } catch (err) { }
 }

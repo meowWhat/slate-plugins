@@ -1,9 +1,9 @@
-import { castArray } from 'lodash';
-import { Editor } from 'slate';
+import { castArray } from 'lodash'
+import { Editor } from 'meow-slate'
 
-export type PredicateObj<T> = Partial<Record<keyof T, any | any[]>>;
-export type PredicateFn<T> = (obj: T) => boolean;
-export type Predicate<T> = PredicateObj<T> | PredicateFn<T>;
+export type PredicateObj<T> = Partial<Record<keyof T, any | any[]>>
+export type PredicateFn<T> = (obj: T) => boolean
+export type Predicate<T> = PredicateObj<T> | PredicateFn<T>
 
 /**
  * Match the object with a predicate object or function.
@@ -12,21 +12,21 @@ export type Predicate<T> = PredicateObj<T> | PredicateFn<T>;
  * - function: it should return true.
  */
 export const match = <T>(obj: T, predicate?: Predicate<T>): boolean => {
-  if (!predicate) return true;
+  if (!predicate) return true
 
   if (typeof predicate === 'object') {
     return Object.entries(predicate).every(([key, value]) => {
-      const values = castArray<any>(value);
+      const values = castArray<any>(value)
 
-      return values.includes(obj[key]);
-    });
+      return values.includes(obj[key])
+    })
   }
 
-  return predicate(obj);
-};
+  return predicate(obj)
+}
 
 export const matchPredicate = <T>(predicate?: Predicate<T>) => (obj: T) =>
-  match(obj, predicate);
+  match(obj, predicate)
 
 /**
  * Extended query options for slate queries:
@@ -39,5 +39,5 @@ export const getQueryOptions = <T>(editor: Editor, options: any) => {
     match: (n: T) =>
       match<T>(n, options.match) &&
       (!options?.block || Editor.isBlock(editor, n)),
-  };
-};
+  }
+}

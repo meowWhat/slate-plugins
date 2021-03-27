@@ -1,13 +1,9 @@
-import 'tippy.js/animations/scale.css';
-import 'tippy.js/dist/tippy.css';
-import React, { useMemo, useState } from 'react';
-import { boolean, number, object, select } from '@storybook/addon-knobs';
-import {
-  FormatBold,
-  FormatItalic,
-  FormatUnderlined,
-} from '@styled-icons/material';
-import { TippyProps } from '@tippyjs/react';
+import 'tippy.js/animations/scale.css'
+import 'tippy.js/dist/tippy.css'
+import React, { useMemo, useState } from 'react'
+import { boolean, number, object, select } from '@storybook/addon-knobs'
+import { FormatBold, FormatItalic, FormatUnderlined } from '@styled-icons/material'
+import { TippyProps } from '@tippyjs/react'
 import {
   BalloonToolbar,
   BoldPlugin,
@@ -22,37 +18,28 @@ import {
   ToolbarMark,
   UnderlinePlugin,
   withList,
-} from '@udecode/slate-plugins';
-import { createEditor } from 'slate';
-import { withHistory } from 'slate-history';
-import { Slate, withReact } from 'slate-react';
-import { initialValueBalloonToolbar, options } from '../config/initialValues';
+} from '@udecode/slate-plugins'
+import { createEditor } from 'meow-slate'
+import { withHistory } from 'meow-slate-history'
+import { Slate, withReact } from 'meow-slate-react'
+import { initialValueBalloonToolbar, options } from '../config/initialValues'
 
 export default {
   title: 'Components/Balloon Toolbar',
   component: BalloonToolbar,
-};
+}
 
-const plugins = [
-  BoldPlugin(options),
-  ItalicPlugin(options),
-  UnderlinePlugin(options),
-  ListPlugin(options),
-];
+const plugins = [BoldPlugin(options), ItalicPlugin(options), UnderlinePlugin(options), ListPlugin(options)]
 
-const withPlugins = [withReact, withHistory, withList(options)] as const;
+const withPlugins = [withReact, withHistory, withList(options)] as const
 
 export const Example = () => {
-  const [value, setValue] = useState(initialValueBalloonToolbar);
+  const [value, setValue] = useState(initialValueBalloonToolbar)
 
-  const arrow = boolean('arrow', false);
-  const theme = select('theme', { dark: 'dark', light: 'light' }, 'dark');
-  const direction = select(
-    'direction',
-    { top: 'top', bottom: 'bottom' },
-    'top'
-  );
-  const hiddenDelay = number('hiddenDelay', 0);
+  const arrow = boolean('arrow', false)
+  const theme = select('theme', { dark: 'dark', light: 'light' }, 'dark')
+  const direction = select('direction', { top: 'top', bottom: 'bottom' }, 'top')
+  const hiddenDelay = number('hiddenDelay', 0)
   const tooltip: TippyProps = object('tooltip', {
     arrow: true,
     delay: 0,
@@ -60,32 +47,15 @@ export const Example = () => {
     hideOnClick: false,
     offset: [0, 17],
     placement: 'top',
-  });
+  })
 
-  const editor = useMemo(() => pipe(createEditor(), ...withPlugins), []);
+  const editor = useMemo(() => pipe(createEditor(), ...withPlugins), [])
 
   return (
-    <Slate
-      editor={editor}
-      value={value}
-      onChange={(newValue) => setValue(newValue as SlateDocument)}
-    >
-      <BalloonToolbar
-        direction={direction}
-        hiddenDelay={hiddenDelay}
-        theme={theme}
-        arrow={arrow}
-      >
-        <ToolbarMark
-          type={MARK_BOLD}
-          icon={<FormatBold />}
-          tooltip={{ content: 'Bold (⌘B)', ...tooltip }}
-        />
-        <ToolbarMark
-          type={MARK_ITALIC}
-          icon={<FormatItalic />}
-          tooltip={{ content: 'Italic (⌘I)', ...tooltip }}
-        />
+    <Slate editor={editor} value={value} onChange={(newValue) => setValue(newValue as SlateDocument)}>
+      <BalloonToolbar direction={direction} hiddenDelay={hiddenDelay} theme={theme} arrow={arrow}>
+        <ToolbarMark type={MARK_BOLD} icon={<FormatBold />} tooltip={{ content: 'Bold (⌘B)', ...tooltip }} />
+        <ToolbarMark type={MARK_ITALIC} icon={<FormatItalic />} tooltip={{ content: 'Italic (⌘I)', ...tooltip }} />
         <ToolbarMark
           type={MARK_UNDERLINE}
           icon={<FormatUnderlined />}
@@ -94,5 +64,5 @@ export const Example = () => {
       </BalloonToolbar>
       <EditablePlugins plugins={plugins} placeholder="Enter some text..." />
     </Slate>
-  );
-};
+  )
+}

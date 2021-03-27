@@ -1,6 +1,6 @@
-import { Ancestor, Editor } from 'slate';
-import { EditorAboveOptions } from '../types/Editor.types';
-import { getAbove } from './getAbove';
+import { Ancestor, Editor } from 'meow-slate'
+import { EditorAboveOptions } from '../types/Editor.types'
+import { getAbove } from './getAbove'
 
 /**
  * Get the block above a location (default: selection).
@@ -12,4 +12,4 @@ export const getBlockAbove = <T = Ancestor>(
   getAbove<T>(editor, {
     ...options,
     block: true,
-  });
+  })

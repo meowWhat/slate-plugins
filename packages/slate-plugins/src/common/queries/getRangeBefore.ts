@@ -1,7 +1,7 @@
-import { Editor, Location, Range } from 'slate';
-import { getPointBefore, PointBeforeOptions } from './getPointBefore';
+import { Editor, Location, Range } from 'meow-slate'
+import { getPointBefore, PointBeforeOptions } from './getPointBefore'
 
-export interface RangeBeforeOptions extends PointBeforeOptions {}
+export interface RangeBeforeOptions extends PointBeforeOptions { }
 
 /**
  * Get range from {@link getPointBefore} to the end point of `at`.
@@ -11,13 +11,13 @@ export const getRangeBefore = (
   at: Location,
   options?: RangeBeforeOptions
 ): Range | undefined => {
-  const anchor = getPointBefore(editor, at, options);
-  if (!anchor) return;
+  const anchor = getPointBefore(editor, at, options)
+  if (!anchor) return
 
-  const focus = Editor.point(editor, at, { edge: 'end' });
+  const focus = Editor.point(editor, at, { edge: 'end' })
 
   return {
     anchor,
     focus,
-  };
-};
+  }
+}

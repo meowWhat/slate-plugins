@@ -1,18 +1,18 @@
-import isHotkey from 'is-hotkey';
-import { Editor } from 'slate';
-import { toggleMark } from '../transforms/toggleMark';
-import { HotkeyOptions } from '../types/PluginOptions.types';
+import isHotkey from 'is-hotkey'
+import { Editor } from 'meow-slate'
+import { toggleMark } from '../transforms/toggleMark'
+import { HotkeyOptions } from '../types/PluginOptions.types'
 
 export interface GetOnHotkeyToggleMarkOptions extends HotkeyOptions {
   /**
    * Key of the mark
    */
-  type: string;
+  type: string
 
   /**
    * Mark to clear
    */
-  clear?: string | string[];
+  clear?: string | string[]
 }
 
 /**
@@ -23,13 +23,13 @@ export const getOnHotkeyToggleMark = ({
   hotkey,
   clear,
 }: GetOnHotkeyToggleMarkOptions) => {
-  if (!hotkey) return;
+  if (!hotkey) return
 
   return (e: any, editor: Editor) => {
     if (hotkey && isHotkey(hotkey, e)) {
-      e.preventDefault();
+      e.preventDefault()
 
-      toggleMark(editor, type, clear);
+      toggleMark(editor, type, clear)
     }
-  };
-};
+  }
+}

@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { useEditor } from 'slate-react'
+import { useEditor } from 'meow-slate-react'
 import { ToolbarButton, ToolbarButtonProps } from '../../../components/ToolbarButton'
 // import { insertImage } from '../transforms'
 import { ImagePluginOptions } from '../types'

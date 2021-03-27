@@ -1,5 +1,5 @@
-import { createEditor } from 'slate';
-import { getPreviousBlockById } from './getPreviousBlockById';
+import { createEditor } from 'meow-slate'
+import { getPreviousBlockById } from './getPreviousBlockById'
 
 const nodesFixture5 = [
   {
@@ -17,7 +17,7 @@ const nodesFixture5 = [
     id: '3',
     type: 'p',
   },
-];
+]
 
 const nodesFixtureWithList = [
   {
@@ -51,40 +51,40 @@ const nodesFixtureWithList = [
     id: '3',
     type: 'p',
   },
-];
+]
 
 describe('when getPreviousNodeById', () => {
   describe('when not first block', () => {
     it('should be', () => {
-      const e = createEditor();
-      e.children = nodesFixture5;
-      expect(getPreviousBlockById(e, '3')?.[0]).toEqual(nodesFixture5[1]);
-    });
-  });
+      const e = createEditor()
+      e.children = nodesFixture5
+      expect(getPreviousBlockById(e, '3')?.[0]).toEqual(nodesFixture5[1])
+    })
+  })
 
   describe('when first block', () => {
     it('should be', () => {
-      const e = createEditor();
-      e.children = nodesFixture5;
-      expect(getPreviousBlockById(e, '1')).toEqual([null, [-1]]);
-    });
-  });
+      const e = createEditor()
+      e.children = nodesFixture5
+      expect(getPreviousBlockById(e, '1')).toEqual([null, [-1]])
+    })
+  })
 
   describe('when not found', () => {
     it('should be undefined', () => {
-      const e = createEditor();
-      e.children = nodesFixture5;
-      expect(getPreviousBlockById(e, '11')?.[0]).toBeUndefined();
-    });
-  });
+      const e = createEditor()
+      e.children = nodesFixture5
+      expect(getPreviousBlockById(e, '11')?.[0]).toBeUndefined()
+    })
+  })
 
   describe('when list', () => {
     it('should return previous block', () => {
-      const e = createEditor();
-      e.children = nodesFixtureWithList;
+      const e = createEditor()
+      e.children = nodesFixtureWithList
       expect(getPreviousBlockById(e, '2')?.[0]).toEqual(
         nodesFixtureWithList[0]
-      );
-    });
-  });
-});
+      )
+    })
+  })
+})

@@ -1,7 +1,7 @@
 /** @jsx jsx */
 
-import { Editor, Element } from 'slate';
-import { withReact } from 'slate-react';
+import { Editor, Element } from 'meow-slate';
+import { withReact } from 'meow-slate-react';
 import { jsx } from '../../../../__test-utils__/jsx';
 import { ELEMENT_MENTION } from '../../../../elements/mention/defaults';
 import { withInlineVoid } from '../../../plugins/inline-void/withInlineVoid';

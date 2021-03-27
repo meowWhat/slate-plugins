@@ -1,22 +1,16 @@
-import React, { useMemo, useState } from 'react';
-import { boolean, text } from '@storybook/addon-knobs';
-import {
-  EditablePlugins,
-  ParagraphPlugin,
-  pipe,
-  SlateDocument,
-  withInlineVoid,
-} from '@udecode/slate-plugins';
-import { createEditor, Node } from 'slate';
-import { withHistory } from 'slate-history';
-import { Slate, withReact } from 'slate-react';
-import { options } from '../../config/initialValues';
-import { EditableVoidPlugin } from './EditableVoidPlugin';
-import { EDITABLE_VOID } from './types';
+import React, { useMemo, useState } from 'react'
+import { boolean, text } from '@storybook/addon-knobs'
+import { EditablePlugins, ParagraphPlugin, pipe, SlateDocument, withInlineVoid } from '@udecode/slate-plugins'
+import { createEditor, Node } from 'meow-slate'
+import { withHistory } from 'meow-slate-history'
+import { Slate, withReact } from 'meow-slate-react'
+import { options } from '../../config/initialValues'
+import { EditableVoidPlugin } from './EditableVoidPlugin'
+import { EDITABLE_VOID } from './types'
 
 export default {
   title: 'Elements/Editable Voids',
-};
+}
 
 const initialValueVoids: Node[] = [
   {
@@ -44,27 +38,19 @@ const initialValueVoids: Node[] = [
       },
     ],
   },
-];
+]
 
-const plugins = [ParagraphPlugin(options), EditableVoidPlugin()];
+const plugins = [ParagraphPlugin(options), EditableVoidPlugin()]
 
-const withPlugins = [
-  withReact,
-  withHistory,
-  withInlineVoid({ plugins }),
-] as const;
+const withPlugins = [withReact, withHistory, withInlineVoid({ plugins })] as const
 
 export const Example = () => {
-  const [value, setValue] = useState(initialValueVoids);
+  const [value, setValue] = useState(initialValueVoids)
 
-  const editor = useMemo(() => pipe(createEditor(), ...withPlugins), []);
+  const editor = useMemo(() => pipe(createEditor(), ...withPlugins), [])
 
   return (
-    <Slate
-      editor={editor}
-      value={value}
-      onChange={(newValue) => setValue(newValue as SlateDocument)}
-    >
+    <Slate editor={editor} value={value} onChange={(newValue) => setValue(newValue as SlateDocument)}>
       <EditablePlugins
         readOnly={boolean('readOnly', false)}
         plugins={plugins}
@@ -73,5 +59,5 @@ export const Example = () => {
         autoFocus
       />
     </Slate>
-  );
-};
+  )
+}

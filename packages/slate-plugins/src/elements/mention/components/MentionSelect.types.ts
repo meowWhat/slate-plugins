@@ -1,49 +1,49 @@
-import { IStyle } from '@uifabric/styling';
-import { IStyleFunctionOrObject } from '@uifabric/utilities';
-import { Range } from 'slate';
-import { ReactEditor } from 'slate-react';
-import { MentionNodeData } from '../types';
+import { IStyle } from '@uifabric/styling'
+import { IStyleFunctionOrObject } from '@uifabric/utilities'
+import { Range } from 'meow-slate'
+import { ReactEditor } from 'meow-slate-react'
+import { MentionNodeData } from '../types'
 
 export interface MentionSelectProps {
   /**
    * Additional class name to provide on the root element.
    */
-  className?: string;
+  className?: string
 
   /**
    * Call to provide customized styling that will layer on top of the variant rules.
    */
-  styles?: IStyleFunctionOrObject<MentionSelectStyleProps, MentionSelectStyles>;
+  styles?: IStyleFunctionOrObject<MentionSelectStyleProps, MentionSelectStyles>
 
   /**
    * Range from the mention trigger to the cursor
    */
-  at: Range | null;
+  at: Range | null
 
   /**
    * List of mentionable items
    */
-  options: MentionNodeData[];
+  options: MentionNodeData[]
 
   /**
    * Index of the selected option
    */
-  valueIndex: number;
+  valueIndex: number
 
   /**
    * Callback called when clicking on a mention option
    */
-  onClickMention?: (editor: ReactEditor, option: MentionNodeData) => void;
+  onClickMention?: (editor: ReactEditor, option: MentionNodeData) => void
 
-  renderLabel?: (mentionable: MentionNodeData) => string;
+  renderLabel?: (mentionable: MentionNodeData) => string
 }
 
 export interface MentionSelectStyleProps {
-  className?: string;
+  className?: string
 }
 
 export interface MentionSelectStyles {
-  root?: IStyle;
-  mentionItem?: IStyle;
-  mentionItemSelected?: IStyle;
+  root?: IStyle
+  mentionItem?: IStyle
+  mentionItemSelected?: IStyle
 }

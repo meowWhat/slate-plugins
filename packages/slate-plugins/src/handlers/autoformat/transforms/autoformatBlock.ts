@@ -1,4 +1,4 @@
-import { Editor, Location, Transforms } from 'slate';
+import { Editor, Location, Transforms } from 'meow-slate'
 
 export const autoformatBlock = (
   editor: Editor,
@@ -8,21 +8,21 @@ export const autoformatBlock = (
     preFormat,
     format,
   }: {
-    preFormat?: (editor: Editor) => void;
-    format?: (editor: Editor) => void;
+    preFormat?: (editor: Editor) => void
+    format?: (editor: Editor) => void
   }
 ) => {
-  Transforms.delete(editor, { at });
+  Transforms.delete(editor, { at })
 
-  preFormat?.(editor);
+  preFormat?.(editor)
 
   if (!format) {
     Transforms.setNodes(
       editor,
       { type },
       { match: (n) => Editor.isBlock(editor, n) }
-    );
+    )
   } else {
-    format(editor);
+    format(editor)
   }
-};
+}

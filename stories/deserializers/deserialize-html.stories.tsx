@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useMemo, useState } from 'react'
 import {
   BlockquotePlugin,
   BoldPlugin,
@@ -30,16 +30,16 @@ import {
   withLink,
   withList,
   withTable,
-} from '@udecode/slate-plugins';
-import { createEditor } from 'slate';
-import { withHistory } from 'slate-history';
-import { Slate, withReact } from 'slate-react';
-import { initialValuePasteHtml, options } from '../config/initialValues';
+} from '@udecode/slate-plugins'
+import { createEditor } from 'meow-slate'
+import { withHistory } from 'meow-slate-history'
+import { Slate, withReact } from 'meow-slate-react'
+import { initialValuePasteHtml, options } from '../config/initialValues'
 
 export default {
   title: 'Deserializers/HTML',
   component: withDeserializeHTML,
-};
+}
 
 const plugins = [
   ParagraphPlugin(options),
@@ -62,7 +62,7 @@ const plugins = [
   SubscriptPlugin(options),
   SuperscriptPlugin(options),
   SoftBreakPlugin(),
-];
+]
 
 const withPlugins = [
   withReact,
@@ -74,29 +74,22 @@ const withPlugins = [
   withDeserializeHTML({ plugins }),
   withImageUpload(),
   withInlineVoid({ plugins }),
-] as const;
+] as const
 
 export const Example = () => {
   const createReactEditor = () => () => {
-    const [value, setValue] = useState(initialValuePasteHtml);
+    const [value, setValue] = useState(initialValuePasteHtml)
 
-    const editor = useMemo(() => pipe(createEditor(), ...withPlugins), []);
+    const editor = useMemo(() => pipe(createEditor(), ...withPlugins), [])
 
     return (
-      <Slate
-        editor={editor}
-        value={value}
-        onChange={(newValue) => setValue(newValue as SlateDocument)}
-      >
-        <EditablePlugins
-          plugins={plugins}
-          placeholder="Paste in some HTML..."
-        />
+      <Slate editor={editor} value={value} onChange={(newValue) => setValue(newValue as SlateDocument)}>
+        <EditablePlugins plugins={plugins} placeholder="Paste in some HTML..." />
       </Slate>
-    );
-  };
+    )
+  }
 
-  const Editor = createReactEditor();
+  const Editor = createReactEditor()
 
-  return <Editor />;
-};
+  return <Editor />
+}

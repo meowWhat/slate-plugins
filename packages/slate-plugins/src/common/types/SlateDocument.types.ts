@@ -1,19 +1,19 @@
-import { Text } from 'slate';
+import { Text } from 'meow-slate'
 
-export type ArrayOne<T> = [T];
+export type ArrayOne<T> = [T]
 
 export interface ArrayOneOrMore<T> extends Array<T> {
-  0: T;
+  0: T
 }
 
-export type SlateDocumentFragment = ArrayOneOrMore<SlateDocumentDescendant>;
+export type SlateDocumentFragment = ArrayOneOrMore<SlateDocumentDescendant>
 
 export interface SlateDocumentElement {
-  children: SlateDocumentFragment;
-  [key: string]: unknown;
+  children: SlateDocumentFragment
+  [key: string]: unknown
 }
 
-export type SlateDocumentDescendant = SlateDocumentElement | Text;
+export type SlateDocumentDescendant = SlateDocumentElement | Text
 
 /**
  * Strict document structure to be used as a Slate value.
@@ -21,5 +21,5 @@ export type SlateDocumentDescendant = SlateDocumentElement | Text;
  * Each children needs at least one {@link SlateDocumentDescendant}.
  */
 export type SlateDocument = ArrayOne<{
-  children: SlateDocumentFragment;
-}>;
+  children: SlateDocumentFragment
+}>

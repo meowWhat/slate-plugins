@@ -1,10 +1,10 @@
-import { IStyle } from '@uifabric/styling';
-import { IStyleFunctionOrObject } from '@uifabric/utilities';
-import { RenderElementProps, RenderLeafProps } from 'slate-react';
+import { IStyle } from '@uifabric/styling'
+import { IStyleFunctionOrObject } from '@uifabric/utilities'
+import { RenderElementProps, RenderLeafProps } from 'meow-slate-react'
 import {
   HtmlAttributesProps,
   RenderNodePropsOptions,
-} from '../../common/types/PluginOptions.types';
+} from '../../common/types/PluginOptions.types'
 
 export interface StyledComponentPropsOptions extends RenderNodePropsOptions {
   /**
@@ -13,29 +13,29 @@ export interface StyledComponentPropsOptions extends RenderNodePropsOptions {
   styles?: IStyleFunctionOrObject<
     StyledComponentStyleProps,
     StyledComponentStyles
-  >;
+  >
 
-  htmlAttributes?: { [key: string]: any };
+  htmlAttributes?: { [key: string]: any }
 
-  children?: any;
+  children?: any
 }
 
 export interface StyledElementProps
   extends Omit<StyledComponentProps, 'children'>,
-    HtmlAttributesProps,
-    RenderElementProps {}
+  HtmlAttributesProps,
+  RenderElementProps { }
 
 export interface StyledLeafProps
   extends Omit<StyledComponentProps, 'children'>,
-    RenderLeafProps {}
+  RenderLeafProps { }
 
-export interface StyledComponentProps extends StyledComponentPropsOptions {}
+export interface StyledComponentProps extends StyledComponentPropsOptions { }
 
 export interface StyledComponentStyleProps {
   /**
    * Accept custom classNames
    */
-  className?: string;
+  className?: string
 
   // Insert StyledComponent style props below
 }
@@ -44,7 +44,7 @@ export interface StyledComponentStyles {
   /**
    * Style for the root element.
    */
-  root?: IStyle;
+  root?: IStyle
 
   // Insert StyledComponent classNames below
 }

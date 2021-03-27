@@ -1,25 +1,25 @@
-import { ReactEditor } from 'slate-react';
-import { getListNormalizer } from './normalizers/getListNormalizer';
-import { deleteBackwardList } from './transforms/deleteBackwardList';
-import { insertBreakList } from './transforms/insertBreakList';
-import { WithListOptions } from './types';
+import { ReactEditor } from 'meow-slate-react'
+import { getListNormalizer } from './normalizers/getListNormalizer'
+import { deleteBackwardList } from './transforms/deleteBackwardList'
+import { insertBreakList } from './transforms/insertBreakList'
+import { WithListOptions } from './types'
 
 export const withList = ({
   validLiChildrenTypes,
   ...options
 }: WithListOptions = {}) => <T extends ReactEditor>(editor: T) => {
-  const { insertBreak, deleteBackward } = editor;
+  const { insertBreak, deleteBackward } = editor
 
   editor.insertBreak = () => {
-    if (insertBreakList(editor, options)) return;
-    insertBreak();
-  };
+    if (insertBreakList(editor, options)) return
+    insertBreak()
+  }
 
   editor.deleteBackward = (unit) => {
-    if (deleteBackwardList(editor, unit, options)) return;
+    if (deleteBackwardList(editor, unit, options)) return
 
-    deleteBackward(unit);
-  };
+    deleteBackward(unit)
+  }
 
   // editor.deleteFragment = () => {
   //   if (deleteFragmentList(editor, options)) return;
@@ -31,7 +31,7 @@ export const withList = ({
     editor,
     { validLiChildrenTypes },
     options
-  );
+  )
 
-  return editor;
-};
+  return editor
+}

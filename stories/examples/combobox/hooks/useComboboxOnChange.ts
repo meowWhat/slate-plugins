@@ -1,6 +1,6 @@
 import { useCallback } from 'react'
 import { isCollapsed } from '@udecode/slate-plugins'
-import { Editor, Range } from 'slate'
+import { Editor, Range } from 'meow-slate'
 import { useComboboxStore } from '../useComboboxStore'
 import { getTextFromTrigger } from '../utils/getTextFromTrigger'
 

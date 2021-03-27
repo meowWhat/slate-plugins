@@ -1,9 +1,9 @@
-import { Path, Range } from 'slate';
+import { Path, Range } from 'meow-slate'
 
 /**
  * Is the range in the same single text path.
  */
 export const isRangeInSingleText = (at: Range) => {
-  const [start, end] = Range.edges(at);
-  return Path.equals(start.path, end.path);
-};
+  const [start, end] = Range.edges(at)
+  return Path.equals(start.path, end.path)
+}

@@ -1,8 +1,8 @@
 /** @jsx jsx */
 import { act, renderHook } from '@testing-library/react-hooks';
-import { Editor } from 'slate';
-import { withHistory } from 'slate-history';
-import { withReact } from 'slate-react';
+import { Editor } from 'meow-slate';
+import { withHistory } from 'meow-slate-history';
+import { withReact } from 'meow-slate-react';
 import { jsx } from '../../../../../__test-utils__/jsx';
 import { pipe } from '../../../../../common/utils/pipe';
 import { useMention } from '../../../index';

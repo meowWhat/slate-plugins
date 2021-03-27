@@ -1,17 +1,17 @@
-import { Editor, Path, Transforms } from 'slate';
-import { queryNode, QueryNodeOptions } from '../common';
-import { getLastNode } from '../common/queries';
-import { ELEMENT_PARAGRAPH } from '../elements/paragraph/defaults';
+import { Editor, Path, Transforms } from 'meow-slate'
+import { queryNode, QueryNodeOptions } from '../common'
+import { getLastNode } from '../common/queries'
+import { ELEMENT_PARAGRAPH } from '../elements/paragraph/defaults'
 
 export interface WithTrailingNode extends QueryNodeOptions {
   /**
    * Type of the trailing block
    */
-  type?: string;
+  type?: string
   /**
    * Level where the trailing node should be, the first level being 0.
    */
-  level?: number;
+  level?: number
 }
 
 /**
@@ -22,12 +22,12 @@ export const withTrailingNode = ({
   level = 1,
   ...query
 }: WithTrailingNode = {}) => <T extends Editor>(editor: T) => {
-  const { normalizeNode } = editor;
+  const { normalizeNode } = editor
 
   editor.normalizeNode = ([currentNode, currentPath]) => {
     if (!currentPath.length) {
-      const entry = getLastNode(editor, level);
-      const [lastNode, lastPath] = entry;
+      const entry = getLastNode(editor, level)
+      const [lastNode, lastPath] = entry
 
       if (lastNode.type !== type && queryNode(entry, query)) {
         Transforms.insertNodes(
@@ -37,13 +37,13 @@ export const withTrailingNode = ({
             children: [{ text: '' }],
           },
           { at: Path.next(lastPath) }
-        );
-        return;
+        )
+        return
       }
     }
 
-    return normalizeNode([currentNode, currentPath]);
-  };
+    return normalizeNode([currentNode, currentPath])
+  }
 
-  return editor;
-};
+  return editor
+}

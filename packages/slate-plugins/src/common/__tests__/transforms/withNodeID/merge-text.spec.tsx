@@ -1,6 +1,6 @@
 /** @jsx jsx */
-import { Editor, Transforms } from 'slate';
-import { withHistory } from 'slate-history';
+import { Editor, Transforms } from 'meow-slate';
+import { withHistory } from 'meow-slate-history';
 import { HistoryEditor } from 'slate-history/dist/history-editor';
 import { jsx } from '../../../../__test-utils__/jsx';
 import { withNodeID } from '../../../plugins/node-id/index';

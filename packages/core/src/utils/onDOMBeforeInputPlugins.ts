@@ -1,5 +1,5 @@
-import { Editor } from 'slate';
-import { OnDOMBeforeInput, SlatePlugin } from '../types';
+import { Editor } from 'meow-slate'
+import { OnDOMBeforeInput, SlatePlugin } from '../types'
 
 export const onDOMBeforeInputPlugins = (
   editor: Editor,
@@ -7,10 +7,10 @@ export const onDOMBeforeInputPlugins = (
   onDOMBeforeInputList: OnDOMBeforeInput[]
 ) => (event: Event) => {
   onDOMBeforeInputList.forEach((onDOMBeforeInput) => {
-    onDOMBeforeInput(event, editor);
-  });
+    onDOMBeforeInput(event, editor)
+  })
 
   plugins.forEach(({ onDOMBeforeInput }) => {
-    onDOMBeforeInput?.(event, editor);
-  });
-};
+    onDOMBeforeInput?.(event, editor)
+  })
+}

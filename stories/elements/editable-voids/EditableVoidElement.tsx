@@ -1,12 +1,9 @@
-import React, { useState } from 'react';
-import { RenderElementProps } from 'slate-react';
-import { Example } from '../../components/editable-plugins.stories';
+import React, { useState } from 'react'
+import { RenderElementProps } from 'meow-slate-react'
+import { Example } from '../../components/editable-plugins.stories'
 
-export const EditableVoidElement = ({
-  attributes,
-  children,
-}: RenderElementProps) => {
-  const [inputValue, setInputValue] = useState('');
+export const EditableVoidElement = ({ attributes, children }: RenderElementProps) => {
+  const [inputValue, setInputValue] = useState('')
 
   return (
     // Need contentEditable=false or Firefox has issues with certain input types.
@@ -18,25 +15,13 @@ export const EditableVoidElement = ({
           type="text"
           value={inputValue}
           onChange={(e) => {
-            setInputValue(e.target.value);
+            setInputValue(e.target.value)
           }}
         />
         <h4>Left or right handed:</h4>
-        <input
-          style={{ width: 'unset' }}
-          type="radio"
-          name="handedness"
-          value="left"
-        />{' '}
-        Left
+        <input style={{ width: 'unset' }} type="radio" name="handedness" value="left" /> Left
         <br />
-        <input
-          style={{ width: 'unset' }}
-          type="radio"
-          name="handedness"
-          value="right"
-        />{' '}
-        Right
+        <input style={{ width: 'unset' }} type="radio" name="handedness" value="right" /> Right
         <h4>Tell us about yourself:</h4>
         <div style={{ padding: '20px', border: '2px solid #ddd' }}>
           <Example />
@@ -44,5 +29,5 @@ export const EditableVoidElement = ({
       </div>
       {children}
     </div>
-  );
-};
+  )
+}

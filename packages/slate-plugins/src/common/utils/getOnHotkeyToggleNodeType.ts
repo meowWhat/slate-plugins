@@ -1,14 +1,14 @@
-import isHotkey from 'is-hotkey';
-import castArray from 'lodash/castArray';
-import { Editor } from 'slate';
-import { toggleNodeType } from '../transforms/toggleNodeType';
-import { HotkeyOptions } from '../types/PluginOptions.types';
+import isHotkey from 'is-hotkey'
+import castArray from 'lodash/castArray'
+import { Editor } from 'meow-slate'
+import { toggleNodeType } from '../transforms/toggleNodeType'
+import { HotkeyOptions } from '../types/PluginOptions.types'
 
 export interface GetOnHotkeyToggleNodeTypeOptions extends HotkeyOptions {
   /**
    * Key of the mark
    */
-  type: string;
+  type: string
 }
 
 /**
@@ -19,17 +19,17 @@ export const getOnHotkeyToggleNodeType = ({
   defaultType,
   hotkey,
 }: GetOnHotkeyToggleNodeTypeOptions) => {
-  if (!hotkey) return;
+  if (!hotkey) return
 
-  const hotkeys = castArray(hotkey);
+  const hotkeys = castArray(hotkey)
 
   return (e: any, editor: Editor) => {
     for (const key of hotkeys) {
       if (isHotkey(key, e)) {
-        e.preventDefault();
-        toggleNodeType(editor, { activeType: type, inactiveType: defaultType });
-        return;
+        e.preventDefault()
+        toggleNodeType(editor, { activeType: type, inactiveType: defaultType })
+        return
       }
     }
-  };
-};
+  }
+}

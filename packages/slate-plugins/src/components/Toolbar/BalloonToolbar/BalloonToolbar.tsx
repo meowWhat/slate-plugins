@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useSlate } from 'slate-react';
+import { useSlate } from 'meow-slate-react';
 import { PortalBody } from '../../PortalBody';
 import { Toolbar } from '../Toolbar';
 import { getBalloonToolbarStyles } from './BalloonToolbar.styles';

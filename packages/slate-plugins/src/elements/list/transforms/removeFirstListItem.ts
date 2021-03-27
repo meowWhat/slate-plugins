@@ -1,8 +1,8 @@
-import { Ancestor, Editor, NodeEntry } from 'slate';
-import { isFirstChild } from '../../../common/queries/isFirstChild';
-import { isListNested } from '../queries/isListNested';
-import { ListOptions } from '../types';
-import { moveListItemUp } from './moveListItemUp';
+import { Ancestor, Editor, NodeEntry } from 'meow-slate'
+import { isFirstChild } from '../../../common/queries/isFirstChild'
+import { isListNested } from '../queries/isListNested'
+import { ListOptions } from '../types'
+import { moveListItemUp } from './moveListItemUp'
 
 /**
  * If list is not nested and if li is not the first child, move li up.
@@ -13,19 +13,19 @@ export const removeFirstListItem = (
     list,
     listItem,
   }: {
-    list: NodeEntry<Ancestor>;
-    listItem: NodeEntry<Ancestor>;
+    list: NodeEntry<Ancestor>
+    listItem: NodeEntry<Ancestor>
   },
   options?: ListOptions
 ) => {
-  const [, listPath] = list;
-  const [, listItemPath] = listItem;
+  const [, listPath] = list
+  const [, listItemPath] = listItem
 
   if (!isListNested(editor, listPath, options) && isFirstChild(listItemPath)) {
-    moveListItemUp(editor, { list, listItem }, options);
+    moveListItemUp(editor, { list, listItem }, options)
 
-    return true;
+    return true
   }
 
-  return false;
-};
+  return false
+}

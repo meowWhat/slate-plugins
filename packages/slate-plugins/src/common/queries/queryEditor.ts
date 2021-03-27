@@ -1,9 +1,9 @@
-import castArray from 'lodash/castArray';
-import { Editor } from 'slate';
-import { QueryEditorOptions } from '../types/QueryEditorOptions';
-import { isSelectionAtBlockEnd } from './isSelectionAtBlockEnd';
-import { isSelectionAtBlockStart } from './isSelectionAtBlockStart';
-import { someNode } from './someNode';
+import castArray from 'lodash/castArray'
+import { Editor } from 'meow-slate'
+import { QueryEditorOptions } from '../types/QueryEditorOptions'
+import { isSelectionAtBlockEnd } from './isSelectionAtBlockEnd'
+import { isSelectionAtBlockStart } from './isSelectionAtBlockStart'
+import { someNode } from './someNode'
 
 /**
  * Query the editor state.
@@ -24,18 +24,18 @@ export const queryEditor = (
     (selectionAtBlockStart && !isSelectionAtBlockStart(editor)) ||
     (selectionAtBlockEnd && !isSelectionAtBlockEnd(editor))
   ) {
-    return false;
+    return false
   }
 
-  const allows = castArray(allow);
+  const allows = castArray(allow)
   if (allows.length && !someNode(editor, { at, match: { type: allows } })) {
-    return false;
+    return false
   }
 
-  const excludes = castArray(exclude);
+  const excludes = castArray(exclude)
   if (excludes.length && someNode(editor, { at, match: { type: excludes } })) {
-    return false;
+    return false
   }
 
-  return true;
-};
+  return true
+}

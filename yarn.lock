@@ -12997,6 +12997,45 @@ memory-fs@^0.5.0:
     errno "^0.1.3"
     readable-stream "^2.0.1"
 
+meow-slate-history@*:
+  version "0.59.1"
+  resolved "https://registry.npmjs.org/meow-slate-history/-/meow-slate-history-0.59.1.tgz#4c36d532465430bb5d3f0ff9d9a280ee3b0b06cd"
+  integrity sha512-OTXKEOkndRYIalDMiwHuXlwU+GR7BLnFO0aZ9XjhMoC9wOD/AeFScNNkLNg4ZShM6e948mRYeoxFDecNknCZVQ==
+  dependencies:
+    immer "^5.0.0"
+    is-plain-object "^3.0.0"
+
+meow-slate-hyperscript@*:
+  version "0.59.1"
+  resolved "https://registry.npmjs.org/meow-slate-hyperscript/-/meow-slate-hyperscript-0.59.1.tgz#e4abd867f7dd62ce7b9de2861b4522c8093848f0"
+  integrity sha512-URs8zCflEp2ylROkSXkIduMaeAKz6g0rBLnWwonAWAPwosZqP7mVfy2jBX9YIWRI7FeQFMJ3i3et8a1/4d4ujQ==
+  dependencies:
+    is-plain-object "^3.0.0"
+
+meow-slate-react@*:
+  version "0.59.1"
+  resolved "https://registry.npmjs.org/meow-slate-react/-/meow-slate-react-0.59.1.tgz#86cd6ab498598a5a4f8862f88df97adfa775cd87"
+  integrity sha512-bbbrvh6rORQRPiaNiqyL/uiIvHYVqaHX3U/XFS/hT1jJRwRSFNDJ4wbPup0yENyT03LWAEOEudEFnKKDKTGkOw==
+  dependencies:
+    "@types/is-hotkey" "^0.1.1"
+    "@types/lodash" "^4.14.149"
+    direction "^1.0.3"
+    is-hotkey "^0.1.6"
+    is-plain-object "^3.0.0"
+    lodash "^4.17.4"
+    scroll-into-view-if-needed "^2.2.20"
+
+meow-slate@*:
+  version "0.59.1"
+  resolved "https://registry.npmjs.org/meow-slate/-/meow-slate-0.59.1.tgz#16280cb4c914fd64ed795145a01500aecb9c9739"
+  integrity sha512-eHDElRBaJBguKgbH7EPjDM9TX3jKXFO0OI8Rdn/5dq3CkeVd7IKGpTO87DkujJ8hh8mhPDy50W0NBMA3bSw4vg==
+  dependencies:
+    "@types/esrever" "^0.2.0"
+    esrever "^0.2.0"
+    immer "^5.0.0"
+    is-plain-object "^3.0.0"
+    tiny-warning "^1.0.3"
+
 meow@^3.3.0:
   version "3.7.0"
   resolved "https://registry.yarnpkg.com/meow/-/meow-3.7.0.tgz#72cb668b425228290abbfa856892587308a801fb"
@@ -16378,45 +16417,6 @@ slash@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/slash/-/slash-3.0.0.tgz#6539be870c165adbd5240220dbe361f1bc4d4634"
   integrity sha512-g9Q1haeby36OSStwb4ntCGGGaKsaVSjQ68fBxoQcutl5fS1vuY18H3wSt3jFyFtrkx+Kz0V1G85A4MyAdDMi2Q==
-
-slate-history@0.59.0:
-  version "0.59.0"
-  resolved "https://registry.yarnpkg.com/slate-history/-/slate-history-0.59.0.tgz#3c5ecbe8893ce2ae9523068ccc17c62d52b24a1a"
-  integrity sha512-LBaVmxA7QKr5faDUt0rjgFH4TwAslyl4rrltpM6PVZYeJ301KkpUTqZf83asDjwgt5pl9nEx4huKL7IlX+rZfA==
-  dependencies:
-    immer "^5.0.0"
-    is-plain-object "^3.0.0"
-
-slate-hyperscript@0.59.0:
-  version "0.59.0"
-  resolved "https://registry.yarnpkg.com/slate-hyperscript/-/slate-hyperscript-0.59.0.tgz#3bab0c418854b3e26530064c142b8a64b87dc7a8"
-  integrity sha512-HvZLA5RSAs27ZznD2r5sy2RP114K7+I/jOt3glFtQLFKEptxsIFTgTsEyxMhD6864tOPqs56m6IyA0tX/jhzjA==
-  dependencies:
-    is-plain-object "^3.0.0"
-
-slate-react@0.59.0:
-  version "0.59.0"
-  resolved "https://registry.yarnpkg.com/slate-react/-/slate-react-0.59.0.tgz#c8043dce7ea71279f314d9951c32e4f548b1ea0b"
-  integrity sha512-Fx5vfTi0s1fY5PaXzPH8uA9mW8aevVVYrGGvqX/k363tlPDnQSs/QTibIyFl1Y3MPJ+GdocoyOGjAaZMUIXfIg==
-  dependencies:
-    "@types/is-hotkey" "^0.1.1"
-    "@types/lodash" "^4.14.149"
-    direction "^1.0.3"
-    is-hotkey "^0.1.6"
-    is-plain-object "^3.0.0"
-    lodash "^4.17.4"
-    scroll-into-view-if-needed "^2.2.20"
-
-slate@0.59.0:
-  version "0.59.0"
-  resolved "https://registry.yarnpkg.com/slate/-/slate-0.59.0.tgz#3169daf2f036e84aa149f60e0d12ef2fc4c0839e"
-  integrity sha512-M4UTMkXExxuq8tCD+knn7BtV2pmY8pepay++EF59rmg/v4RB6X1gNzA0xP3aw2rqYl8TmWdOBdy9InFrm3WyXw==
-  dependencies:
-    "@types/esrever" "^0.2.0"
-    esrever "^0.2.0"
-    immer "^5.0.0"
-    is-plain-object "^3.0.0"
-    tiny-warning "^1.0.3"
 
 slice-ansi@^4.0.0:
   version "4.0.0"

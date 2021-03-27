@@ -1,9 +1,9 @@
-import { Ancestor, Editor, Node, NodeEntry } from 'slate';
-import { deleteStartSpace } from './deleteStartSpace';
+import { Ancestor, Editor, Node, NodeEntry } from 'meow-slate'
+import { deleteStartSpace } from './deleteStartSpace'
 
 export interface OutdentCodeLineOptions {
-  codeBlock: NodeEntry<Ancestor>;
-  codeLine: NodeEntry<Ancestor | Node>;
+  codeBlock: NodeEntry<Ancestor>
+  codeLine: NodeEntry<Ancestor | Node>
 }
 
 /**
@@ -14,6 +14,6 @@ export const outdentCodeLine = (
   editor: Editor,
   { codeBlock, codeLine }: OutdentCodeLineOptions
 ) => {
-  const deleted = deleteStartSpace(editor, { codeBlock, codeLine });
-  deleted && deleteStartSpace(editor, { codeBlock, codeLine });
-};
+  const deleted = deleteStartSpace(editor, { codeBlock, codeLine })
+  deleted && deleteStartSpace(editor, { codeBlock, codeLine })
+}

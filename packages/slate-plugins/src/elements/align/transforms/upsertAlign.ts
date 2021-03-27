@@ -1,12 +1,12 @@
-import { Editor } from 'slate';
-import { unwrapNodes } from '../../../common/transforms/unwrapNodes';
-import { wrapNodes } from '../../../common/transforms/wrapNodes';
+import { Editor } from 'meow-slate'
+import { unwrapNodes } from '../../../common/transforms/unwrapNodes'
+import { wrapNodes } from '../../../common/transforms/wrapNodes'
 import {
   ELEMENT_ALIGN_CENTER,
   ELEMENT_ALIGN_JUSTIFY,
   ELEMENT_ALIGN_LEFT,
   ELEMENT_ALIGN_RIGHT,
-} from '../defaults';
+} from '../defaults'
 
 export const upsertAlign = (
   editor: Editor,
@@ -20,11 +20,11 @@ export const upsertAlign = (
     ],
   }: { type?: string; unwrapTypes?: string[] }
 ) => {
-  if (!editor.selection) return;
+  if (!editor.selection) return
 
-  unwrapNodes(editor, { match: { type: unwrapTypes } });
+  unwrapNodes(editor, { match: { type: unwrapTypes } })
 
-  if (!type) return;
+  if (!type) return
 
   wrapNodes(
     editor,
@@ -33,5 +33,5 @@ export const upsertAlign = (
       children: [],
     },
     { mode: 'lowest' }
-  );
-};
+  )
+}

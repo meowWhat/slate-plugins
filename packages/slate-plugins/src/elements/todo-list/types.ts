@@ -1,6 +1,6 @@
-import { IStyle } from '@uifabric/styling';
-import { IStyleFunctionOrObject } from '@uifabric/utilities';
-import { RenderElementProps } from 'slate-react';
+import { IStyle } from '@uifabric/styling'
+import { IStyleFunctionOrObject } from '@uifabric/utilities'
+import { RenderElementProps } from 'meow-slate-react'
 import {
   ElementWithAttributes,
   HtmlAttributesProps,
@@ -8,18 +8,18 @@ import {
   RenderNodeOptions,
   RenderNodePropsOptions,
   RootProps,
-} from '../../common/types/PluginOptions.types';
+} from '../../common/types/PluginOptions.types'
 import {
   StyledComponentStyleProps,
   StyledComponentStyles,
-} from '../../components/StyledComponent/StyledComponent.types';
+} from '../../components/StyledComponent/StyledComponent.types'
 
 // Data of Element node
 export interface TodoListNodeData {
-  checked?: boolean;
+  checked?: boolean
 }
 // Element node
-export interface TodoListNode extends ElementWithAttributes, TodoListNodeData {}
+export interface TodoListNode extends ElementWithAttributes, TodoListNodeData { }
 
 // renderElement options given as props
 export interface TodoListRenderElementPropsOptions {
@@ -29,60 +29,60 @@ export interface TodoListRenderElementPropsOptions {
   styles?: IStyleFunctionOrObject<
     StyledComponentStyleProps,
     StyledComponentStyles
-  >;
+  >
 }
 
 // renderElement props
 export interface TodoListElementProps
   extends RenderElementProps,
-    RenderNodePropsOptions,
-    HtmlAttributesProps,
-    TodoListRenderElementPropsOptions {
-  element: TodoListNode;
+  RenderNodePropsOptions,
+  HtmlAttributesProps,
+  TodoListRenderElementPropsOptions {
+  element: TodoListNode
 }
 
-export type TodoListKeyOption = 'todo_li';
+export type TodoListKeyOption = 'todo_li'
 
 // Plugin options
 export type TodoListPluginOptionsValues = RenderNodeOptions &
   RootProps<TodoListRenderElementPropsOptions> &
-  NodeToProps<TodoListNode, TodoListRenderElementPropsOptions>;
-export type TodoListPluginOptionsKeys = keyof TodoListPluginOptionsValues;
+  NodeToProps<TodoListNode, TodoListRenderElementPropsOptions>
+export type TodoListPluginOptionsKeys = keyof TodoListPluginOptionsValues
 export type TodoListPluginOptions<
   Value extends TodoListPluginOptionsKeys = TodoListPluginOptionsKeys
-> = Partial<
-  Record<TodoListKeyOption, Pick<TodoListPluginOptionsValues, Value>>
->;
+  > = Partial<
+    Record<TodoListKeyOption, Pick<TodoListPluginOptionsValues, Value>>
+  >
 
 // renderElement options
-export type TodoListRenderElementOptionsKeys = TodoListPluginOptionsKeys;
+export type TodoListRenderElementOptionsKeys = TodoListPluginOptionsKeys
 export interface TodoListRenderElementOptions
-  extends TodoListPluginOptions<TodoListRenderElementOptionsKeys> {}
+  extends TodoListPluginOptions<TodoListRenderElementOptionsKeys> { }
 
 // deserialize options
 export interface TodoListDeserializeOptions
-  extends TodoListPluginOptions<'type' | 'rootProps'> {}
+  extends TodoListPluginOptions<'type' | 'rootProps'> { }
 
-export interface WithTodoListOptions extends TodoListPluginOptions<'type'> {}
+export interface WithTodoListOptions extends TodoListPluginOptions<'type'> { }
 
 export interface TodoListElementStyles {
   /**
    * Style for the root element.
    */
-  root?: IStyle;
+  root?: IStyle
 
   // Insert TodoListElement classNames below
-  checkboxWrapper?: IStyle;
-  checkbox?: IStyle;
-  text?: IStyle;
+  checkboxWrapper?: IStyle
+  checkbox?: IStyle
+  text?: IStyle
 }
 
 export interface TodoListElementStyleProps {
   /**
    * Accept custom classNames
    */
-  className?: string;
+  className?: string
 
   // Insert TodoListElement style props below
-  checked?: boolean;
+  checked?: boolean
 }

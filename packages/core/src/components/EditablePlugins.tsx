@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import * as React from 'react';
 import { useCallback } from 'react';
-import { Editable, useSlate } from 'slate-react';
+import { Editable, useSlate } from 'meow-slate-react';
 import {
   Decorate,
   OnDOMBeforeInput,

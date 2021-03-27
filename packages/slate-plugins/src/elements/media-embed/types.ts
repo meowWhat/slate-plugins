@@ -1,6 +1,6 @@
-import { IStyle } from '@uifabric/styling';
-import { IStyleFunctionOrObject } from '@uifabric/utilities';
-import { RenderElementProps } from 'slate-react';
+import { IStyle } from '@uifabric/styling'
+import { IStyleFunctionOrObject } from '@uifabric/utilities'
+import { RenderElementProps } from 'meow-slate-react'
 import {
   Deserialize,
   ElementWithAttributes,
@@ -9,20 +9,20 @@ import {
   RenderNodeOptions,
   RenderNodePropsOptions,
   RootProps,
-} from '../../common/types/PluginOptions.types';
+} from '../../common/types/PluginOptions.types'
 import {
   StyledComponentStyleProps,
   StyledComponentStyles,
-} from '../../components/StyledComponent/StyledComponent.types';
+} from '../../components/StyledComponent/StyledComponent.types'
 
 // Data of Element node
 export interface MediaEmbedNodeData {
-  url: string;
+  url: string
 }
 // Element node
 export interface MediaEmbedNode
   extends ElementWithAttributes,
-    MediaEmbedNodeData {}
+  MediaEmbedNodeData { }
 
 // renderElement options given as props
 export interface MediaEmbedRenderElementPropsOptions {
@@ -32,58 +32,58 @@ export interface MediaEmbedRenderElementPropsOptions {
   styles?: IStyleFunctionOrObject<
     StyledComponentStyleProps,
     StyledComponentStyles
-  >;
+  >
 }
 
 // renderElement props
 export interface MediaEmbedElementProps
   extends RenderElementProps,
-    RenderNodePropsOptions,
-    HtmlAttributesProps,
-    MediaEmbedRenderElementPropsOptions {
-  element: MediaEmbedNode;
+  RenderNodePropsOptions,
+  HtmlAttributesProps,
+  MediaEmbedRenderElementPropsOptions {
+  element: MediaEmbedNode
 }
 
-export type MediaEmbedKeyOption = 'media_embed';
+export type MediaEmbedKeyOption = 'media_embed'
 
 // Plugin options
 export type MediaEmbedPluginOptionsValues = RenderNodeOptions &
   RootProps<MediaEmbedRenderElementPropsOptions> &
   NodeToProps<MediaEmbedNode, MediaEmbedRenderElementPropsOptions> &
-  Deserialize;
-export type MediaEmbedPluginOptionsKeys = keyof MediaEmbedPluginOptionsValues;
+  Deserialize
+export type MediaEmbedPluginOptionsKeys = keyof MediaEmbedPluginOptionsValues
 export type MediaEmbedPluginOptions<
   Value extends MediaEmbedPluginOptionsKeys = MediaEmbedPluginOptionsKeys
-> = Partial<
-  Record<MediaEmbedKeyOption, Pick<MediaEmbedPluginOptionsValues, Value>>
->;
+  > = Partial<
+    Record<MediaEmbedKeyOption, Pick<MediaEmbedPluginOptionsValues, Value>>
+  >
 
 // renderElement options
-export type MediaEmbedRenderElementOptionsKeys = MediaEmbedPluginOptionsKeys;
+export type MediaEmbedRenderElementOptionsKeys = MediaEmbedPluginOptionsKeys
 export interface MediaEmbedRenderElementOptions
-  extends MediaEmbedPluginOptions<MediaEmbedRenderElementOptionsKeys> {}
+  extends MediaEmbedPluginOptions<MediaEmbedRenderElementOptionsKeys> { }
 
 // deserialize options
 export interface MediaEmbedDeserializeOptions
-  extends MediaEmbedPluginOptions<'type' | 'rootProps' | 'deserialize'> {}
+  extends MediaEmbedPluginOptions<'type' | 'rootProps' | 'deserialize'> { }
 
 export interface MediaEmbedElementStyles {
   /**
    * Style for the root element.
    */
-  root?: IStyle;
+  root?: IStyle
 
   // Insert MediaEmbedElement classNames below
-  iframeWrapper?: IStyle;
-  iframe?: IStyle;
-  input?: IStyle;
+  iframeWrapper?: IStyle
+  iframe?: IStyle
+  input?: IStyle
 }
 
 export interface MediaEmbedElementStyleProps {
   /**
    * Accept custom classNames
    */
-  className?: string;
+  className?: string
 
   // Insert MediaEmbedElement style props below
 }

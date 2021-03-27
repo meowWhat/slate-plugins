@@ -1,12 +1,12 @@
 import React, { forwardRef, useMemo } from 'react';
 import { IStyleFunctionOrObject } from '@uifabric/utilities';
-import { Editor, Path } from 'slate';
+import { Editor, Path } from 'meow-slate';
 import {
   ReactEditor,
   RenderElementProps,
   useEditor,
   useReadOnly,
-} from 'slate-react';
+} from 'meow-slate-react';
 import { Selectable } from './Selectable';
 import {
   ElementWithId,

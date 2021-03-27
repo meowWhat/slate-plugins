@@ -1,5 +1,5 @@
-import { Ancestor, Editor, Location, NodeEntry } from 'slate';
-import { EditorParentOptions } from '../types/Editor.types';
+import { Ancestor, Editor, Location, NodeEntry } from 'meow-slate'
+import { EditorParentOptions } from '../types/Editor.types'
 
 /**
  * See {@link Editor.parent}.
@@ -11,6 +11,6 @@ export const getParent = (
   options?: EditorParentOptions
 ): NodeEntry<Ancestor> | undefined => {
   try {
-    return Editor.parent(editor, at, options);
-  } catch (err) {}
-};
+    return Editor.parent(editor, at, options)
+  } catch (err) { }
+}

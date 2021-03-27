@@ -1,9 +1,9 @@
-import { Editor, Path } from 'slate';
-import { getAbove } from '../../../common/queries/getAbove';
-import { setDefaults } from '../../../common/utils/setDefaults';
-import { DEFAULTS_LIST } from '../defaults';
-import { ListOptions } from '../types';
-import { getListTypes } from './getListTypes';
+import { Editor, Path } from 'meow-slate'
+import { getAbove } from '../../../common/queries/getAbove'
+import { setDefaults } from '../../../common/utils/setDefaults'
+import { DEFAULTS_LIST } from '../defaults'
+import { ListOptions } from '../types'
+import { getListTypes } from './getListTypes'
 
 /**
  * Find the highest end list that can be deleted.
@@ -19,29 +19,29 @@ export const getHighestEmptyList = (
   diffListPath?: Path,
   options?: ListOptions
 ): Path | undefined => {
-  const { li } = setDefaults(options, DEFAULTS_LIST);
+  const { li } = setDefaults(options, DEFAULTS_LIST)
 
   const list = getAbove(editor, {
     at: liPath,
     match: { type: getListTypes(options) },
-  });
-  if (!list) return;
-  const [listNode, listPath] = list;
+  })
+  if (!list) return
+  const [listNode, listPath] = list
 
   if (!diffListPath || !Path.equals(listPath, diffListPath)) {
     if (listNode.children.length < 2) {
       const liParent = getAbove(editor, {
         at: listPath,
         match: { type: li.type },
-      });
+      })
 
       if (liParent) {
         return (
           getHighestEmptyList(editor, liParent[1], diffListPath, options) ||
           listPath
-        );
+        )
       }
     }
-    return liPath;
+    return liPath
   }
-};
+}

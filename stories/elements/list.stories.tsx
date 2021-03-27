@@ -1,6 +1,6 @@
-import React, { useMemo, useState } from 'react';
-import { boolean } from '@storybook/addon-knobs';
-import { FormatListBulleted, FormatListNumbered } from '@styled-icons/material';
+import React, { useMemo, useState } from 'react'
+import { boolean } from '@storybook/addon-knobs'
+import { FormatListBulleted, FormatListNumbered } from '@styled-icons/material'
 import {
   EditablePlugins,
   ExitBreakPlugin,
@@ -17,16 +17,11 @@ import {
   ToolbarList,
   withImageUpload,
   withList,
-} from '@udecode/slate-plugins';
-import { createEditor } from 'slate';
-import { withHistory } from 'slate-history';
-import { Slate, withReact } from 'slate-react';
-import {
-  headingTypes,
-  initialValueList,
-  options,
-  optionsResetBlockTypes,
-} from '../config/initialValues';
+} from '@udecode/slate-plugins'
+import { createEditor } from 'meow-slate'
+import { withHistory } from 'meow-slate-history'
+import { Slate, withReact } from 'meow-slate-react'
+import { headingTypes, initialValueList, options, optionsResetBlockTypes } from '../config/initialValues'
 
 export default {
   title: 'Elements/List',
@@ -34,14 +29,9 @@ export default {
   subcomponents: {
     TodoListPlugin,
   },
-};
+}
 
-const withPlugins = [
-  withReact,
-  withHistory,
-  withList(options),
-  withImageUpload(options),
-] as const;
+const withPlugins = [withReact, withHistory, withList(options), withImageUpload(options)] as const
 
 export const Example = () => {
   const plugins: any[] = [
@@ -54,11 +44,7 @@ export const Example = () => {
         {
           hotkey: 'enter',
           query: {
-            allow: [
-              options.code_block.type,
-              options.blockquote.type,
-              options.td.type,
-            ],
+            allow: [options.code_block.type, options.blockquote.type, options.td.type],
           },
         },
       ],
@@ -82,46 +68,28 @@ export const Example = () => {
         },
       ],
     }),
-  ];
-  if (boolean('TodoListPlugin', true)) plugins.push(TodoListPlugin(options));
-  if (boolean('ListPlugin', true)) plugins.push(ListPlugin(options));
-  if (boolean('ResetBlockTypePlugin', true))
-    plugins.push(ResetBlockTypePlugin(optionsResetBlockTypes));
+  ]
+  if (boolean('TodoListPlugin', true)) plugins.push(TodoListPlugin(options))
+  if (boolean('ListPlugin', true)) plugins.push(ListPlugin(options))
+  if (boolean('ResetBlockTypePlugin', true)) plugins.push(ResetBlockTypePlugin(optionsResetBlockTypes))
 
   const createReactEditor = () => () => {
-    const [value, setValue] = useState(initialValueList);
+    const [value, setValue] = useState(initialValueList)
 
-    const editor = useMemo(() => pipe(createEditor(), ...withPlugins), []);
+    const editor = useMemo(() => pipe(createEditor(), ...withPlugins), [])
 
     return (
-      <Slate
-        editor={editor}
-        value={value}
-        onChange={(newValue) => setValue(newValue as SlateDocument)}
-      >
+      <Slate editor={editor} value={value} onChange={(newValue) => setValue(newValue as SlateDocument)}>
         <HeadingToolbar>
-          <ToolbarList
-            {...options}
-            typeList={options.ul.type}
-            icon={<FormatListBulleted />}
-          />
-          <ToolbarList
-            {...options}
-            typeList={options.ol.type}
-            icon={<FormatListNumbered />}
-          />
+          <ToolbarList {...options} typeList={options.ul.type} icon={<FormatListBulleted />} />
+          <ToolbarList {...options} typeList={options.ol.type} icon={<FormatListNumbered />} />
         </HeadingToolbar>
-        <EditablePlugins
-          plugins={plugins}
-          placeholder="Enter some rich text…"
-          spellCheck
-          autoFocus
-        />
+        <EditablePlugins plugins={plugins} placeholder="Enter some rich text…" spellCheck autoFocus />
       </Slate>
-    );
-  };
+    )
+  }
 
-  const Editor = createReactEditor();
+  const Editor = createReactEditor()
 
-  return <Editor />;
-};
+  return <Editor />
+}

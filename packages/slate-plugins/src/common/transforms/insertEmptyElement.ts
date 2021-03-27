@@ -1,6 +1,6 @@
-import { Editor, Transforms } from 'slate';
-import { InsertNodesOptions } from '../types/Transforms.types';
-import { getQueryOptions } from '../utils/match';
+import { Editor, Transforms } from 'meow-slate'
+import { InsertNodesOptions } from '../types/Transforms.types'
+import { getQueryOptions } from '../utils/match'
 
 export const insertEmptyElement = (
   editor: Editor,
@@ -14,5 +14,5 @@ export const insertEmptyElement = (
       children: [{ text: '' }],
     },
     getQueryOptions(editor, options)
-  );
-};
+  )
+}

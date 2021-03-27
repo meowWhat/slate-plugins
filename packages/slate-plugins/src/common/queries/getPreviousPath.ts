@@ -1,11 +1,11 @@
-import { Path } from 'slate';
+import { Path } from 'meow-slate'
 
 export const getPreviousPath = (path: Path): Path | undefined => {
-  if (path.length === 0) return;
+  if (path.length === 0) return
 
-  const last = path[path.length - 1];
+  const last = path[path.length - 1]
 
-  if (last <= 0) return;
+  if (last <= 0) return
 
-  return path.slice(0, -1).concat(last - 1);
-};
+  return path.slice(0, -1).concat(last - 1)
+}

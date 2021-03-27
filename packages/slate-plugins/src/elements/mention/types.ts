@@ -1,6 +1,6 @@
-import { IStyle } from '@uifabric/styling';
-import { IStyleFunctionOrObject } from '@uifabric/utilities';
-import { RenderElementProps } from 'slate-react';
+import { IStyle } from '@uifabric/styling'
+import { IStyleFunctionOrObject } from '@uifabric/utilities'
+import { RenderElementProps } from 'meow-slate-react'
 import {
   Deserialize,
   ElementWithAttributes,
@@ -9,32 +9,32 @@ import {
   RenderNodeOptions,
   RenderNodePropsOptions,
   RootProps,
-} from '../../common/types/PluginOptions.types';
+} from '../../common/types/PluginOptions.types'
 
 // useMention options
 export interface UseMentionOptions extends MentionPluginOptions {
   // Character triggering the mention select
-  trigger?: string;
+  trigger?: string
   // Maximum number of suggestions
-  maxSuggestions?: number;
+  maxSuggestions?: number
   // Function to match mentionnables for a given search
   mentionableFilter?: (
     search: string
-  ) => (mentionable: MentionNodeData) => boolean;
+  ) => (mentionable: MentionNodeData) => boolean
   // Regex Pattern of a mentionable. Some may want to match emails, so default \W is not enough
-  mentionableSearchPattern?: string;
+  mentionableSearchPattern?: string
 
   // Insert space after mention (defaults to false)
-  insertSpaceAfterMention?: boolean;
+  insertSpaceAfterMention?: boolean
 }
 
 // Data of Element node
 export interface MentionNodeData {
-  value: string;
-  [key: string]: any;
+  value: string
+  [key: string]: any
 }
 // Element node
-export interface MentionNode extends ElementWithAttributes, MentionNodeData {}
+export interface MentionNode extends ElementWithAttributes, MentionNodeData { }
 
 // renderElement options given as props
 export interface MentionRenderElementPropsOptions {
@@ -44,53 +44,53 @@ export interface MentionRenderElementPropsOptions {
   styles?: IStyleFunctionOrObject<
     MentionElementStyleProps,
     MentionElementStyles
-  >;
+  >
 
   /**
    * Prefix rendered before mention
    */
-  prefix?: string;
-  onClick?: (mentionNode: MentionNode) => void;
-  renderLabel?: (mentionable: MentionNodeData) => string;
+  prefix?: string
+  onClick?: (mentionNode: MentionNode) => void
+  renderLabel?: (mentionable: MentionNodeData) => string
 }
 
 // renderElement props
 export interface MentionElementProps
   extends RenderElementProps,
-    RenderNodePropsOptions,
-    HtmlAttributesProps,
-    MentionRenderElementPropsOptions {
-  element: MentionNode;
+  RenderNodePropsOptions,
+  HtmlAttributesProps,
+  MentionRenderElementPropsOptions {
+  element: MentionNode
 }
 
-export type MentionKeyOption = 'mention';
+export type MentionKeyOption = 'mention'
 
 // Plugin options
 export type MentionPluginOptionsValues = RenderNodeOptions &
   RootProps<MentionRenderElementPropsOptions> &
   NodeToProps<MentionNode, MentionRenderElementPropsOptions> &
-  Deserialize;
-export type MentionPluginOptionsKeys = keyof MentionPluginOptionsValues;
+  Deserialize
+export type MentionPluginOptionsKeys = keyof MentionPluginOptionsValues
 export type MentionPluginOptions<
   Value extends MentionPluginOptionsKeys = MentionPluginOptionsKeys
-> = Partial<Record<MentionKeyOption, Pick<MentionPluginOptionsValues, Value>>>;
+  > = Partial<Record<MentionKeyOption, Pick<MentionPluginOptionsValues, Value>>>
 
 // renderElement options
-export type MentionRenderElementOptionsKeys = MentionPluginOptionsKeys;
+export type MentionRenderElementOptionsKeys = MentionPluginOptionsKeys
 export interface MentionRenderElementOptions
-  extends MentionPluginOptions<MentionRenderElementOptionsKeys> {}
+  extends MentionPluginOptions<MentionRenderElementOptionsKeys> { }
 
 // deserialize options
 export interface MentionDeserializeOptions
-  extends MentionPluginOptions<'type' | 'rootProps' | 'deserialize'> {}
+  extends MentionPluginOptions<'type' | 'rootProps' | 'deserialize'> { }
 
-export interface WithMentionOptions extends MentionPluginOptions<'type'> {}
+export interface WithMentionOptions extends MentionPluginOptions<'type'> { }
 
 export interface MentionElementStyles {
   /**
    * Style for the root element.
    */
-  root?: IStyle;
+  root?: IStyle
 
   // Insert MentionElement classNames below
 }
@@ -99,9 +99,9 @@ export interface MentionElementStyleProps {
   /**
    * Accept custom classNames
    */
-  className?: string;
+  className?: string
 
   // Insert MentionElement style props below
-  selected?: boolean;
-  focused?: boolean;
+  selected?: boolean
+  focused?: boolean
 }

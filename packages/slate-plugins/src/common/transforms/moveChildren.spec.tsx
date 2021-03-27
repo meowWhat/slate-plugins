@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { Editor, Path } from 'slate';
+import { Editor, Path } from 'meow-slate';
 import { jsx } from '../../__test-utils__/jsx';
 import { findNode } from '../queries/findNode';
 import { moveChildren } from './moveChildren';

@@ -1,6 +1,6 @@
-import React, { useMemo, useState } from 'react';
-import { boolean } from '@storybook/addon-knobs';
-import { Link } from '@styled-icons/material';
+import React, { useMemo, useState } from 'react'
+import { boolean } from '@storybook/addon-knobs'
+import { Link } from '@styled-icons/material'
 import {
   EditablePlugins,
   HeadingPlugin,
@@ -13,11 +13,11 @@ import {
   ToolbarLink,
   withInlineVoid,
   withLink,
-} from '@udecode/slate-plugins';
-import { createEditor } from 'slate';
-import { withHistory } from 'slate-history';
-import { Slate, withReact } from 'slate-react';
-import { initialValueLinks, options } from '../config/initialValues';
+} from '@udecode/slate-plugins'
+import { createEditor } from 'meow-slate'
+import { withHistory } from 'meow-slate-history'
+import { Slate, withReact } from 'meow-slate-react'
+import { initialValueLinks, options } from '../config/initialValues'
 
 export default {
   title: 'Elements/Link',
@@ -26,39 +26,30 @@ export default {
     renderElementLink,
     LinkButton: ToolbarLink,
   },
-};
+}
 
 export const Example = () => {
-  const plugins: any[] = [ParagraphPlugin(options), HeadingPlugin(options)];
-  if (boolean('LinkPlugin', true)) plugins.push(LinkPlugin(options));
+  const plugins: any[] = [ParagraphPlugin(options), HeadingPlugin(options)]
+  if (boolean('LinkPlugin', true)) plugins.push(LinkPlugin(options))
 
-  const withPlugins = [
-    withReact,
-    withHistory,
-    withLink(options),
-    withInlineVoid({ plugins }),
-  ] as const;
+  const withPlugins = [withReact, withHistory, withLink(options), withInlineVoid({ plugins })] as const
 
   const createReactEditor = () => () => {
-    const [value, setValue] = useState(initialValueLinks);
+    const [value, setValue] = useState(initialValueLinks)
 
-    const editor = useMemo(() => pipe(createEditor(), ...withPlugins), []);
+    const editor = useMemo(() => pipe(createEditor(), ...withPlugins), [])
 
     return (
-      <Slate
-        editor={editor}
-        value={value}
-        onChange={(newValue) => setValue(newValue as SlateDocument)}
-      >
+      <Slate editor={editor} value={value} onChange={(newValue) => setValue(newValue as SlateDocument)}>
         <HeadingToolbar>
           <ToolbarLink {...options} icon={<Link />} />
         </HeadingToolbar>
         <EditablePlugins plugins={plugins} placeholder="Enter some text..." />
       </Slate>
-    );
-  };
+    )
+  }
 
-  const Editor = createReactEditor();
+  const Editor = createReactEditor()
 
-  return <Editor />;
-};
+  return <Editor />
+}

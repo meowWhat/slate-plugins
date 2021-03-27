@@ -2,8 +2,8 @@ import * as React from 'react';
 import { DndProvider } from 'react-dnd';
 import { TestBackend } from 'react-dnd-test-backend';
 import { render } from '@testing-library/react';
-import { ReactEditor } from 'slate-react';
-import * as SlateReact from 'slate-react';
+import { ReactEditor } from 'meow-slate-react';
+import * as SlateReact from 'meow-slate-react';
 import { DEFAULTS_PARAGRAPH } from '../../elements/paragraph';
 import { getSelectableElement } from '..';
 

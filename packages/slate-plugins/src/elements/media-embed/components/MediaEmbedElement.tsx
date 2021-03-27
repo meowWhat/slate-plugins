@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { classNamesFunction, styled } from '@uifabric/utilities';
-import { Transforms } from 'slate';
-import { ReactEditor, useEditor } from 'slate-react';
+import { Transforms } from 'meow-slate';
+import { ReactEditor, useEditor } from 'meow-slate-react';
 import {
   MediaEmbedElementProps,
   MediaEmbedElementStyleProps,

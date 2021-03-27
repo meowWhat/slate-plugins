@@ -1,7 +1,7 @@
 /** @jsx jsx */
 
-import { Editor } from 'slate';
-import { withHistory } from 'slate-history';
+import { Editor } from 'meow-slate';
+import { withHistory } from 'meow-slate-history';
 import { jsx } from '../../../../__test-utils__/jsx';
 import { ELEMENT_PARAGRAPH } from '../../../../elements/paragraph/index';
 import { withNodeID } from '../../../plugins/node-id/index';

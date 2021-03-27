@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { Element } from 'slate';
+import { Element } from 'meow-slate';
 import { jsx } from '../../../../__test-utils__/jsx';
 import { mergeDeepToNodes } from '../../../transforms/index';
 

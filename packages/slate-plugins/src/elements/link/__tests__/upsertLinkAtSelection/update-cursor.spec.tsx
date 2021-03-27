@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { Transforms } from 'slate';
+import { Transforms } from 'meow-slate';
 import { jsx } from '../../../../__test-utils__/jsx';
 import { withInlineVoid } from '../../../../common/plugins/inline-void/withInlineVoid';
 import { ELEMENT_LINK } from '../../defaults';

@@ -2,10 +2,10 @@
 
 import * as React from 'react'
 import { classNamesFunction, styled } from '@uifabric/utilities'
-import { useFocused, useSelected, ReactEditor, useEditor } from 'slate-react'
+import { useFocused, useSelected, ReactEditor, useEditor } from 'meow-slate-react'
 import { ImageElementProps, ImageElementStyleProps, ImageElementStyles } from '../types'
 import { getImageElementStyles } from './ImageElement.styles'
-import { Transforms } from 'slate'
+import { Transforms } from 'meow-slate'
 
 const getClassNames = classNamesFunction<ImageElementStyleProps, ImageElementStyles>()
 

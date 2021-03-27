@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useSlate } from 'slate-react';
+import { useSlate } from 'meow-slate-react';
 import { isMarkActive } from '../../common/queries/isMarkActive';
 import { toggleMark } from '../../common/transforms/toggleMark';
 import { getPreventDefaultHandler } from '../../common/utils/index';

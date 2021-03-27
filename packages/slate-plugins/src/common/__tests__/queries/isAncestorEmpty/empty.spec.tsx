@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { Editor, Element } from 'slate';
+import { Editor, Element } from 'meow-slate';
 import { jsx } from '../../../../__test-utils__/jsx';
 import { isAncestorEmpty } from '../../../queries/index';
 

@@ -1,8 +1,8 @@
-import { Editor, Location } from 'slate';
-import { wrapNodes } from '../../../common/transforms/wrapNodes';
-import { setDefaults } from '../../../common/utils/setDefaults';
-import { DEFAULTS_LINK } from '../defaults';
-import { LinkOptions } from '../types';
+import { Editor, Location } from 'meow-slate'
+import { wrapNodes } from '../../../common/transforms/wrapNodes'
+import { setDefaults } from '../../../common/utils/setDefaults'
+import { DEFAULTS_LINK } from '../defaults'
+import { LinkOptions } from '../types'
 
 /**
  * Wrap selected nodes with a link and collapse at the end.
@@ -11,10 +11,10 @@ export const wrapLink = (
   editor: Editor,
   url: string,
   options?: {
-    at?: Location;
+    at?: Location
   } & LinkOptions
 ) => {
-  const { at, link } = setDefaults(options, DEFAULTS_LINK);
+  const { at, link } = setDefaults(options, DEFAULTS_LINK)
 
   wrapNodes(
     editor,
@@ -24,5 +24,5 @@ export const wrapLink = (
       children: [],
     },
     { at, split: true }
-  );
-};
+  )
+}

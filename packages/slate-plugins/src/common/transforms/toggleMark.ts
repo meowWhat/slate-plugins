@@ -1,6 +1,6 @@
-import castArray from 'lodash/castArray';
-import { Editor } from 'slate';
-import { isMarkActive } from '../queries/isMarkActive';
+import castArray from 'lodash/castArray'
+import { Editor } from 'meow-slate'
+import { isMarkActive } from '../queries/isMarkActive'
 
 /**
  * Add/remove marks in the selection.
@@ -12,17 +12,17 @@ export const toggleMark = (
   key: string,
   clear: string | string[] = []
 ) => {
-  const isActive = isMarkActive(editor, key);
+  const isActive = isMarkActive(editor, key)
 
   if (isActive) {
-    editor.removeMark(key);
-    return;
+    editor.removeMark(key)
+    return
   }
 
-  const clears: string[] = castArray(clear);
+  const clears: string[] = castArray(clear)
   clears.forEach((item) => {
-    editor.removeMark(item);
-  });
+    editor.removeMark(item)
+  })
 
-  editor.addMark(key, true);
-};
+  editor.addMark(key, true)
+}

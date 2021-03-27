@@ -1,4 +1,4 @@
-import { ReactEditor } from 'slate-react'
+import { ReactEditor } from 'meow-slate-react'
 import { insertFile, insertImage } from '../transforms'
 import { ImagePluginOptions } from '../types'
 

@@ -1,6 +1,6 @@
-import { Editor, Point } from 'slate';
-import { escapeRegExp } from '../utils';
-import { getText } from './getText';
+import { Editor, Point } from 'meow-slate'
+import { escapeRegExp } from '../utils'
+import { getText } from './getText'
 
 /**
  * Is the word at the point after a trigger (punctuation character)
@@ -11,29 +11,29 @@ export const isWordAfterTrigger = (
   { at, trigger }: { at: Point; trigger: string }
 ) => {
   // Point at the start of previous word (excluding punctuation)
-  const wordBefore = Editor.before(editor, at, { unit: 'word' });
+  const wordBefore = Editor.before(editor, at, { unit: 'word' })
 
   // Point before wordBefore
-  const before = wordBefore && Editor.before(editor, wordBefore);
+  const before = wordBefore && Editor.before(editor, wordBefore)
 
   // Range from before to start
-  const beforeRange = before && Editor.range(editor, before, at);
+  const beforeRange = before && Editor.range(editor, before, at)
 
   // Before text
-  const beforeText = getText(editor, beforeRange);
+  const beforeText = getText(editor, beforeRange)
 
   // Starts with char and ends with word characters
-  const escapedTrigger = escapeRegExp(trigger);
+  const escapedTrigger = escapeRegExp(trigger)
 
   const beforeRegex = new RegExp(
     `^${escapedTrigger}([\\w|À-ÖØ-öø-ÿ|а-яА-ЯёЁ]+)$`
-  );
+  )
 
   // Match regex on before text
-  const match = !!beforeText && beforeText.match(beforeRegex);
+  const match = !!beforeText && beforeText.match(beforeRegex)
 
   return {
     range: beforeRange,
     match,
-  };
-};
+  }
+}

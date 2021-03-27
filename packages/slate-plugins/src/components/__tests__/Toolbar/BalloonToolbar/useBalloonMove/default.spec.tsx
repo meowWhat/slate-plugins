@@ -1,7 +1,7 @@
 /** @jsx jsx */
 
 import { renderHook } from '@testing-library/react-hooks';
-import { Editor } from 'slate';
+import { Editor } from 'meow-slate';
 import { jsx } from '../../../../../__test-utils__/jsx';
 import { useBalloonMove } from '../../../../Toolbar/BalloonToolbar/useBalloonMove';
 

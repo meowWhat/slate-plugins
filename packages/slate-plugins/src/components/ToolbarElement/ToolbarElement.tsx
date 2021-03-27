@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useSlate } from 'slate-react';
+import { useSlate } from 'meow-slate-react';
 import { someNode } from '../../common/queries/someNode';
 import { toggleNodeType } from '../../common/transforms/toggleNodeType';
 import { getPreventDefaultHandler } from '../../common/utils/index';

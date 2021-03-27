@@ -1,7 +1,7 @@
-import { Editor } from 'slate';
-import { someNode } from '../queries/someNode';
-import { unwrapNodes } from './unwrapNodes';
-import { wrapNodes } from './wrapNodes';
+import { Editor } from 'meow-slate'
+import { someNode } from '../queries/someNode'
+import { unwrapNodes } from './unwrapNodes'
+import { wrapNodes } from './wrapNodes'
 
 /**
  * Unwrap if the node type is in selection.
@@ -9,11 +9,11 @@ import { wrapNodes } from './wrapNodes';
  */
 export const toggleWrapNodes = (editor: Editor, type: string) => {
   if (someNode(editor, { match: { type } })) {
-    unwrapNodes(editor, { match: { type } });
+    unwrapNodes(editor, { match: { type } })
   } else {
     wrapNodes(editor, {
       type,
       children: [],
-    });
+    })
   }
-};
+}

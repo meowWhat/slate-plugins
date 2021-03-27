@@ -1,7 +1,7 @@
-import { UseComboboxReturnValue } from 'downshift';
-import { Range } from 'slate';
-import { createStore, setStoreValue } from '../store/createStore';
-import { IComboboxItem } from './components/Combobox.types';
+import { UseComboboxReturnValue } from 'downshift'
+import { Range } from 'meow-slate'
+import { createStore, setStoreValue } from '../store/createStore'
+import { IComboboxItem } from './components/Combobox.types'
 
 export enum ComboboxKey {
   TAG = 'tag',
@@ -10,34 +10,34 @@ export enum ComboboxKey {
 
 export type ComboboxState = {
   // Combobox key
-  key: string;
-  setKey: (value: string) => void;
+  key: string
+  setKey: (value: string) => void
 
   // Maximum number of suggestions
-  maxSuggestions: number;
-  setMaxSuggestions: (value: number) => void;
+  maxSuggestions: number
+  setMaxSuggestions: (value: number) => void
 
   // Tag search value
-  search: string;
-  setSearch: (value: string) => void;
+  search: string
+  setSearch: (value: string) => void
 
   // Fetched tags
-  items: IComboboxItem[];
-  setItems: (value: IComboboxItem[]) => void;
+  items: IComboboxItem[]
+  setItems: (value: IComboboxItem[]) => void
 
   // Range from the tag trigger to the cursor
-  targetRange: Range | null;
-  setTargetRange: (value: Range | null) => void;
+  targetRange: Range | null
+  setTargetRange: (value: Range | null) => void
 
   // Highlighted index
-  itemIndex: number;
-  setItemIndex: (value: number) => void;
+  itemIndex: number
+  setItemIndex: (value: number) => void
 
-  combobox: UseComboboxReturnValue<IComboboxItem> | null;
-  setCombobox: (value: UseComboboxReturnValue<IComboboxItem>) => void;
+  combobox: UseComboboxReturnValue<IComboboxItem> | null
+  setCombobox: (value: UseComboboxReturnValue<IComboboxItem>) => void
 
-  closeMenu: () => void;
-};
+  closeMenu: () => void
+}
 
 export const useComboboxStore = createStore('combobox')<ComboboxState>(
   (set) => ({
@@ -68,11 +68,11 @@ export const useComboboxStore = createStore('combobox')<ComboboxState>(
 
     closeMenu: () => {
       set((state) => {
-        state.targetRange = null;
-        state.items = [];
-        state.search = '';
-        state.itemIndex = 0;
-      });
+        state.targetRange = null
+        state.items = []
+        state.search = ''
+        state.itemIndex = 0
+      })
     },
   })
-);
+)

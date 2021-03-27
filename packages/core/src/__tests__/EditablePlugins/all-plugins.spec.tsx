@@ -1,8 +1,8 @@
 import React, { useMemo, useState } from 'react';
 import { render } from '@testing-library/react';
-import { createEditor } from 'slate';
-import { withHistory } from 'slate-history';
-import { Slate, withReact } from 'slate-react';
+import { createEditor } from 'meow-slate';
+import { withHistory } from 'meow-slate-history';
+import { Slate, withReact } from 'meow-slate-react';
 import {
   initialValueAutoformat,
   initialValueBasicElements,

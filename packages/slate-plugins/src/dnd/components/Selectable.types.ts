@@ -1,11 +1,11 @@
-import React from 'react';
-import { IStyle } from '@uifabric/styling';
-import { IStyleFunctionOrObject } from '@uifabric/utilities';
-import { Element } from 'slate';
-import { RenderElementProps } from 'slate-react';
+import React from 'react'
+import { IStyle } from '@uifabric/styling'
+import { IStyleFunctionOrObject } from '@uifabric/utilities'
+import { Element } from 'meow-slate'
+import { RenderElementProps } from 'meow-slate-react'
 
 export interface ElementWithId extends Element {
-  id: string;
+  id: string
 }
 
 export interface SelectableProps
@@ -13,83 +13,83 @@ export interface SelectableProps
   /**
    * Additional class name to provide on the root element, in addition to the slate-Selectable class.
    */
-  className?: string;
+  className?: string
 
   /**
    * Call to provide customized styling that will layer on top of the variant rules.
    */
-  styles?: IStyleFunctionOrObject<SelectableStyleProps, SelectableStyles>;
+  styles?: IStyleFunctionOrObject<SelectableStyleProps, SelectableStyles>
 
-  children?: any;
+  children?: any
 
-  componentRef?: any;
+  componentRef?: any
 
-  dragIcon?: React.ReactNode;
+  dragIcon?: React.ReactNode
 
-  element: ElementWithId;
+  element: ElementWithId
 }
 
 export interface SelectableStyleProps {
-  className?: string;
-  direction: '' | 'top' | 'bottom';
-  isDragging: boolean;
+  className?: string
+  direction: '' | 'top' | 'bottom'
+  isDragging: boolean
 
   // TODO: tbd
-  selected?: boolean;
+  selected?: boolean
 }
 
 export interface SelectableStyles {
   /**
    * Contains the gutter left, block, dropline.
    */
-  root?: IStyle;
+  root?: IStyle
 
   /**
    * Block and gutter.
    */
-  blockAndGutter?: IStyle;
+  blockAndGutter?: IStyle
 
   /**
    * Block.
    */
-  block?: IStyle;
+  block?: IStyle
 
   /**
    * Gutter at the left side of the editor.
    * It has the height of the block
    */
-  gutterLeft?: IStyle;
+  gutterLeft?: IStyle
 
   /**
    * Block toolbar wrapper in the gutter left.
    * It has the height of a line of the block.
    */
-  blockToolbarWrapper?: IStyle;
+  blockToolbarWrapper?: IStyle
 
   /**
    * Block toolbar in the gutter.
    */
-  blockToolbar?: IStyle;
+  blockToolbar?: IStyle
 
   /**
    * Button to dnd the block, in the block toolbar.
    */
-  dragButton?: IStyle;
+  dragButton?: IStyle
 
   /**
    * Icon of the drag button, in the drag icon.
    */
-  dragIcon?: IStyle;
+  dragIcon?: IStyle
 
   /**
    * Show a dropline above or below the block when dragging a block.
    */
-  dropLine?: IStyle;
+  dropLine?: IStyle
 }
 
 export interface DragItemBlock {
-  id: string;
-  type: string;
+  id: string
+  type: string
 }
 
-export type DropDirection = 'top' | 'bottom' | undefined;
+export type DropDirection = 'top' | 'bottom' | undefined

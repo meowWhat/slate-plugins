@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { Editor, Range } from 'slate';
+import { Editor, Range } from 'meow-slate';
 import { jsx } from '../../../../__test-utils__/jsx';
 import { ELEMENT_LINK } from '../../../../elements/link/defaults';
 import { withInlineVoid } from '../../../plugins/inline-void/withInlineVoid';

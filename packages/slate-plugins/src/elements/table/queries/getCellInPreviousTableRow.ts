@@ -1,4 +1,4 @@
-import { Ancestor, Editor, NodeEntry, Path } from 'slate';
+import { Ancestor, Editor, NodeEntry, Path } from 'meow-slate'
 
 export function getCellInPreviousTableRow(
   editor: Editor,
@@ -8,15 +8,15 @@ export function getCellInPreviousTableRow(
     const previousRow = Editor.node(
       editor,
       Path.previous(currentRowPath)
-    ) as NodeEntry<Ancestor>;
-    const [previousRowNode, previousRowPath] = previousRow;
+    ) as NodeEntry<Ancestor>
+    const [previousRowNode, previousRowPath] = previousRow
     const previousCell =
-      previousRowNode?.children?.[previousRowNode.children.length - 1];
+      previousRowNode?.children?.[previousRowNode.children.length - 1]
     const previousCellPath = previousRowPath.concat(
       previousRowNode.children.length - 1
-    );
+    )
     if (previousCell && previousCellPath) {
-      return Editor.node(editor, previousCellPath);
+      return Editor.node(editor, previousCellPath)
     }
-  } catch (err) {}
+  } catch (err) { }
 }

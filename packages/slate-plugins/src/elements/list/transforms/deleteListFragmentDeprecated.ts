@@ -1,49 +1,49 @@
-import { Ancestor, Editor, Node, Path, Range, Transforms } from 'slate';
-import { findDescendant } from '../../../common/queries/findDescendant';
-import { getLastChildPath } from '../../../common/queries/getLastChild';
-import { getNode } from '../../../common/queries/getNode';
-import { setDefaults } from '../../../common/utils/setDefaults';
-import { DEFAULTS_LIST } from '../defaults';
-import { getListItemEntry } from '../queries';
-import { getListRoot } from '../queries/getListRoot';
-import { getListTypes } from '../queries/getListTypes';
-import { ListOptions } from '../types';
-import { moveListItemsToList } from './moveListItemsToList';
-import { moveListItemSublistItemsToListItemSublist } from './moveListItemSublistItemsToListItemSublist';
-import { moveListSiblingsAfterCursor } from './moveListSiblingsAfterCursor';
+import { Ancestor, Editor, Node, Path, Range, Transforms } from 'meow-slate'
+import { findDescendant } from '../../../common/queries/findDescendant'
+import { getLastChildPath } from '../../../common/queries/getLastChild'
+import { getNode } from '../../../common/queries/getNode'
+import { setDefaults } from '../../../common/utils/setDefaults'
+import { DEFAULTS_LIST } from '../defaults'
+import { getListItemEntry } from '../queries'
+import { getListRoot } from '../queries/getListRoot'
+import { getListTypes } from '../queries/getListTypes'
+import { ListOptions } from '../types'
+import { moveListItemsToList } from './moveListItemsToList'
+import { moveListItemSublistItemsToListItemSublist } from './moveListItemSublistItemsToListItemSublist'
+import { moveListSiblingsAfterCursor } from './moveListSiblingsAfterCursor'
 
 export const deleteListFragmentDeprecated = (
   editor: Editor,
   selection: Range,
   options: ListOptions = {}
 ): number | undefined => {
-  const [startSelection, endSelection] = Range.edges(selection);
+  const [startSelection, endSelection] = Range.edges(selection)
 
   // Selection should contain multiple blocks.
-  if (Path.equals(startSelection.path, endSelection.path)) return;
+  if (Path.equals(startSelection.path, endSelection.path)) return
 
-  const root = getListRoot(editor, endSelection, options);
+  const root = getListRoot(editor, endSelection, options)
 
   // End selection should be in a list.
-  if (!root) return;
+  if (!root) return
 
-  const [rootNode, rootPath] = root;
-  const { li } = setDefaults(options, DEFAULTS_LIST);
-  let moved = 0;
-  let deleted = false;
+  const [rootNode, rootPath] = root
+  const { li } = setDefaults(options, DEFAULTS_LIST)
+  let moved = 0
+  let deleted = false
 
   Editor.withoutNormalizing(editor, () => {
-    const listEnd = getListItemEntry(editor, { at: endSelection }, options);
+    const listEnd = getListItemEntry(editor, { at: endSelection }, options)
     // End selection should be in a list item.
-    if (!listEnd) return;
+    if (!listEnd) return
 
-    let next: Path;
-    let childrenMoved = 0;
-    const { listItem: listItemEnd } = listEnd;
+    let next: Path
+    let childrenMoved = 0
+    const { listItem: listItemEnd } = listEnd
 
     if (Path.isBefore(startSelection.path, rootPath)) {
       // If start selection is before the root list.
-      next = Path.next(rootPath);
+      next = Path.next(rootPath)
 
       // Copy the root list after it.
       Transforms.insertNodes(
@@ -53,10 +53,10 @@ export const deleteListFragmentDeprecated = (
           children: [],
         },
         { at: next }
-      );
+      )
 
-      const toListNode = getNode(editor, next);
-      if (!toListNode) return;
+      const toListNode = getNode(editor, next)
+      if (!toListNode) return
 
       childrenMoved = moveListItemsToList(
         editor,
@@ -65,10 +65,10 @@ export const deleteListFragmentDeprecated = (
           toList: [toListNode as Ancestor, next],
         },
         options
-      );
+      )
 
       // next is the first list item of the root copy.
-      next = [...next, 0];
+      next = [...next, 0]
     } else {
       // If start selection is inside the root list.
 
@@ -77,16 +77,16 @@ export const deleteListFragmentDeprecated = (
         editor,
         { at: startSelection },
         options
-      );
-      if (!listStart) return;
+      )
+      if (!listStart) return
 
-      const { listItem: listItemStart } = listStart;
+      const { listItem: listItemStart } = listStart
       const listItemSublist = findDescendant<Ancestor>(editor, {
         at: listItemStart[1],
         match: {
           type: getListTypes(options),
         },
-      });
+      })
 
       childrenMoved = moveListItemSublistItemsToListItemSublist(
         editor,
@@ -95,36 +95,36 @@ export const deleteListFragmentDeprecated = (
           toListItem: listItemStart,
         },
         options
-      );
+      )
 
       next = listItemSublist
         ? Path.next(getLastChildPath(listItemSublist))
-        : listItemStart[1].concat([1, 0]);
+        : listItemStart[1].concat([1, 0])
     }
 
     // Move siblings outside of deleted fragment
-    let cursorPath = endSelection.path;
-    let siblingsMoved = 0;
-    next = [...next.slice(0, -1), next[next.length - 1] + childrenMoved];
+    let cursorPath = endSelection.path
+    let siblingsMoved = 0
+    next = [...next.slice(0, -1), next[next.length - 1] + childrenMoved]
 
     while (Path.isAfter(cursorPath, startSelection.path)) {
-      const node = Node.get(editor, cursorPath);
+      const node = Node.get(editor, cursorPath)
       if (node.type === li.type) {
         siblingsMoved += moveListSiblingsAfterCursor(
           editor,
           { at: cursorPath, to: next },
           options
-        );
+        )
       }
-      cursorPath = Path.parent(cursorPath);
+      cursorPath = Path.parent(cursorPath)
     }
 
     // Move done. We can delete the fragment.
-    Transforms.delete(editor, { at: selection });
+    Transforms.delete(editor, { at: selection })
 
-    deleted = true;
-    moved = siblingsMoved + childrenMoved;
-  });
+    deleted = true
+    moved = siblingsMoved + childrenMoved
+  })
 
-  return deleted ? moved : undefined;
-};
+  return deleted ? moved : undefined
+}

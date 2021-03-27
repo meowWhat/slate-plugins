@@ -1,4 +1,4 @@
-import { RenderElementProps } from 'slate-react';
+import { RenderElementProps } from 'meow-slate-react'
 import {
   Deserialize,
   ElementWithAttributes,
@@ -7,48 +7,48 @@ import {
   RenderNodeOptions,
   RenderNodePropsOptions,
   RootProps,
-} from '../../common/types/PluginOptions.types';
-import { StyledComponentPropsOptions } from '../../components/StyledComponent/StyledComponent.types';
+} from '../../common/types/PluginOptions.types'
+import { StyledComponentPropsOptions } from '../../components/StyledComponent/StyledComponent.types'
 
 // Data of Element node
-export interface AlignNodeData {}
+export interface AlignNodeData { }
 // Element node
-export interface AlignNode extends ElementWithAttributes, AlignNodeData {}
+export interface AlignNode extends ElementWithAttributes, AlignNodeData { }
 
 // renderElement options given as props
 export interface AlignRenderElementPropsOptions
-  extends Omit<StyledComponentPropsOptions, 'children'> {}
+  extends Omit<StyledComponentPropsOptions, 'children'> { }
 
 // renderElement props
 export interface AlignElementProps
   extends RenderElementProps,
-    RenderNodePropsOptions,
-    HtmlAttributesProps,
-    AlignRenderElementPropsOptions {
-  element: AlignNode;
+  RenderNodePropsOptions,
+  HtmlAttributesProps,
+  AlignRenderElementPropsOptions {
+  element: AlignNode
 }
 
 export type AlignKeyOption =
   | 'align_left'
   | 'align_center'
   | 'align_justify'
-  | 'align_right';
+  | 'align_right'
 
 // Plugin options
 export type AlignPluginOptionsValues = RenderNodeOptions &
   RootProps<AlignRenderElementPropsOptions> &
   NodeToProps<AlignNode, AlignRenderElementPropsOptions> &
-  Deserialize;
-export type AlignPluginOptionsKeys = keyof AlignPluginOptionsValues;
+  Deserialize
+export type AlignPluginOptionsKeys = keyof AlignPluginOptionsValues
 export type AlignPluginOptions<
   Value extends AlignPluginOptionsKeys = AlignPluginOptionsKeys
-> = Partial<Record<AlignKeyOption, Pick<AlignPluginOptionsValues, Value>>>;
+  > = Partial<Record<AlignKeyOption, Pick<AlignPluginOptionsValues, Value>>>
 
 // renderElement options
-export type AlignRenderElementOptionsKeys = AlignPluginOptionsKeys;
+export type AlignRenderElementOptionsKeys = AlignPluginOptionsKeys
 export interface AlignRenderElementOptions
-  extends AlignPluginOptions<AlignRenderElementOptionsKeys> {}
+  extends AlignPluginOptions<AlignRenderElementOptionsKeys> { }
 
 // deserialize options
 export interface AlignDeserializeOptions
-  extends AlignPluginOptions<'type' | 'rootProps' | 'deserialize'> {}
+  extends AlignPluginOptions<'type' | 'rootProps' | 'deserialize'> { }

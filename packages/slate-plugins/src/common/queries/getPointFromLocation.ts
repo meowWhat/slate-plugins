@@ -1,4 +1,4 @@
-import { Editor, Location, Path, Point, Range } from 'slate';
+import { Editor, Location, Path, Point, Range } from 'meow-slate'
 
 /**
  * Get the point from a location (default: selection).
@@ -12,14 +12,14 @@ export const getPointFromLocation = (
     at = editor.selection,
     focus,
   }: {
-    at?: Location | null;
-    focus?: boolean;
+    at?: Location | null
+    focus?: boolean
   } = {}
 ) => {
-  let point: Point | undefined;
-  if (Range.isRange(at)) point = !focus ? at.anchor : at.focus;
-  if (Point.isPoint(at)) point = at;
-  if (Path.isPath(at)) point = { path: at, offset: 0 };
+  let point: Point | undefined
+  if (Range.isRange(at)) point = !focus ? at.anchor : at.focus
+  if (Point.isPoint(at)) point = at
+  if (Path.isPath(at)) point = { path: at, offset: 0 }
 
-  return point;
-};
+  return point
+}

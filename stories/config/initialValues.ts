@@ -33,10 +33,10 @@ import {
   SlateDocument,
   SlateDocumentDescendant,
   SlateDocumentFragment,
-} from '@udecode/slate-plugins';
+} from '@udecode/slate-plugins'
 // import faker from 'faker';
-import { Descendant, Text } from 'slate';
-import { DEFAULTS_TAG } from '../examples/tag/defaults';
+import { Descendant, Text } from 'meow-slate'
+import { DEFAULTS_TAG } from '../examples/tag/defaults'
 
 export const headingTypes = [
   ELEMENT_H1,
@@ -45,7 +45,7 @@ export const headingTypes = [
   ELEMENT_H4,
   ELEMENT_H5,
   ELEMENT_H6,
-];
+]
 
 export const headingOptions = {
   ...DEFAULTS_HEADING,
@@ -61,7 +61,7 @@ export const headingOptions = {
     ...DEFAULTS_HEADING.h3,
     hotkey: ['mod+opt+3', 'mod+shift+3'],
   },
-};
+}
 
 export const options = {
   ...setDefaults(DEFAULTS_PARAGRAPH, {}),
@@ -86,14 +86,14 @@ export const options = {
   ...setDefaults(DEFAULTS_HIGHLIGHT, {}),
   ...setDefaults(DEFAULTS_SEARCH_HIGHLIGHT, {}),
   ...setDefaults(DEFAULTS_TAG, {}),
-};
+}
 
-export const inlineTypes = [options.mention.type, options.link.type];
+export const inlineTypes = [options.mention.type, options.link.type]
 
 const resetBlockTypesCommonRule = {
   types: [options.blockquote.type, options.todo_li.type],
   defaultType: options.p.type,
-};
+}
 
 export const optionsResetBlockTypes: ResetBlockTypePluginOptions = {
   rules: [
@@ -108,19 +108,19 @@ export const optionsResetBlockTypes: ResetBlockTypePluginOptions = {
       predicate: isSelectionAtBlockStart,
     },
   ],
-};
+}
 
 const createParagraph = (text: string, mark?: string) => {
-  const leaf = { text };
+  const leaf = { text }
   if (mark) {
-    leaf[mark] = true;
+    leaf[mark] = true
   }
 
   return {
     type: options.p.type,
     children: [leaf],
-  };
-};
+  }
+}
 
 export const createList = (
   items: string[],
@@ -128,14 +128,14 @@ export const createList = (
 ): SlateDocumentFragment => {
   const children = items.map(
     (item): SlateDocumentDescendant => {
-      const texts = item.split(splitSeparator);
+      const texts = item.split(splitSeparator)
       const marks: Text[] = texts.map((text, index) => {
-        const res: any = { text };
+        const res: any = { text }
         if (index % 2 === 1) {
-          res.code = true;
+          res.code = true
         }
-        return res;
-      });
+        return res
+      })
 
       return {
         type: options.li.type,
@@ -145,17 +145,17 @@ export const createList = (
             children: marks,
           },
         ],
-      } as any;
+      } as any
     }
-  ) as SlateDocumentFragment;
+  ) as SlateDocumentFragment
 
   return [
     {
       type: options.ul.type,
       children,
     },
-  ];
-};
+  ]
+}
 
 export const initialValueEmbeds: SlateDocument = [
   {
@@ -193,7 +193,7 @@ export const initialValueEmbeds: SlateDocument = [
       },
     ],
   },
-];
+]
 
 export const initialValueForcedLayout: SlateDocument = [
   {
@@ -223,7 +223,7 @@ export const initialValueForcedLayout: SlateDocument = [
       },
     ],
   },
-];
+]
 
 export const initialValueBalloonToolbar: SlateDocument = [
   {
@@ -265,27 +265,27 @@ export const initialValueBalloonToolbar: SlateDocument = [
       },
     ],
   },
-];
+]
 
-const HEADINGS = 100;
-const PARAGRAPHS = 7;
-export const initialValueHugeDocument: Descendant[] = [{ children: [] }];
+const HEADINGS = 100
+const PARAGRAPHS = 7
+export const initialValueHugeDocument: Descendant[] = [{ children: [] }]
 
 const lorem =
-  'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum';
+  'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum'
 
 for (let h = 0; h < HEADINGS; h++) {
   (initialValueHugeDocument[0] as any).children.push({
     type: options.h1.type,
     // children: [{ text: faker.lorem.sentence() }],
     children: [{ text: lorem }],
-  });
+  })
 
   for (let p = 0; p < PARAGRAPHS; p++) {
     (initialValueHugeDocument[0] as any).children.push({
       type: options.p.type,
       children: [{ text: lorem }],
-    });
+    })
   }
 }
 
@@ -325,7 +325,7 @@ export const initialValueImages: SlateDocument = [
       },
     ],
   },
-];
+]
 
 export const initialValueLinks: SlateDocument = [
   {
@@ -366,7 +366,7 @@ export const initialValueLinks: SlateDocument = [
       },
     ],
   },
-];
+]
 
 export const initialValuePreview: SlateDocument = [
   {
@@ -410,7 +410,7 @@ export const initialValuePreview: SlateDocument = [
       },
     ],
   },
-];
+]
 
 export const initialValueAutoformat: any[] = [
   {
@@ -479,7 +479,7 @@ export const initialValueAutoformat: any[] = [
       ),
     ],
   },
-];
+]
 
 export const initialValueMentions: SlateDocument = [
   {
@@ -521,7 +521,7 @@ export const initialValueMentions: SlateDocument = [
       },
     ],
   },
-];
+]
 
 export const initialValuePasteHtml: SlateDocument = [
   {
@@ -565,7 +565,7 @@ export const initialValuePasteHtml: SlateDocument = [
       },
     ],
   },
-];
+]
 
 export const initialValuePasteMd: SlateDocument = [
   {
@@ -615,7 +615,7 @@ export const initialValuePasteMd: SlateDocument = [
       },
     ],
   },
-];
+]
 
 export const initialValuePlainText: SlateDocument = [
   {
@@ -628,7 +628,7 @@ export const initialValuePlainText: SlateDocument = [
       },
     ],
   },
-];
+]
 
 export const initialValueCombobox: SlateDocument = [
   {
@@ -643,7 +643,7 @@ export const initialValueCombobox: SlateDocument = [
       },
     ],
   },
-];
+]
 
 export const initialValueBasicMarks: SlateDocument = [
   {
@@ -724,7 +724,7 @@ export const initialValueBasicMarks: SlateDocument = [
       createParagraph('There are many other keyboard shortcuts.'),
     ] as any,
   },
-];
+]
 
 export const initialValueHighlight: SlateDocument = [
   {
@@ -755,7 +755,7 @@ export const initialValueHighlight: SlateDocument = [
       },
     ],
   },
-];
+]
 
 export const initialValueBasicElements: SlateDocument = [
   {
@@ -827,7 +827,7 @@ export const initialValueBasicElements: SlateDocument = [
       },
     ],
   },
-];
+]
 
 export const initialValueList: SlateDocument = [
   {
@@ -964,7 +964,7 @@ export const initialValueList: SlateDocument = [
       },
     ],
   },
-];
+]
 
 export const initialValueSearchHighlighting: SlateDocument = [
   {
@@ -990,7 +990,7 @@ export const initialValueSearchHighlighting: SlateDocument = [
       },
     ],
   },
-];
+]
 
 const createTable = () => ({
   type: options.table.type,
@@ -1059,7 +1059,7 @@ const createTable = () => ({
       ],
     },
   ],
-});
+})
 
 const createSpanningTable = () => ({
   type: options.table.type,
@@ -1088,7 +1088,7 @@ const createSpanningTable = () => ({
       ],
     },
   ],
-});
+})
 
 export const initialValueTables: SlateDocument = [
   {
@@ -1132,7 +1132,7 @@ export const initialValueTables: SlateDocument = [
       },
     ] as SlateDocumentFragment,
   },
-];
+]
 
 export const initialValueSoftBreak: SlateDocument = [
   {
@@ -1163,7 +1163,7 @@ export const initialValueSoftBreak: SlateDocument = [
       },
     ] as SlateDocumentFragment,
   },
-];
+]
 
 export const initialValueExitBreak: SlateDocument = [
   {
@@ -1201,4 +1201,4 @@ export const initialValueExitBreak: SlateDocument = [
       createTable(),
     ] as SlateDocumentFragment,
   },
-];
+]

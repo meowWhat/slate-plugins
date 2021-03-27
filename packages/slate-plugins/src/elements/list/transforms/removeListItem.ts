@@ -1,17 +1,17 @@
-import { Ancestor, Editor, NodeEntry, Path, Transforms } from 'slate';
-import { getPreviousPath } from '../../../common/queries/getPreviousPath';
-import { isExpanded } from '../../../common/queries/isExpanded';
-import { deleteFragment } from '../../../common/transforms/deleteFragment';
-import { setDefaults } from '../../../common/utils/setDefaults';
-import { DEFAULTS_LIST } from '../defaults';
-import { hasListChild } from '../queries/hasListChild';
-import { ListOptions } from '../types';
-import { moveListItemsToList } from './moveListItemsToList';
-import { moveListItemSublistItemsToListItemSublist } from './moveListItemSublistItemsToListItemSublist';
+import { Ancestor, Editor, NodeEntry, Path, Transforms } from 'meow-slate'
+import { getPreviousPath } from '../../../common/queries/getPreviousPath'
+import { isExpanded } from '../../../common/queries/isExpanded'
+import { deleteFragment } from '../../../common/transforms/deleteFragment'
+import { setDefaults } from '../../../common/utils/setDefaults'
+import { DEFAULTS_LIST } from '../defaults'
+import { hasListChild } from '../queries/hasListChild'
+import { ListOptions } from '../types'
+import { moveListItemsToList } from './moveListItemsToList'
+import { moveListItemSublistItemsToListItemSublist } from './moveListItemSublistItemsToListItemSublist'
 
 export interface RemoveListItemOptions {
-  list: NodeEntry<Ancestor>;
-  listItem: NodeEntry<Ancestor>;
+  list: NodeEntry<Ancestor>
+  listItem: NodeEntry<Ancestor>
 }
 
 /**
@@ -22,15 +22,15 @@ export const removeListItem = (
   { list, listItem }: RemoveListItemOptions,
   options?: ListOptions
 ) => {
-  const { p, li } = setDefaults(options, DEFAULTS_LIST);
-  const [liNode, liPath] = listItem;
+  const { p, li } = setDefaults(options, DEFAULTS_LIST)
+  const [liNode, liPath] = listItem
 
   // Stop if the list item has no sublist
   if (isExpanded(editor.selection) || !hasListChild(liNode, options)) {
-    return false;
+    return false
   }
 
-  const previousLiPath = getPreviousPath(liPath);
+  const previousLiPath = getPreviousPath(liPath)
 
   /**
    * If there is a previous li, we need to move sub-lis to the previous li.
@@ -45,10 +45,10 @@ export const removeListItem = (
     const previousLi = Editor.node(
       editor,
       previousLiPath
-    ) as NodeEntry<Ancestor>;
+    ) as NodeEntry<Ancestor>
 
     // 1
-    let tempLiPath = Path.next(liPath);
+    let tempLiPath = Path.next(liPath)
     Transforms.insertNodes(
       editor,
       {
@@ -56,10 +56,10 @@ export const removeListItem = (
         children: [{ type: p.type, children: [{ text: '' }] }],
       },
       { at: tempLiPath }
-    );
+    )
 
-    const tempLi = Editor.node(editor, tempLiPath) as NodeEntry<Ancestor>;
-    const tempLiPathRef = Editor.pathRef(editor, tempLi[1]);
+    const tempLi = Editor.node(editor, tempLiPath) as NodeEntry<Ancestor>
+    const tempLiPathRef = Editor.pathRef(editor, tempLi[1])
 
     // 2
     moveListItemSublistItemsToListItemSublist(
@@ -69,14 +69,14 @@ export const removeListItem = (
         toListItem: tempLi,
       },
       options
-    );
+    )
 
     // 3
     deleteFragment(editor, {
       reverse: true,
-    });
+    })
 
-    tempLiPath = tempLiPathRef.unref()!;
+    tempLiPath = tempLiPathRef.unref()!
 
     // 4
     moveListItemSublistItemsToListItemSublist(
@@ -86,12 +86,12 @@ export const removeListItem = (
         toListItem: previousLi,
       },
       options
-    );
+    )
 
     // 5
-    Transforms.removeNodes(editor, { at: tempLiPath });
+    Transforms.removeNodes(editor, { at: tempLiPath })
 
-    return true;
+    return true
   }
 
   // If it's the first li, move the sublist to the parent list
@@ -103,5 +103,5 @@ export const removeListItem = (
       toListIndex: 1,
     },
     options
-  );
-};
+  )
+}

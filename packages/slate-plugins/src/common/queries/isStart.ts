@@ -1,4 +1,4 @@
-import { Editor, Location, Point } from 'slate';
+import { Editor, Location, Point } from 'meow-slate'
 
 /**
  * {@link Editor.isStart}. If point is null, return false.
@@ -7,4 +7,4 @@ export const isStart = (
   editor: Editor,
   point: Point | null | undefined,
   at: Location
-): boolean => !!point && Editor.isStart(editor, point, at);
+): boolean => !!point && Editor.isStart(editor, point, at)

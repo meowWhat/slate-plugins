@@ -1,11 +1,6 @@
-import React, { useMemo, useState } from 'react';
-import { boolean } from '@storybook/addon-knobs';
-import {
-  FormatAlignCenter,
-  FormatAlignJustify,
-  FormatAlignLeft,
-  FormatAlignRight,
-} from '@styled-icons/material';
+import React, { useMemo, useState } from 'react'
+import { boolean } from '@storybook/addon-knobs'
+import { FormatAlignCenter, FormatAlignJustify, FormatAlignLeft, FormatAlignRight } from '@styled-icons/material'
 import {
   AlignPlugin,
   BlockquotePlugin,
@@ -22,16 +17,11 @@ import {
   SoftBreakPlugin,
   ToolbarAlign,
   withCodeBlock,
-} from '@udecode/slate-plugins';
-import { createEditor } from 'slate';
-import { withHistory } from 'slate-history';
-import { Slate, withReact } from 'slate-react';
-import {
-  headingTypes,
-  initialValueBasicElements,
-  options,
-  optionsResetBlockTypes,
-} from '../config/initialValues';
+} from '@udecode/slate-plugins'
+import { createEditor } from 'meow-slate'
+import { withHistory } from 'meow-slate-history'
+import { Slate, withReact } from 'meow-slate-react'
+import { headingTypes, initialValueBasicElements, options, optionsResetBlockTypes } from '../config/initialValues'
 
 export default {
   title: 'Elements/Alignment',
@@ -42,19 +32,18 @@ export default {
     HeadingPlugin,
     ParagraphPlugin,
   },
-};
+}
 
-const withPlugins = [withReact, withHistory, withCodeBlock(options)] as const;
+const withPlugins = [withReact, withHistory, withCodeBlock(options)] as const
 
 export const Example = () => {
-  const plugins: SlatePlugin[] = [ResetBlockTypePlugin(optionsResetBlockTypes)];
+  const plugins: SlatePlugin[] = [ResetBlockTypePlugin(optionsResetBlockTypes)]
 
-  if (boolean('ParagraphPlugin', true)) plugins.push(ParagraphPlugin(options));
-  if (boolean('AlignPlugin', true)) plugins.push(AlignPlugin(options));
-  if (boolean('BlockquotePlugin', true))
-    plugins.push(BlockquotePlugin(options));
-  if (boolean('CodeBlockPlugin', true)) plugins.push(CodeBlockPlugin(options));
-  if (boolean('HeadingPlugin', true)) plugins.push(HeadingPlugin(options));
+  if (boolean('ParagraphPlugin', true)) plugins.push(ParagraphPlugin(options))
+  if (boolean('AlignPlugin', true)) plugins.push(AlignPlugin(options))
+  if (boolean('BlockquotePlugin', true)) plugins.push(BlockquotePlugin(options))
+  if (boolean('CodeBlockPlugin', true)) plugins.push(CodeBlockPlugin(options))
+  if (boolean('HeadingPlugin', true)) plugins.push(HeadingPlugin(options))
   if (boolean('SoftBreakPlugin', true))
     plugins.push(
       SoftBreakPlugin({
@@ -67,8 +56,8 @@ export const Example = () => {
             },
           },
         ],
-      })
-    );
+      }),
+    )
   if (boolean('ExitBreakPlugin', true))
     plugins.push(
       ExitBreakPlugin({
@@ -89,48 +78,34 @@ export const Example = () => {
             },
           },
         ],
-      })
-    );
+      }),
+    )
 
   const createReactEditor = () => () => {
-    const [value, setValue] = useState(initialValueBasicElements);
+    const [value, setValue] = useState(initialValueBasicElements)
 
-    const editor = useMemo(() => pipe(createEditor(), ...withPlugins), []);
+    const editor = useMemo(() => pipe(createEditor(), ...withPlugins), [])
 
     return (
       <Slate
         editor={editor}
         value={value}
         onChange={(newValue) => {
-          setValue(newValue as SlateDocument);
+          setValue(newValue as SlateDocument)
         }}
       >
         <HeadingToolbar>
           <ToolbarAlign icon={<FormatAlignLeft />} />
-          <ToolbarAlign
-            type={options.align_center.type}
-            icon={<FormatAlignCenter />}
-          />
-          <ToolbarAlign
-            type={options.align_right.type}
-            icon={<FormatAlignRight />}
-          />
-          <ToolbarAlign
-            type={options.align_justify.type}
-            icon={<FormatAlignJustify />}
-          />
+          <ToolbarAlign type={options.align_center.type} icon={<FormatAlignCenter />} />
+          <ToolbarAlign type={options.align_right.type} icon={<FormatAlignRight />} />
+          <ToolbarAlign type={options.align_justify.type} icon={<FormatAlignJustify />} />
         </HeadingToolbar>
-        <EditablePlugins
-          plugins={plugins}
-          placeholder="Enter some rich text…"
-          spellCheck
-          autoFocus
-        />
+        <EditablePlugins plugins={plugins} placeholder="Enter some rich text…" spellCheck autoFocus />
       </Slate>
-    );
-  };
+    )
+  }
 
-  const Editor = createReactEditor();
+  const Editor = createReactEditor()
 
-  return <Editor />;
-};
+  return <Editor />
+}

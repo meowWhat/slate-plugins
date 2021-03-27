@@ -1,15 +1,15 @@
-import { Range } from 'slate';
+import { Range } from 'meow-slate'
 import {
   decorateSearchHighlight,
   SearchHighlightDecorateOptions,
-} from '../../../../../index';
+} from '../../../../../index'
 
-const input: SearchHighlightDecorateOptions = { search: '' };
+const input: SearchHighlightDecorateOptions = { search: '' }
 
-const output: Range[] = [];
+const output: Range[] = []
 
 it('should be', () => {
   expect(decorateSearchHighlight(input)([{ text: '' }, [0, 0]])).toEqual(
     output
-  );
-});
+  )
+})

@@ -4,26 +4,26 @@ import {
   RootProps,
   StyledComponentStyleProps,
   StyledComponentStyles,
-} from '@udecode/slate-plugins';
-import { IStyle } from '@uifabric/styling';
-import { IStyleFunctionOrObject } from '@uifabric/utilities';
-import { Element } from 'slate';
-import { RenderElementProps } from 'slate-react';
+} from '@udecode/slate-plugins'
+import { IStyle } from '@uifabric/styling'
+import { IStyleFunctionOrObject } from '@uifabric/utilities'
+import { Element } from 'meow-slate'
+import { RenderElementProps } from 'meow-slate-react'
 
 export interface UseTagOptions extends TagPluginOptions {
   // Character triggering the tag select
-  trigger?: string;
+  trigger?: string
   // Maximum number of suggestions
-  maxSuggestions?: number;
+  maxSuggestions?: number
 }
 
 // Data of Element node
 export interface TagNodeData {
-  value: string;
-  [key: string]: any;
+  value: string
+  [key: string]: any
 }
 // Element node
-export interface TagNode extends Element, TagNodeData {}
+export interface TagNode extends Element, TagNodeData { }
 
 // renderElement options given as props
 export interface TagRenderElementPropsOptions {
@@ -33,55 +33,55 @@ export interface TagRenderElementPropsOptions {
   styles?: IStyleFunctionOrObject<
     StyledComponentStyleProps,
     StyledComponentStyles
-  >;
+  >
 }
 
 // renderElement props
 export interface TagElementProps
   extends RenderElementProps,
-    RenderNodePropsOptions,
-    TagRenderElementPropsOptions {
-  element: TagNode;
+  RenderNodePropsOptions,
+  TagRenderElementPropsOptions {
+  element: TagNode
 }
 
-export type TagKeyOption = 'tag';
+export type TagKeyOption = 'tag'
 
 // Plugin options
 export type TagPluginOptionsValues = RenderNodeOptions &
-  RootProps<TagRenderElementPropsOptions>;
-export type TagPluginOptionsKeys = keyof TagPluginOptionsValues;
+  RootProps<TagRenderElementPropsOptions>
+export type TagPluginOptionsKeys = keyof TagPluginOptionsValues
 export type TagPluginOptions<
   Value extends TagPluginOptionsKeys = TagPluginOptionsKeys
-> = Partial<Record<TagKeyOption, Pick<TagPluginOptionsValues, Value>>>;
+  > = Partial<Record<TagKeyOption, Pick<TagPluginOptionsValues, Value>>>
 
 // renderElement options
-export type TagRenderElementOptionsKeys = TagPluginOptionsKeys;
+export type TagRenderElementOptionsKeys = TagPluginOptionsKeys
 export interface TagRenderElementOptions
-  extends TagPluginOptions<'type' | 'component' | 'rootProps'> {}
+  extends TagPluginOptions<'type' | 'component' | 'rootProps'> { }
 
 // deserialize options
 export interface TagDeserializeOptions
-  extends TagPluginOptions<'type' | 'rootProps'> {}
+  extends TagPluginOptions<'type' | 'rootProps'> { }
 
-export interface WithTagOptions extends TagPluginOptions<'type'> {}
+export interface WithTagOptions extends TagPluginOptions<'type'> { }
 
-export interface TagOptions extends TagPluginOptions<'type'> {}
+export interface TagOptions extends TagPluginOptions<'type'> { }
 
 export interface TagElementStyles {
   /**
    * Style for the root element.
    */
-  root?: IStyle;
+  root?: IStyle
 
-  link?: IStyle;
+  link?: IStyle
 }
 
 export interface TagElementStyleProps {
   /**
    * Accept custom classNames
    */
-  className?: string;
+  className?: string
 
-  selected?: boolean;
-  focused?: boolean;
+  selected?: boolean
+  focused?: boolean
 }

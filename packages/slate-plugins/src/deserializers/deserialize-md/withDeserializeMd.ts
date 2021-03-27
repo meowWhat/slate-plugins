@@ -1,6 +1,6 @@
-import { Transforms } from 'slate';
-import { ReactEditor } from 'slate-react';
-import { parseMD } from './utils';
+import { Transforms } from 'meow-slate'
+import { ReactEditor } from 'meow-slate-react'
+import { parseMD } from './utils'
 
 /**
  * Enables support for deserializing content
@@ -11,26 +11,26 @@ export const withDeserializeMd = (options?: Record<string, any>) => <
 >(
   editor: T
 ) => {
-  const { insertData } = editor;
+  const { insertData } = editor
 
   editor.insertData = (data) => {
-    const content = data.getData('text/plain');
+    const content = data.getData('text/plain')
 
     if (content) {
-      const fragment = parseMD(options)(content);
+      const fragment = parseMD(options)(content)
 
-      if (!fragment.length) return;
+      if (!fragment.length) return
 
       if (fragment[0].type) {
-        Transforms.setNodes(editor, { type: fragment[0].type });
+        Transforms.setNodes(editor, { type: fragment[0].type })
       }
 
-      Transforms.insertFragment(editor, fragment);
-      return;
+      Transforms.insertFragment(editor, fragment)
+      return
     }
 
-    insertData(data);
-  };
+    insertData(data)
+  }
 
-  return editor;
-};
+  return editor
+}

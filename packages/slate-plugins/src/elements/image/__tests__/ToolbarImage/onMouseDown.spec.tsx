@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { fireEvent, render } from '@testing-library/react';
-import * as SlateReact from 'slate-react';
+import * as SlateReact from 'meow-slate-react';
 import { ELEMENT_H1 } from '../../../heading/defaults';
 import { ToolbarImage } from '../../components/ToolbarImage';
 import { input, output } from './onMouseDown.fixture';

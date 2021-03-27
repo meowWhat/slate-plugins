@@ -1,5 +1,5 @@
-import { escapeRegExp, getText } from '@udecode/slate-plugins';
-import { Editor, Point } from 'slate';
+import { escapeRegExp, getText } from '@udecode/slate-plugins'
+import { Editor, Point } from 'meow-slate'
 
 /**
  * Get text and range from trigger to cursor.
@@ -10,37 +10,37 @@ export const getTextFromTrigger = (
   editor: Editor,
   { at, trigger }: { at: Point; trigger: string }
 ) => {
-  const escapedTrigger = escapeRegExp(trigger);
-  const triggerRegex = new RegExp(`^${escapedTrigger}`);
-  const noWhiteSpaceRegex = new RegExp(`\\S+`);
+  const escapedTrigger = escapeRegExp(trigger)
+  const triggerRegex = new RegExp(`^${escapedTrigger}`)
+  const noWhiteSpaceRegex = new RegExp(`\\S+`)
 
-  let start: Point | undefined = at;
-  let end: Point | undefined;
+  let start: Point | undefined = at
+  let end: Point | undefined
 
   while (true) {
-    end = start;
+    end = start
 
-    if (!start) break;
+    if (!start) break
 
-    start = Editor.before(editor, start);
-    const charRange = start && Editor.range(editor, start, end);
-    const charText = getText(editor, charRange);
+    start = Editor.before(editor, start)
+    const charRange = start && Editor.range(editor, start, end)
+    const charText = getText(editor, charRange)
 
     // Match non-whitespace character on before text
     if (!charText.match(noWhiteSpaceRegex)) {
-      start = end;
-      break;
+      start = end
+      break
     }
   }
 
   // Range from start to cursor
-  const range = start && Editor.range(editor, start, at);
-  const text = getText(editor, range);
+  const range = start && Editor.range(editor, start, at)
+  const text = getText(editor, range)
 
-  if (!range || !text.match(triggerRegex)) return;
+  if (!range || !text.match(triggerRegex)) return
 
   return {
     range,
     textAfterTrigger: text.substring(1),
-  };
-};
+  }
+}

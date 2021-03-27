@@ -1,8 +1,8 @@
 import React, { useMemo, useState } from 'react';
 import { render } from '@testing-library/react';
-import { createEditor, Node, Point } from 'slate';
-import { withHistory } from 'slate-history';
-import { Slate, withReact } from 'slate-react';
+import { createEditor, Node, Point } from 'meow-slate';
+import { withHistory } from 'meow-slate-history';
+import { Slate, withReact } from 'meow-slate-react';
 import { pipe } from '../../../../slate-plugins/src/common/utils/pipe';
 import { Decorate } from '../..';
 import { EditablePlugins, EditablePluginsProps } from '../../components';

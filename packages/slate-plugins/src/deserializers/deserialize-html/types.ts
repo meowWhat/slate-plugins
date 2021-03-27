@@ -1,12 +1,12 @@
-import { Descendant, Element } from 'slate';
+import { Descendant, Element } from 'meow-slate'
 
-export type DeserializeHTMLChildren = ChildNode | Descendant | string | null;
+export type DeserializeHTMLChildren = ChildNode | Descendant | string | null
 
 export type DeserializeHTMLReturn =
   | string
   | null
   | Descendant[]
   | Element
-  | DeserializeHTMLChildren[];
+  | DeserializeHTMLChildren[]
 
-export type DeserializedHTMLElement = Descendant;
+export type DeserializedHTMLElement = Descendant

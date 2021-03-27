@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { fireEvent, render } from '@testing-library/react';
-import * as SlateReact from 'slate-react';
-import { withReact } from 'slate-react';
+import * as SlateReact from 'meow-slate-react';
+import { withReact } from 'meow-slate-react';
 import { withInlineVoid } from '../../../../common/plugins/inline-void/withInlineVoid';
 import { pipe } from '../../../../common/utils/pipe';
 import { ToolbarLink } from '../../components/ToolbarLink';

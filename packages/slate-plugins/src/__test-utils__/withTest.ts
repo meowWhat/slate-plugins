@@ -1,15 +1,15 @@
-import { Editor } from 'slate';
+import { Editor } from 'meow-slate'
 
 export const withTest = (editor: Editor) => {
-  const { isInline, isVoid } = editor;
+  const { isInline, isVoid } = editor
 
   editor.isInline = (element) => {
-    return element.inline === true ? true : isInline(element);
-  };
+    return element.inline === true ? true : isInline(element)
+  }
 
   editor.isVoid = (element) => {
-    return element.void === true ? true : isVoid(element);
-  };
+    return element.void === true ? true : isVoid(element)
+  }
 
-  return editor;
-};
+  return editor
+}

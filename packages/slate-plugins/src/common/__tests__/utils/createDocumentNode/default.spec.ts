@@ -1,6 +1,6 @@
-import { Node } from 'slate';
-import { ELEMENT_PARAGRAPH } from '../../../../elements/paragraph/index';
-import { createDocumentNode } from '../../../utils/index';
+import { Node } from 'meow-slate'
+import { ELEMENT_PARAGRAPH } from '../../../../elements/paragraph/index'
+import { createDocumentNode } from '../../../utils/index'
 
 const output: Node[] = [
   {
@@ -11,8 +11,8 @@ const output: Node[] = [
       },
     ],
   },
-];
+]
 
 it('should be', () => {
-  expect(createDocumentNode()).toEqual(output);
-});
+  expect(createDocumentNode()).toEqual(output)
+})

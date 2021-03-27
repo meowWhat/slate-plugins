@@ -1,15 +1,15 @@
-import { Editor } from 'slate';
-import { options } from '../../../../stories/config/initialValues';
-import { insertCodeBlock } from '../elements/code-block';
-import { toggleList } from '../elements/list/transforms/toggleList';
-import { unwrapList } from '../elements/list/transforms/unwrapList';
-import { AutoformatRule } from '../handlers/autoformat/types';
-import { MARK_BOLD } from '../marks/bold/defaults';
-import { MARK_CODE } from '../marks/code/defaults';
-import { MARK_ITALIC } from '../marks/italic/defaults';
-import { MARK_STRIKETHROUGH } from '../marks/strikethrough/defaults';
+import { Editor } from 'meow-slate'
+import { options } from '../../../../stories/config/initialValues'
+import { insertCodeBlock } from '../elements/code-block'
+import { toggleList } from '../elements/list/transforms/toggleList'
+import { unwrapList } from '../elements/list/transforms/unwrapList'
+import { AutoformatRule } from '../handlers/autoformat/types'
+import { MARK_BOLD } from '../marks/bold/defaults'
+import { MARK_CODE } from '../marks/code/defaults'
+import { MARK_ITALIC } from '../marks/italic/defaults'
+import { MARK_STRIKETHROUGH } from '../marks/strikethrough/defaults'
 
-const preFormat = (editor: Editor) => unwrapList(editor, options);
+const preFormat = (editor: Editor) => unwrapList(editor, options)
 
 export const autoformatRulesFixtures: AutoformatRule[] = [
   {
@@ -47,7 +47,7 @@ export const autoformatRulesFixtures: AutoformatRule[] = [
     markup: ['*', '-', '+'],
     preFormat,
     format: (editor) => {
-      toggleList(editor, { ...options, typeList: options.ul.type });
+      toggleList(editor, { ...options, typeList: options.ul.type })
     },
   },
   {
@@ -55,7 +55,7 @@ export const autoformatRulesFixtures: AutoformatRule[] = [
     markup: ['1.', '1)'],
     preFormat,
     format: (editor) => {
-      toggleList(editor, { ...options, typeList: options.ol.type });
+      toggleList(editor, { ...options, typeList: options.ol.type })
     },
   },
   {
@@ -106,7 +106,7 @@ export const autoformatRulesFixtures: AutoformatRule[] = [
     triggerAtBlockStart: false,
     preFormat,
     format: (editor) => {
-      insertCodeBlock(editor, { select: true }, options);
+      insertCodeBlock(editor, { select: true }, options)
     },
   },
-];
+]

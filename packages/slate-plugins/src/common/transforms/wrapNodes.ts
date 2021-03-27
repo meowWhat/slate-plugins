@@ -1,6 +1,6 @@
-import { Editor, Element, Transforms } from 'slate';
-import { WrapOptions } from '../types/Transforms.types';
-import { unhangRange, UnhangRangeOptions } from './unhangRange';
+import { Editor, Element, Transforms } from 'meow-slate'
+import { WrapOptions } from '../types/Transforms.types'
+import { unhangRange, UnhangRangeOptions } from './unhangRange'
 
 /**
  * {@link Transforms.wrapNodes}.
@@ -10,7 +10,7 @@ export const wrapNodes = (
   element: Element,
   options: WrapOptions & UnhangRangeOptions = {}
 ) => {
-  unhangRange(editor, options);
+  unhangRange(editor, options)
 
-  Transforms.wrapNodes(editor, element, options as any);
-};
+  Transforms.wrapNodes(editor, element, options as any)
+}

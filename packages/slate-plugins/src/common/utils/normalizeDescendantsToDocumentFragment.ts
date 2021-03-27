@@ -1,5 +1,5 @@
-import { Descendant, Element } from 'slate';
-import { SlateDocumentFragment } from '../types/SlateDocument.types';
+import { Descendant, Element } from 'meow-slate'
+import { SlateDocumentFragment } from '../types/SlateDocument.types'
 
 /**
  * Normalize the descendants to a valid document fragment.
@@ -9,13 +9,13 @@ export const normalizeDescendantsToDocumentFragment = (
 ): SlateDocumentFragment => {
   descendants.forEach((element) => {
     if (Element.isElement(element)) {
-      normalizeDescendantsToDocumentFragment(element.children);
+      normalizeDescendantsToDocumentFragment(element.children)
     }
-  });
+  })
 
   if (!descendants.length) {
-    descendants.push({ text: '' });
+    descendants.push({ text: '' })
   }
 
-  return descendants as SlateDocumentFragment;
-};
+  return descendants as SlateDocumentFragment
+}

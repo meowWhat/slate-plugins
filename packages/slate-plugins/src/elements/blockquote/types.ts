@@ -1,6 +1,6 @@
-import { IStyle } from '@uifabric/styling';
-import { IStyleFunctionOrObject } from '@uifabric/utilities';
-import { RenderElementProps } from 'slate-react';
+import { IStyle } from '@uifabric/styling'
+import { IStyleFunctionOrObject } from '@uifabric/utilities'
+import { RenderElementProps } from 'meow-slate-react'
 import {
   Deserialize,
   ElementWithAttributes,
@@ -9,15 +9,15 @@ import {
   RenderNodeOptions,
   RenderNodePropsOptions,
   RootProps,
-} from '../../common/types/PluginOptions.types';
+} from '../../common/types/PluginOptions.types'
 
 // Data of Element node
-export interface BlockquoteNodeData {}
+export interface BlockquoteNodeData { }
 
 // Element node
 export interface BlockquoteNode
   extends ElementWithAttributes,
-    BlockquoteNodeData {}
+  BlockquoteNodeData { }
 
 // renderElement options given as props
 export interface BlockquoteRenderElementPropsOptions {
@@ -27,46 +27,46 @@ export interface BlockquoteRenderElementPropsOptions {
   styles?: IStyleFunctionOrObject<
     BlockquoteElementStyleProps,
     BlockquoteElementStyles
-  >;
+  >
 }
 
 // renderElement props
 export interface BlockquoteElementProps
   extends RenderElementProps,
-    RenderNodePropsOptions,
-    HtmlAttributesProps,
-    BlockquoteRenderElementPropsOptions {
-  element: BlockquoteNode;
+  RenderNodePropsOptions,
+  HtmlAttributesProps,
+  BlockquoteRenderElementPropsOptions {
+  element: BlockquoteNode
 }
 
-export type BlockquoteKeyOption = 'blockquote';
+export type BlockquoteKeyOption = 'blockquote'
 
 // Plugin options
 export type BlockquotePluginOptionsValues = RenderNodeOptions &
   RootProps<BlockquoteRenderElementPropsOptions> &
   NodeToProps<BlockquoteNode, BlockquoteRenderElementPropsOptions> &
-  Deserialize;
-export type BlockquotePluginOptionsKeys = keyof BlockquotePluginOptionsValues;
+  Deserialize
+export type BlockquotePluginOptionsKeys = keyof BlockquotePluginOptionsValues
 export type BlockquotePluginOptions<
   Value extends BlockquotePluginOptionsKeys = BlockquotePluginOptionsKeys
-> = Partial<
-  Record<BlockquoteKeyOption, Pick<BlockquotePluginOptionsValues, Value>>
->;
+  > = Partial<
+    Record<BlockquoteKeyOption, Pick<BlockquotePluginOptionsValues, Value>>
+  >
 
 // renderElement options
-export type BlockquoteRenderElementOptionsKeys = BlockquotePluginOptionsKeys;
+export type BlockquoteRenderElementOptionsKeys = BlockquotePluginOptionsKeys
 export interface BlockquoteRenderElementOptions
-  extends BlockquotePluginOptions<BlockquoteRenderElementOptionsKeys> {}
+  extends BlockquotePluginOptions<BlockquoteRenderElementOptionsKeys> { }
 
 // deserialize options
 export interface BlockquoteDeserializeOptions
-  extends BlockquotePluginOptions<'type' | 'rootProps' | 'deserialize'> {}
+  extends BlockquotePluginOptions<'type' | 'rootProps' | 'deserialize'> { }
 
 export interface BlockquoteElementStyles {
   /**
    * Style for the root element.
    */
-  root?: IStyle;
+  root?: IStyle
 
   // Insert BlockquoteElement classNames below
 }
@@ -75,7 +75,7 @@ export interface BlockquoteElementStyleProps {
   /**
    * Accept custom classNames
    */
-  className?: string;
+  className?: string
 
   // Insert BlockquoteElement style props below
 }

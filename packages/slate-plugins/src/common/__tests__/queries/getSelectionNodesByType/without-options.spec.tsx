@@ -1,4 +1,4 @@
-import { createEditor } from 'slate';
+import { createEditor } from 'meow-slate';
 import { ELEMENT_PARAGRAPH } from '../../../../elements/paragraph/index';
 import { getNodes } from '../../../queries/getNodes';
 

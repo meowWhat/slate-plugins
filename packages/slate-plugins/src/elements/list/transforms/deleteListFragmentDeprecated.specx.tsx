@@ -1,7 +1,7 @@
 /** @jsx jsx */
 
-import { Editor, Range } from 'slate';
-import { withHistory } from 'slate-history';
+import { Editor, Range } from 'meow-slate';
+import { withHistory } from 'meow-slate-history';
 import { jsx } from '../../../__test-utils__/jsx';
 import { deleteListFragmentDeprecated } from './deleteListFragmentDeprecated';
 

@@ -1,14 +1,14 @@
-import isHotkey from 'is-hotkey';
-import { Editor, Path, Transforms } from 'slate';
+import isHotkey from 'is-hotkey'
+import { Editor, Path, Transforms } from 'meow-slate'
 import {
   getBlockAbove,
   isSelectionAtBlockEnd,
   isSelectionAtBlockStart,
   queryNode,
-} from '../../common/queries';
-import { isExpanded } from '../../common/queries/isExpanded';
-import { DEFAULT_ELEMENT } from '../../common/types/node.types';
-import { ExitBreakOnKeyDownOptions } from './types';
+} from '../../common/queries'
+import { isExpanded } from '../../common/queries/isExpanded'
+import { DEFAULT_ELEMENT } from '../../common/types/node.types'
+import { ExitBreakOnKeyDownOptions } from './types'
 
 /**
  * Check if the selection is at the edge of its parent block.
@@ -20,27 +20,27 @@ export const exitBreakAtEdges = (
     start,
     end,
   }: {
-    start?: boolean;
-    end?: boolean;
+    start?: boolean
+    end?: boolean
   }
 ) => {
-  let queryEdge = false;
-  let isEdge = false;
-  let isStart = false;
+  let queryEdge = false
+  let isEdge = false
+  let isStart = false
   if (start || end) {
-    queryEdge = true;
+    queryEdge = true
 
     if (start && isSelectionAtBlockStart(editor)) {
-      isEdge = true;
-      isStart = true;
+      isEdge = true
+      isStart = true
     }
 
     if (end && isSelectionAtBlockEnd(editor)) {
-      isEdge = true;
+      isEdge = true
     }
 
     if (isEdge && isExpanded(editor.selection)) {
-      editor.deleteFragment();
+      editor.deleteFragment()
     }
   }
 
@@ -48,8 +48,8 @@ export const exitBreakAtEdges = (
     queryEdge,
     isEdge,
     isStart,
-  };
-};
+  }
+}
 
 export const onKeyDownExitBreak = ({
   rules = [
@@ -60,45 +60,45 @@ export const onKeyDownExitBreak = ({
   event: KeyboardEvent,
   editor: Editor
 ) => {
-  const entry = getBlockAbove(editor);
-  if (!entry) return;
+    const entry = getBlockAbove(editor)
+    if (!entry) return
 
-  rules.forEach(
-    ({
-      hotkey,
-      query = {},
-      level = 1,
-      before,
-      defaultType = DEFAULT_ELEMENT,
-    }) => {
-      if (isHotkey(hotkey, event) && queryNode(entry, query)) {
-        if (!editor.selection) return;
+    rules.forEach(
+      ({
+        hotkey,
+        query = {},
+        level = 1,
+        before,
+        defaultType = DEFAULT_ELEMENT,
+      }) => {
+        if (isHotkey(hotkey, event) && queryNode(entry, query)) {
+          if (!editor.selection) return
 
-        const { queryEdge, isEdge, isStart } = exitBreakAtEdges(editor, query);
-        if (isStart) before = true;
+          const { queryEdge, isEdge, isStart } = exitBreakAtEdges(editor, query)
+          if (isStart) before = true
 
-        if (queryEdge && !isEdge) return;
+          if (queryEdge && !isEdge) return
 
-        event.preventDefault();
+          event.preventDefault()
 
-        const selectionPath = Editor.path(editor, editor.selection);
+          const selectionPath = Editor.path(editor, editor.selection)
 
-        let insertPath;
-        if (before) {
-          insertPath = selectionPath.slice(0, level + 1);
-        } else {
-          insertPath = Path.next(selectionPath.slice(0, level + 1));
-        }
-
-        Transforms.insertNodes(
-          editor,
-          { type: defaultType, children: [{ text: '' }] },
-          {
-            at: insertPath,
-            select: !isStart,
+          let insertPath
+          if (before) {
+            insertPath = selectionPath.slice(0, level + 1)
+          } else {
+            insertPath = Path.next(selectionPath.slice(0, level + 1))
           }
-        );
+
+          Transforms.insertNodes(
+            editor,
+            { type: defaultType, children: [{ text: '' }] },
+            {
+              at: insertPath,
+              select: !isStart,
+            }
+          )
+        }
       }
-    }
-  );
-};
+    )
+  }

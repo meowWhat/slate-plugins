@@ -1,16 +1,16 @@
-import { Editor, Path, Transforms } from 'slate';
+import { Editor, Path, Transforms } from 'meow-slate'
 import {
   InsertNodesOptions,
   isBlockAboveEmpty,
   isExpanded,
-} from '../../../common';
-import { DEFAULT_ELEMENT } from '../../../common/types/node.types';
+} from '../../../common'
+import { DEFAULT_ELEMENT } from '../../../common/types/node.types'
 import {
   CodeBlockInsertOptions,
   CodeBlockOptions,
   CodeLineOptions,
-} from '../types';
-import { insertCodeBlock } from './insertCodeBlock';
+} from '../types'
+import { insertCodeBlock } from './insertCodeBlock'
 
 /**
  * Called by toolbars to make sure a code-block gets inserted below a paragraph
@@ -23,14 +23,14 @@ export const insertEmptyCodeBlock = (
     CodeBlockOptions &
     CodeLineOptions = {}
 ) => {
-  if (!editor.selection) return;
+  if (!editor.selection) return
 
-  const defaultType = pluginsOptions.defaultType || DEFAULT_ELEMENT;
-  const level = pluginsOptions.level || 1;
+  const defaultType = pluginsOptions.defaultType || DEFAULT_ELEMENT
+  const level = pluginsOptions.level || 1
 
   if (isExpanded(editor.selection) || !isBlockAboveEmpty(editor)) {
-    const selectionPath = Editor.path(editor, editor.selection);
-    const insertPath = Path.next(selectionPath.slice(0, level + 1));
+    const selectionPath = Editor.path(editor, editor.selection)
+    const insertPath = Path.next(selectionPath.slice(0, level + 1))
     Transforms.insertNodes(
       editor,
       { type: defaultType, children: [{ text: '' }] },
@@ -38,7 +38,7 @@ export const insertEmptyCodeBlock = (
         at: insertPath,
         select: true,
       }
-    );
+    )
   }
-  insertCodeBlock(editor, options, pluginsOptions);
-};
+  insertCodeBlock(editor, options, pluginsOptions)
+}

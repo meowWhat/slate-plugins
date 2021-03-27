@@ -6,8 +6,8 @@ import {
   StyledComponentStyles,
   StyledElementProps,
 } from './StyledComponent.types'
-import { useEditor, ReactEditor } from 'slate-react'
-import { Transforms } from 'slate'
+import { useEditor, ReactEditor } from 'meow-slate-react'
+import { Transforms } from 'meow-slate'
 
 const getClassNames = classNamesFunction<
   StyledComponentStyleProps,

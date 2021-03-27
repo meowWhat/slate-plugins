@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { Element } from 'slate';
+import { Element } from 'meow-slate';
 import { jsx } from '../../../../__test-utils__/jsx';
 import { ELEMENT_LI } from '../../../../elements/list/defaults';
 import { ELEMENT_PARAGRAPH } from '../../../../elements/paragraph/index';

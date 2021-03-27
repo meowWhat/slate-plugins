@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { useState } from 'react';
 import { render } from '@testing-library/react';
-import { createEditor } from 'slate';
-import { withHistory } from 'slate-history';
-import { Slate, withReact } from 'slate-react';
+import { createEditor } from 'meow-slate';
+import { withHistory } from 'meow-slate-history';
+import { Slate, withReact } from 'meow-slate-react';
 import { SlateDocument } from '../../../../common/index';
 import { BalloonToolbar } from '../../../Toolbar/index';
 

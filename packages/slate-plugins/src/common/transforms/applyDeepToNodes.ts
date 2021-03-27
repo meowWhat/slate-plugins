@@ -1,19 +1,19 @@
-import { Descendant, Node, NodeEntry } from 'slate';
-import { isAncestor, queryNode } from '../queries';
-import { QueryNodeOptions } from '../types/QueryNodeOptions';
+import { Descendant, Node, NodeEntry } from 'meow-slate'
+import { isAncestor, queryNode } from '../queries'
+import { QueryNodeOptions } from '../types/QueryNodeOptions'
 
 export interface ApplyDeepToNodesOptions {
   // The destination node object.
-  node: Node;
+  node: Node
   // The source object. Can be a factory.
-  source: Record<string, any> | (() => Record<string, any>);
+  source: Record<string, any> | (() => Record<string, any>)
   // Function to call on each node following the query.
   apply: (
     node: Node,
     source: Record<string, any> | (() => Record<string, any>)
-  ) => void;
+  ) => void
   // Query to filter the nodes.
-  query?: QueryNodeOptions;
+  query?: QueryNodeOptions
 }
 
 /**
@@ -25,19 +25,19 @@ export const applyDeepToNodes = ({
   apply,
   query,
 }: ApplyDeepToNodesOptions) => {
-  const entry: NodeEntry<Node> = [node, []];
+  const entry: NodeEntry<Node> = [node, []]
 
   if (queryNode(entry, query)) {
     if (source instanceof Function) {
-      apply(node, source());
+      apply(node, source())
     } else {
-      apply(node, source);
+      apply(node, source)
     }
   }
 
-  if (!isAncestor(node)) return;
+  if (!isAncestor(node)) return
 
   node.children.forEach((child: Descendant) => {
-    applyDeepToNodes({ node: child, source, apply, query });
-  });
-};
+    applyDeepToNodes({ node: child, source, apply, query })
+  })
+}

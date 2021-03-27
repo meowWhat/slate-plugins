@@ -3,11 +3,11 @@ import {
   insertCodeBlock,
   toggleList,
   unwrapList,
-} from '@udecode/slate-plugins';
-import { Editor } from 'slate';
-import { options } from './initialValues';
+} from '@udecode/slate-plugins'
+import { Editor } from 'meow-slate'
+import { options } from './initialValues'
 
-const preFormat = (editor: Editor) => unwrapList(editor, options);
+const preFormat = (editor: Editor) => unwrapList(editor, options)
 
 export const autoformatRules: AutoformatRule[] = [
   {
@@ -45,7 +45,7 @@ export const autoformatRules: AutoformatRule[] = [
     markup: ['*', '-'],
     preFormat,
     format: (editor) => {
-      toggleList(editor, { ...options, typeList: options.ul.type });
+      toggleList(editor, { ...options, typeList: options.ul.type })
     },
   },
   {
@@ -53,7 +53,7 @@ export const autoformatRules: AutoformatRule[] = [
     markup: ['1.', '1)'],
     preFormat,
     format: (editor) => {
-      toggleList(editor, { ...options, typeList: options.ol.type });
+      toggleList(editor, { ...options, typeList: options.ol.type })
     },
   },
   {
@@ -108,7 +108,7 @@ export const autoformatRules: AutoformatRule[] = [
     triggerAtBlockStart: false,
     preFormat,
     format: (editor) => {
-      insertCodeBlock(editor, { select: true }, options);
+      insertCodeBlock(editor, { select: true }, options)
     },
   },
-];
+]

@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { Editor, Transforms } from 'slate';
+import { Editor, Transforms } from 'meow-slate';
 import { jsx } from '../../../../__test-utils__/jsx';
 import { withNodeID } from '../../../plugins/node-id/index';
 

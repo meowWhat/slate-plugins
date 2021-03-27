@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { withReact } from 'slate-react';
+import { withReact } from 'meow-slate-react';
 import { jsx } from '../../../../../__test-utils__/jsx';
 import { withInlineVoid } from '../../../../../common/plugins/inline-void/withInlineVoid';
 import { ELEMENT_LINK } from '../../../defaults';

@@ -1,4 +1,4 @@
-import { Editor } from 'slate'
+import { Editor } from 'meow-slate'
 import { isBlockAboveEmpty } from '../../../common/queries/isBlockAboveEmpty'
 import { setDefaults } from '../../../common/utils/setDefaults'
 import { onKeyDownResetBlockType } from '../../../handlers/reset-block-type/onKeyDownResetBlockType'

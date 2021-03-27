@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { classNamesFunction, styled } from '@uifabric/utilities';
-import { useFocused, useSelected } from 'slate-react';
+import { useFocused, useSelected } from 'meow-slate-react';
 import { getHandler } from '../../../common/utils';
 import {
   MentionElementProps,

@@ -1,12 +1,12 @@
-import * as React from 'react';
-import { RenderElementProps, RenderLeafProps } from 'slate-react';
+import * as React from 'react'
+import { RenderElementProps, RenderLeafProps } from 'meow-slate-react'
 import {
   BoldPlugin,
   htmlStringToDOMNode,
   ImagePlugin,
   MARK_BOLD,
-} from '../../../index';
-import { serializeHTMLFromNodes } from '../index';
+} from '../../../index'
+import { serializeHTMLFromNodes } from '../index'
 
 it('custom serialize image to html', () => {
   expect(
@@ -33,8 +33,8 @@ it('custom serialize image to html', () => {
     ).innerHTML
   ).toEqual(
     '<img src="https://i.kym-cdn.com/photos/images/original/001/358/546/3fa.jpg">'
-  );
-});
+  )
+})
 
 it('custom serialize bold to html', () => {
   expect(
@@ -56,5 +56,5 @@ it('custom serialize bold to html', () => {
         { text: ' part.' },
       ],
     })
-  ).toEqual('Some paragraph of text with <b>bold</b> part.');
-});
+  ).toEqual('Some paragraph of text with <b>bold</b> part.')
+})

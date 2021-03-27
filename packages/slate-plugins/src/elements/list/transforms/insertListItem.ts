@@ -1,4 +1,4 @@
-import { Editor, Path, Range, Transforms } from 'slate'
+import { Editor, Path, Range, Transforms } from 'meow-slate'
 import { getAbove } from '../../../common/queries/getAbove'
 import { getParent } from '../../../common/queries/getParent'
 import { isBlockTextEmptyAfterSelection } from '../../../common/queries/isBlockTextEmptyAfterSelection'

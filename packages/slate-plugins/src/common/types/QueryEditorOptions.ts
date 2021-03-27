@@ -1,5 +1,5 @@
-import { Editor, Location } from 'slate';
-import { QueryNodeOptions } from './QueryNodeOptions';
+import { Editor, Location } from 'meow-slate'
+import { QueryNodeOptions } from './QueryNodeOptions'
 
 /**
  * Query the editor state.
@@ -9,20 +9,20 @@ export interface QueryEditorOptions
   /**
    * Query the editor.
    */
-  filter?: (editor: Editor) => boolean;
+  filter?: (editor: Editor) => boolean
 
   /**
    * Location from where to lookup the node types (bottom-up)
    */
-  at?: Location;
+  at?: Location
 
   /**
    * When the selection is at the start of the block above.
    */
-  selectionAtBlockStart?: boolean;
+  selectionAtBlockStart?: boolean
 
   /**
    * When the selection is at the end of the block above.
    */
-  selectionAtBlockEnd?: boolean;
+  selectionAtBlockEnd?: boolean
 }

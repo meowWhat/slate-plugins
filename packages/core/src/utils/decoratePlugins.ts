@@ -1,24 +1,24 @@
-import { Editor, NodeEntry, Range } from 'slate';
-import { Decorate, SlatePlugin } from '../types';
+import { Editor, NodeEntry, Range } from 'meow-slate'
+import { Decorate, SlatePlugin } from '../types'
 
 export const decoratePlugins = (
   editor: Editor,
   plugins: SlatePlugin[],
   decorateList: Decorate[]
 ) => (entry: NodeEntry) => {
-  let ranges: Range[] = [];
+  let ranges: Range[] = []
 
   const addRanges = (newRanges: Range[]) => {
-    if (newRanges.length) ranges = [...ranges, ...newRanges];
-  };
+    if (newRanges.length) ranges = [...ranges, ...newRanges]
+  }
 
   decorateList.forEach((decorate) => {
-    addRanges(decorate(entry, editor));
-  });
+    addRanges(decorate(entry, editor))
+  })
 
   plugins.forEach(({ decorate }) => {
-    decorate && addRanges(decorate(entry, editor));
-  });
+    decorate && addRanges(decorate(entry, editor))
+  })
 
-  return ranges;
-};
+  return ranges
+}

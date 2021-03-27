@@ -1,6 +1,6 @@
 import { SlatePlugin } from 'slate-plugins-core'
-import { Descendant, Element, Text } from 'slate'
-import { jsx } from 'slate-hyperscript'
+import { Descendant, Element, Text } from 'meow-slate'
+import { jsx } from 'meow-slate-hyperscript'
 import { mergeDeepToNodes } from '../../../common'
 import { DeserializeHTMLChildren } from '../types'
 

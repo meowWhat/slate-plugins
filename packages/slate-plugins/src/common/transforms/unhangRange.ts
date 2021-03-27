@@ -1,9 +1,9 @@
-import { Editor, Path, Point, Range, Span } from 'slate';
+import { Editor, Path, Point, Range, Span } from 'meow-slate'
 
 export interface UnhangRangeOptions {
-  at?: Range | Path | Point | Span;
-  voids?: boolean;
-  unhang?: boolean;
+  at?: Range | Path | Point | Span
+  voids?: boolean
+  unhang?: boolean
 }
 
 /**
@@ -13,9 +13,9 @@ export const unhangRange = (
   editor: Editor,
   options: UnhangRangeOptions = {}
 ) => {
-  const { at = editor.selection, voids, unhang = true } = options;
+  const { at = editor.selection, voids, unhang = true } = options
 
   if (Range.isRange(at) && unhang) {
-    options.at = Editor.unhangRange(editor, at, { voids });
+    options.at = Editor.unhangRange(editor, at, { voids })
   }
-};
+}

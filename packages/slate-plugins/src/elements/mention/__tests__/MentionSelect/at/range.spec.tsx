@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { render } from '@testing-library/react';
-import { createEditor } from 'slate';
-import { ReactEditor } from 'slate-react';
-import * as SlateReact from 'slate-react';
+import { createEditor } from 'meow-slate';
+import { ReactEditor } from 'meow-slate-react';
+import * as SlateReact from 'meow-slate-react';
 import { ELEMENT_PARAGRAPH } from '../../../../paragraph/index';
 import { MentionSelect } from '../../../components/index';
 import { mentionables } from '../../useMention/onKeyDown/mentionables.fixture';

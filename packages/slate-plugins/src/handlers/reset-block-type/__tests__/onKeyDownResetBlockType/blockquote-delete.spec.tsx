@@ -1,7 +1,7 @@
 /** @jsx jsx */
 
 import * as isHotkey from 'is-hotkey';
-import { Editor } from 'slate';
+import { Editor } from 'meow-slate';
 import { options } from '../../../../../../../stories/config/initialValues';
 import { jsx } from '../../../../__test-utils__/jsx';
 import { isSelectionAtBlockStart } from '../../../../common/queries/isSelectionAtBlockStart';

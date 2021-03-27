@@ -1,7 +1,7 @@
 import { renderToStaticMarkup } from 'react-dom/server'
 import { SlatePlugin } from 'slate-plugins-core'
-import { Node as SlateNode, Text as SlateText } from 'slate'
-import { RenderElementProps, RenderLeafProps } from 'slate-react'
+import { Node as SlateNode, Text as SlateText } from 'meow-slate'
+import { RenderElementProps, RenderLeafProps } from 'meow-slate-react'
 import { SlateProps } from '../../common/types/Slate.types'
 import { createElementWithSlate } from '../../common/utils/createElementWithSlate'
 

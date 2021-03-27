@@ -1,7 +1,7 @@
-import { Ancestor, Editor, Node } from 'slate';
+import { Ancestor, Editor, Node } from 'meow-slate'
 
 /**
  * Is an ancestor empty (empty text and no inline children).
  */
 export const isAncestorEmpty = (editor: Editor, node: Ancestor) =>
-  !Node.string(node) && !node.children.some((n) => Editor.isInline(editor, n));
+  !Node.string(node) && !node.children.some((n) => Editor.isInline(editor, n))

@@ -1,6 +1,6 @@
-import { IStyle } from '@uifabric/styling';
-import { IStyleFunctionOrObject } from '@uifabric/utilities';
-import { RenderElementProps } from 'slate-react';
+import { IStyle } from '@uifabric/styling'
+import { IStyleFunctionOrObject } from '@uifabric/utilities'
+import { RenderElementProps } from 'meow-slate-react'
 import {
   Deserialize,
   ElementWithAttributes,
@@ -9,17 +9,17 @@ import {
   RenderNodeOptions,
   RenderNodePropsOptions,
   RootProps,
-} from '../../common/types/PluginOptions.types';
+} from '../../common/types/PluginOptions.types'
 
 // Data of Element node
-export interface CodeBlockNodeData {}
-export interface CodeLineNodeData {}
+export interface CodeBlockNodeData { }
+export interface CodeLineNodeData { }
 // Element node
 export interface CodeBlockNode
   extends ElementWithAttributes,
-    CodeBlockNodeData {}
+  CodeBlockNodeData { }
 
-export interface CodeLineNode extends ElementWithAttributes, CodeLineNodeData {}
+export interface CodeLineNode extends ElementWithAttributes, CodeLineNodeData { }
 
 // renderElement options given as props
 export interface CodeBlockRenderElementPropsOptions {
@@ -29,7 +29,7 @@ export interface CodeBlockRenderElementPropsOptions {
   styles?: IStyleFunctionOrObject<
     CodeBlockElementStyleProps,
     CodeBlockElementStyles
-  >;
+  >
 }
 
 export interface CodeLineRenderElementPropsOptions {
@@ -39,99 +39,99 @@ export interface CodeLineRenderElementPropsOptions {
   styles?: IStyleFunctionOrObject<
     CodeLineElementStyleProps,
     CodeLineElementStyles
-  >;
+  >
 }
 
 // renderElement props
 export interface CodeBlockElementProps
   extends RenderElementProps,
-    RenderNodePropsOptions,
-    HtmlAttributesProps,
-    CodeBlockRenderElementPropsOptions {
-  element: CodeBlockNode;
+  RenderNodePropsOptions,
+  HtmlAttributesProps,
+  CodeBlockRenderElementPropsOptions {
+  element: CodeBlockNode
 }
 
 // renderElement props
 export interface CodeLineElementProps
   extends RenderElementProps,
-    RenderNodePropsOptions,
-    HtmlAttributesProps,
-    CodeLineRenderElementPropsOptions {
-  element: CodeLineNode;
+  RenderNodePropsOptions,
+  HtmlAttributesProps,
+  CodeLineRenderElementPropsOptions {
+  element: CodeLineNode
 }
 
-export type CodeBlockKeyOption = 'code_block';
-export type CodeLineKeyOption = 'code_line';
+export type CodeBlockKeyOption = 'code_block'
+export type CodeLineKeyOption = 'code_line'
 
 // Plugin options
 export type CodeBlockPluginOptionsValues = RenderNodeOptions &
   RootProps<CodeBlockRenderElementPropsOptions> &
   NodeToProps<CodeBlockNode, CodeBlockRenderElementPropsOptions> &
-  Deserialize;
-export type CodeBlockPluginOptionsKeys = keyof CodeBlockPluginOptionsValues;
+  Deserialize
+export type CodeBlockPluginOptionsKeys = keyof CodeBlockPluginOptionsValues
 export type CodeBlockPluginOptions<
   Value extends CodeBlockPluginOptionsKeys = CodeBlockPluginOptionsKeys
-> = Partial<
-  Record<CodeBlockKeyOption, Pick<CodeBlockPluginOptionsValues, Value>>
->;
+  > = Partial<
+    Record<CodeBlockKeyOption, Pick<CodeBlockPluginOptionsValues, Value>>
+  >
 
 export type CodeLinePluginOptionsValues = RenderNodeOptions &
   RootProps<CodeLineRenderElementPropsOptions> &
   NodeToProps<CodeLineNode, CodeLineRenderElementPropsOptions> &
-  Deserialize;
-export type CodeLinePluginOptionsKeys = keyof CodeLinePluginOptionsValues;
+  Deserialize
+export type CodeLinePluginOptionsKeys = keyof CodeLinePluginOptionsValues
 export type CodeLinePluginOptions<
   Value extends CodeLinePluginOptionsKeys = CodeLinePluginOptionsKeys
-> = Partial<
-  Record<CodeLineKeyOption, Pick<CodeLinePluginOptionsValues, Value>>
->;
+  > = Partial<
+    Record<CodeLineKeyOption, Pick<CodeLinePluginOptionsValues, Value>>
+  >
 
 // renderElement options
-export type CodeBlockRenderElementOptionsKeys = CodeBlockPluginOptionsKeys;
+export type CodeBlockRenderElementOptionsKeys = CodeBlockPluginOptionsKeys
 export interface CodeBlockRenderElementOptions
-  extends CodeBlockPluginOptions<CodeBlockRenderElementOptionsKeys> {}
+  extends CodeBlockPluginOptions<CodeBlockRenderElementOptionsKeys> { }
 
-export type CodeLineRenderElementOptionsKeys = CodeLinePluginOptionsKeys;
+export type CodeLineRenderElementOptionsKeys = CodeLinePluginOptionsKeys
 export interface CodeLineRenderElementOptions
-  extends CodeLinePluginOptions<CodeLineRenderElementOptionsKeys> {}
+  extends CodeLinePluginOptions<CodeLineRenderElementOptionsKeys> { }
 
 // deserialize options
 export interface CodeBlockDeserializeOptions
-  extends CodeBlockPluginOptions<'type' | 'rootProps' | 'deserialize'> {}
+  extends CodeBlockPluginOptions<'type' | 'rootProps' | 'deserialize'> { }
 
 export interface CodeLineDeserializeOptions
-  extends CodeLinePluginOptions<'type' | 'rootProps' | 'deserialize'> {}
+  extends CodeLinePluginOptions<'type' | 'rootProps' | 'deserialize'> { }
 
 export interface CodeBlockDecorateOptions
-  extends CodeBlockPluginOptions<'type'> {}
+  extends CodeBlockPluginOptions<'type'> { }
 
 export interface CodeBlockOnKeyDownOptions
-  extends CodeBlockPluginOptions<'type'> {}
+  extends CodeBlockPluginOptions<'type'> { }
 
 export interface CodeLineOnKeyDownOptions
-  extends CodeLinePluginOptions<'type'> {}
+  extends CodeLinePluginOptions<'type'> { }
 
-export interface CodeBlockOptions extends CodeBlockPluginOptions<'type'> {}
+export interface CodeBlockOptions extends CodeBlockPluginOptions<'type'> { }
 
-export interface CodeLineOptions extends CodeLinePluginOptions<'type'> {}
+export interface CodeLineOptions extends CodeLinePluginOptions<'type'> { }
 
 export interface CodeBlockInsertOptions {
   /**
    * @default 'p'
    */
-  defaultType?: string;
+  defaultType?: string
 
   /**
    * @default 1
    */
-  level?: number;
+  level?: number
 }
 
 export interface CodeBlockElementStyles {
   /**
    * Style for the root element.
    */
-  root?: IStyle;
+  root?: IStyle
 
   // Insert CodeBlockElement classNames below
 }
@@ -140,7 +140,7 @@ export interface CodeBlockElementStyleProps {
   /**
    * Accept custom classNames
    */
-  className?: string;
+  className?: string
 
   // Insert CodeBlockElement style props below
 }
@@ -149,7 +149,7 @@ export interface CodeLineElementStyles {
   /**
    * Style for the root element.
    */
-  root?: IStyle;
+  root?: IStyle
 
   // Insert CodeLineElement classNames below
 }
@@ -158,7 +158,7 @@ export interface CodeLineElementStyleProps {
   /**
    * Accept custom classNames
    */
-  className?: string;
+  className?: string
 
   // Insert CodeLineElement style props below
 }
@@ -167,10 +167,10 @@ export interface WithCodeBlockOptions extends CodeBlockOptions {
   /**
    * Valid children types for code_block, in addition to code_line types.
    */
-  validCodeBlockChildrenTypes?: string[];
+  validCodeBlockChildrenTypes?: string[]
 }
 
-export interface WithCodeLineOptions extends CodeLineOptions {}
+export interface WithCodeLineOptions extends CodeLineOptions { }
 
 export interface CodeBlockNormalizerOptions
-  extends Pick<WithCodeBlockOptions, 'validCodeBlockChildrenTypes'> {}
+  extends Pick<WithCodeBlockOptions, 'validCodeBlockChildrenTypes'> { }

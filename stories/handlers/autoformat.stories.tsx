@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useMemo, useState } from 'react'
 import {
   BlockquotePlugin,
   BoldPlugin,
@@ -18,22 +18,17 @@ import {
   withAutoformat,
   withCodeBlock,
   withList,
-} from '@udecode/slate-plugins';
-import { createEditor } from 'slate';
-import { withHistory } from 'slate-history';
-import { Slate, withReact } from 'slate-react';
-import { autoformatRules } from '../config/autoformatRules';
-import {
-  headingTypes,
-  initialValueAutoformat,
-  options,
-  optionsResetBlockTypes,
-} from '../config/initialValues';
+} from '@udecode/slate-plugins'
+import { createEditor } from 'meow-slate'
+import { withHistory } from 'meow-slate-history'
+import { Slate, withReact } from 'meow-slate-react'
+import { autoformatRules } from '../config/autoformatRules'
+import { headingTypes, initialValueAutoformat, options, optionsResetBlockTypes } from '../config/initialValues'
 
 export default {
   title: 'Handlers/Autoformat',
   component: withAutoformat,
-};
+}
 
 const withPlugins = [
   withReact,
@@ -43,7 +38,7 @@ const withPlugins = [
   withAutoformat({
     rules: autoformatRules,
   }),
-] as const;
+] as const
 
 export const Example = () => {
   const plugins = [
@@ -87,30 +82,21 @@ export const Example = () => {
         },
       ],
     }),
-  ];
+  ]
 
   const createReactEditor = () => () => {
-    const [value, setValue] = useState(initialValueAutoformat);
+    const [value, setValue] = useState(initialValueAutoformat)
 
-    const editor = useMemo(() => pipe(createEditor(), ...withPlugins), []);
+    const editor = useMemo(() => pipe(createEditor(), ...withPlugins), [])
 
     return (
-      <Slate
-        editor={editor}
-        value={value}
-        onChange={(newValue) => setValue(newValue as SlateDocument)}
-      >
-        <EditablePlugins
-          plugins={plugins}
-          placeholder="Write some markdown..."
-          spellCheck
-          autoFocus
-        />
+      <Slate editor={editor} value={value} onChange={(newValue) => setValue(newValue as SlateDocument)}>
+        <EditablePlugins plugins={plugins} placeholder="Write some markdown..." spellCheck autoFocus />
       </Slate>
-    );
-  };
+    )
+  }
 
-  const Editor = createReactEditor();
+  const Editor = createReactEditor()
 
-  return <Editor />;
-};
+  return <Editor />
+}

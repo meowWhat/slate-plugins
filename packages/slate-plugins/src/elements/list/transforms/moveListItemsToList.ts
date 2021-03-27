@@ -1,43 +1,43 @@
-import { Ancestor, Editor, NodeEntry, Path, Transforms } from 'slate';
-import { findDescendant } from '../../../common/queries/findDescendant';
-import { getLastChildPath } from '../../../common/queries/getLastChild';
+import { Ancestor, Editor, NodeEntry, Path, Transforms } from 'meow-slate'
+import { findDescendant } from '../../../common/queries/findDescendant'
+import { getLastChildPath } from '../../../common/queries/getLastChild'
 import {
   moveChildren,
   MoveChildrenOptions,
-} from '../../../common/transforms/moveChildren';
-import { getListTypes } from '../queries/getListTypes';
-import { ListOptions } from '../types';
+} from '../../../common/transforms/moveChildren'
+import { getListTypes } from '../queries/getListTypes'
+import { ListOptions } from '../types'
 
 export interface MergeListItemIntoListOptions {
   /**
    * List items of the sublist of this node will be moved.
    */
-  fromListItem?: NodeEntry<Ancestor>;
+  fromListItem?: NodeEntry<Ancestor>
 
   /**
    * List items of the list will be moved.
    */
-  fromList?: NodeEntry<Ancestor>;
+  fromList?: NodeEntry<Ancestor>
 
   /**
    * List items will be moved in this list.
    */
-  toList?: NodeEntry<Ancestor>;
+  toList?: NodeEntry<Ancestor>
 
-  fromStartIndex?: MoveChildrenOptions['fromStartIndex'];
+  fromStartIndex?: MoveChildrenOptions['fromStartIndex']
 
   /**
    * List position where to move the list items.
    */
-  toListIndex?: number | null;
+  toListIndex?: number | null
 
-  to?: Path;
+  to?: Path
 
   /**
    * Delete `fromListItem` sublist if true.
    * @default true
    */
-  deleteFromList?: boolean;
+  deleteFromList?: boolean
 }
 
 /**
@@ -57,7 +57,7 @@ export const moveListItemsToList = (
   }: MergeListItemIntoListOptions,
   options?: ListOptions
 ) => {
-  let fromListPath: Path | undefined;
+  let fromListPath: Path | undefined
 
   if (fromListItem) {
     const fromListItemSublist = findDescendant(editor, {
@@ -65,39 +65,39 @@ export const moveListItemsToList = (
       match: {
         type: getListTypes(options),
       },
-    });
-    if (!fromListItemSublist) return 0;
+    })
+    if (!fromListItemSublist) return 0
 
-    fromListPath = fromListItemSublist?.[1];
+    fromListPath = fromListItemSublist?.[1]
   } else if (fromList) {
     // eslint-disable-next-line prefer-destructuring
-    fromListPath = fromList[1];
+    fromListPath = fromList[1]
   } else {
-    return;
+    return
   }
 
-  let to: Path | null = null;
+  let to: Path | null = null
 
-  if (_to) to = _to;
+  if (_to) to = _to
   if (toList) {
-    if (toListIndex !== null) to = toList[1].concat([toListIndex]);
+    if (toListIndex !== null) to = toList[1].concat([toListIndex])
     else {
-      const lastChildPath = getLastChildPath(toList);
-      to = Path.next(lastChildPath);
+      const lastChildPath = getLastChildPath(toList)
+      to = Path.next(lastChildPath)
     }
   }
-  if (!to) return;
+  if (!to) return
 
   const moved = moveChildren(editor, {
     at: fromListPath,
     to,
     fromStartIndex,
-  });
+  })
 
   // Remove the empty list
   if (deleteFromList) {
-    Transforms.delete(editor, { at: fromListPath });
+    Transforms.delete(editor, { at: fromListPath })
   }
 
-  return moved;
-};
+  return moved
+}

@@ -1,16 +1,16 @@
-import { createHyperscript } from 'slate-hyperscript';
-import { options } from '../../../../stories/config/initialValues';
-import { createText } from './hyperscript/creators';
+import { createHyperscript } from 'meow-slate-hyperscript'
+import { options } from '../../../../stories/config/initialValues'
+import { createText } from './hyperscript/creators'
 
 declare global {
   namespace JSX {
     interface IntrinsicElements {
-      [key: string]: any;
-      editor: any;
-      mention: any;
-      TodoList: any;
-      inline: any;
-      htext: any;
+      [key: string]: any
+      editor: any
+      mention: any
+      TodoList: any
+      inline: any
+      htext: any
     }
   }
 }
@@ -47,4 +47,4 @@ export const jsx = createHyperscript({
   creators: {
     htext: createText,
   },
-});
+})

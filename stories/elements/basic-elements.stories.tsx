@@ -1,16 +1,8 @@
-import 'prismjs/themes/prism.css';
-import React, { useMemo, useState } from 'react';
-import { boolean } from '@storybook/addon-knobs';
-import { CodeBlock } from '@styled-icons/boxicons-regular/CodeBlock';
-import {
-  FormatQuote,
-  Looks3,
-  Looks4,
-  Looks5,
-  Looks6,
-  LooksOne,
-  LooksTwo,
-} from '@styled-icons/material';
+import 'prismjs/themes/prism.css'
+import React, { useMemo, useState } from 'react'
+import { boolean } from '@storybook/addon-knobs'
+import { CodeBlock } from '@styled-icons/boxicons-regular/CodeBlock'
+import { FormatQuote, Looks3, Looks4, Looks5, Looks6, LooksOne, LooksTwo } from '@styled-icons/material'
 import {
   BlockquotePlugin,
   CodeBlockPlugin,
@@ -27,16 +19,11 @@ import {
   ToolbarCodeBlock,
   ToolbarElement,
   withCodeBlock,
-} from '@udecode/slate-plugins';
-import { createEditor } from 'slate';
-import { withHistory } from 'slate-history';
-import { Slate, withReact } from 'slate-react';
-import {
-  headingTypes,
-  initialValueBasicElements,
-  options,
-  optionsResetBlockTypes,
-} from '../config/initialValues';
+} from '@udecode/slate-plugins'
+import { createEditor } from 'meow-slate'
+import { withHistory } from 'meow-slate-history'
+import { Slate, withReact } from 'meow-slate-react'
+import { headingTypes, initialValueBasicElements, options, optionsResetBlockTypes } from '../config/initialValues'
 
 export default {
   title: 'Elements/Basic Elements',
@@ -46,19 +33,17 @@ export default {
     HeadingPlugin,
     ParagraphPlugin,
   },
-};
+}
 
-const withPlugins = [withReact, withHistory, withCodeBlock(options)] as const;
+const withPlugins = [withReact, withHistory, withCodeBlock(options)] as const
 
 export const Example = () => {
-  const plugins: SlatePlugin[] = [];
-  if (boolean('ParagraphPlugin', true)) plugins.push(ParagraphPlugin(options));
-  if (boolean('BlockquotePlugin', true))
-    plugins.push(BlockquotePlugin(options));
-  if (boolean('CodeBlockPlugin', true)) plugins.push(CodeBlockPlugin(options));
-  if (boolean('HeadingPlugin', true)) plugins.push(HeadingPlugin(options));
-  if (boolean('ResetBlockTypePlugin', true))
-    plugins.push(ResetBlockTypePlugin(optionsResetBlockTypes));
+  const plugins: SlatePlugin[] = []
+  if (boolean('ParagraphPlugin', true)) plugins.push(ParagraphPlugin(options))
+  if (boolean('BlockquotePlugin', true)) plugins.push(BlockquotePlugin(options))
+  if (boolean('CodeBlockPlugin', true)) plugins.push(CodeBlockPlugin(options))
+  if (boolean('HeadingPlugin', true)) plugins.push(HeadingPlugin(options))
+  if (boolean('ResetBlockTypePlugin', true)) plugins.push(ResetBlockTypePlugin(optionsResetBlockTypes))
   if (boolean('SoftBreakPlugin', true))
     plugins.push(
       SoftBreakPlugin({
@@ -71,8 +56,8 @@ export const Example = () => {
             },
           },
         ],
-      })
-    );
+      }),
+    )
   if (boolean('ExitBreakPlugin', true))
     plugins.push(
       ExitBreakPlugin({
@@ -93,20 +78,20 @@ export const Example = () => {
             },
           },
         ],
-      })
-    );
+      }),
+    )
 
   const createReactEditor = () => () => {
-    const [value, setValue] = useState(initialValueBasicElements);
+    const [value, setValue] = useState(initialValueBasicElements)
 
-    const editor = useMemo(() => pipe(createEditor(), ...withPlugins), []);
+    const editor = useMemo(() => pipe(createEditor(), ...withPlugins), [])
 
     return (
       <Slate
         editor={editor}
         value={value}
         onChange={(newValue) => {
-          setValue(newValue as SlateDocument);
+          setValue(newValue as SlateDocument)
         }}
       >
         <HeadingToolbar>
@@ -116,27 +101,15 @@ export const Example = () => {
           <ToolbarElement type={options.h4.type} icon={<Looks4 />} />
           <ToolbarElement type={options.h5.type} icon={<Looks5 />} />
           <ToolbarElement type={options.h6.type} icon={<Looks6 />} />
-          <ToolbarElement
-            type={options.blockquote.type}
-            icon={<FormatQuote />}
-          />
-          <ToolbarCodeBlock
-            type={options.code_block.type}
-            icon={<CodeBlock />}
-            options={options}
-          />
+          <ToolbarElement type={options.blockquote.type} icon={<FormatQuote />} />
+          <ToolbarCodeBlock type={options.code_block.type} icon={<CodeBlock />} options={options} />
         </HeadingToolbar>
-        <EditablePlugins
-          plugins={plugins}
-          placeholder="Enter some rich text…"
-          spellCheck
-          autoFocus
-        />
+        <EditablePlugins plugins={plugins} placeholder="Enter some rich text…" spellCheck autoFocus />
       </Slate>
-    );
-  };
+    )
+  }
 
-  const Editor = createReactEditor();
+  const Editor = createReactEditor()
 
-  return <Editor />;
-};
+  return <Editor />
+}

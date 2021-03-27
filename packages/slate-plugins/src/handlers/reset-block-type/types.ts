@@ -1,29 +1,29 @@
-import { Editor } from 'slate';
+import { Editor } from 'meow-slate'
 
 export interface ResetBlockTypePluginRule {
   /**
    * Node types where the rule applies.
    */
-  types: string[];
+  types: string[]
 
   /**
    * Additional condition to the rule.
    */
-  predicate: (editor: Editor) => boolean;
+  predicate: (editor: Editor) => boolean
 
-  hotkey?: string | string[];
+  hotkey?: string | string[]
 
   /**
    * Set node to this default type when resetting.
    */
-  defaultType?: string;
+  defaultType?: string
 
   /**
    * Callback called when resetting.
    */
-  onReset?: (editor: Editor) => void;
+  onReset?: (editor: Editor) => void
 }
 
 export interface ResetBlockTypePluginOptions {
-  rules: ResetBlockTypePluginRule[];
+  rules: ResetBlockTypePluginRule[]
 }

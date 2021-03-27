@@ -1,4 +1,4 @@
-import { Editor, Node, Path } from 'slate';
+import { Editor, Node, Path } from 'meow-slate'
 
 /**
  * Get the descendant node referred to by a specific path.
@@ -7,8 +7,8 @@ import { Editor, Node, Path } from 'slate';
  */
 export const getNode = (editor: Editor, path: Path) => {
   try {
-    return Node.get(editor, path);
+    return Node.get(editor, path)
   } catch (err) {
-    return null;
+    return null
   }
-};
+}

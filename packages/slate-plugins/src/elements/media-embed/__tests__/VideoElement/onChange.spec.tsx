@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { fireEvent, render } from '@testing-library/react';
-import * as SlateReact from 'slate-react';
-import { ReactEditor } from 'slate-react';
+import * as SlateReact from 'meow-slate-react';
+import { ReactEditor } from 'meow-slate-react';
 import { MediaEmbedElement } from '../../components/MediaEmbedElement';
 import { ELEMENT_MEDIA_EMBED } from '../../defaults';
 import { input, output } from './onChange.fixture';

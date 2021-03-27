@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { Editor } from 'slate';
+import { Editor } from 'meow-slate';
 import { jsx } from '../../../__test-utils__/jsx';
 import { ELEMENT_PARAGRAPH } from '../../../elements/paragraph/index';
 import { withTrailingNode } from '../../withTrailingNode';

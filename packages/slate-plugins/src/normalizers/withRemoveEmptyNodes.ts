@@ -1,5 +1,5 @@
-import castArray from 'lodash/castArray';
-import { Editor, Node, NodeEntry, Transforms } from 'slate';
+import castArray from 'lodash/castArray'
+import { Editor, Node, NodeEntry, Transforms } from 'meow-slate'
 
 /**
  * Remove nodes with empty text.
@@ -9,9 +9,9 @@ export const withRemoveEmptyNodes = (options: { type: string | string[] }) => <
 >(
   editor: T
 ) => {
-  const types = castArray(options.type);
+  const types = castArray(options.type)
 
-  const { normalizeNode } = editor;
+  const { normalizeNode } = editor
 
   editor.normalizeNode = ([node, path]: NodeEntry) => {
     if (
@@ -19,12 +19,12 @@ export const withRemoveEmptyNodes = (options: { type: string | string[] }) => <
       types.includes(node.type as string) &&
       Node.string(node) === ''
     ) {
-      Transforms.removeNodes(editor, { at: path });
-      return;
+      Transforms.removeNodes(editor, { at: path })
+      return
     }
 
-    normalizeNode([node, path]);
-  };
+    normalizeNode([node, path])
+  }
 
-  return editor;
-};
+  return editor
+}

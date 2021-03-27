@@ -1,6 +1,6 @@
 import { IStyle } from '@uifabric/styling'
 import { IStyleFunctionOrObject } from '@uifabric/utilities'
-import { RenderElementProps } from 'slate-react'
+import { RenderElementProps } from 'meow-slate-react'
 import {
   Deserialize,
   ElementWithAttributes,

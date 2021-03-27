@@ -1,9 +1,9 @@
-import { SlatePlugin } from 'slate-plugins-core';
-import { Descendant } from 'slate';
-import { SlateDocumentFragment } from '../../../common';
-import { normalizeDescendantsToDocumentFragment } from '../../../common/utils';
-import { htmlStringToDOMNode } from '../../../serializers/serialize-html/utils/htmlStringToDOMNode';
-import { deserializeHTMLElement } from './deserializeHTMLElement';
+import { SlatePlugin } from 'slate-plugins-core'
+import { Descendant } from 'meow-slate'
+import { SlateDocumentFragment } from '../../../common'
+import { normalizeDescendantsToDocumentFragment } from '../../../common/utils'
+import { htmlStringToDOMNode } from '../../../serializers/serialize-html/utils/htmlStringToDOMNode'
+import { deserializeHTMLElement } from './deserializeHTMLElement'
 
 /**
  * Deserialize HTML element to a valid document fragment.
@@ -12,17 +12,17 @@ export const deserializeHTMLToDocumentFragment = ({
   plugins,
   element,
 }: {
-  plugins: SlatePlugin[];
-  element: HTMLElement | string;
+  plugins: SlatePlugin[]
+  element: HTMLElement | string
 }): SlateDocumentFragment => {
   if (typeof element === 'string') {
-    element = htmlStringToDOMNode(element);
+    element = htmlStringToDOMNode(element)
   }
 
   const fragment = deserializeHTMLElement({
     plugins,
     element,
-  }) as Descendant[];
+  }) as Descendant[]
 
-  return normalizeDescendantsToDocumentFragment(fragment);
-};
+  return normalizeDescendantsToDocumentFragment(fragment)
+}

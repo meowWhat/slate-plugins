@@ -1,16 +1,16 @@
-import { createEditor } from 'slate';
-import { onDOMBeforeInputPlugins } from '../../utils';
+import { createEditor } from 'meow-slate'
+import { onDOMBeforeInputPlugins } from '../../utils'
 
-const event = {} as Event;
+const event = {} as Event
 
 it('should', () => {
-  const editor = createEditor();
-  const onDOMBeforeInput = jest.fn();
+  const editor = createEditor()
+  const onDOMBeforeInput = jest.fn()
   onDOMBeforeInputPlugins(
     editor,
     [{ onDOMBeforeInput }],
     [onDOMBeforeInput]
-  )(event);
+  )(event)
 
-  expect(onDOMBeforeInput).toHaveBeenCalledTimes(2);
-});
+  expect(onDOMBeforeInput).toHaveBeenCalledTimes(2)
+})

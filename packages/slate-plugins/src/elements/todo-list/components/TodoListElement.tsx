@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { classNamesFunction, styled } from '@uifabric/utilities'
-import { Transforms } from 'slate'
-import { ReactEditor, useEditor, useReadOnly } from 'slate-react'
+import { Transforms } from 'meow-slate'
+import { ReactEditor, useEditor, useReadOnly } from 'meow-slate-react'
 import { TodoListElementProps, TodoListElementStyleProps, TodoListElementStyles } from '../types'
 import { getTodoListElementStyles } from './TodoListElement.styles'
 

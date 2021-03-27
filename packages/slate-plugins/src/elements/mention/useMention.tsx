@@ -1,5 +1,5 @@
 import { useCallback, useState } from 'react';
-import { Editor, Point, Range, Transforms } from 'slate';
+import { Editor, Point, Range, Transforms } from 'meow-slate';
 import { escapeRegExp } from '../../common';
 import {
   getText,

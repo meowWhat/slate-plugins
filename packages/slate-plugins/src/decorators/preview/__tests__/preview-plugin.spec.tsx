@@ -1,9 +1,9 @@
 import React, { useMemo, useState } from 'react';
 import { render } from '@testing-library/react';
 import { EditablePlugins } from 'slate-plugins-core';
-import { createEditor, Node } from 'slate';
-import { withHistory } from 'slate-history';
-import { Slate, withReact } from 'slate-react';
+import { createEditor, Node } from 'meow-slate';
+import { withHistory } from 'meow-slate-history';
+import { Slate, withReact } from 'meow-slate-react';
 import { initialValuePreview } from '../../../../../../stories/config/initialValues';
 import { pipe } from '../../../common/utils/pipe';
 import { HeadingPlugin } from '../../../elements/heading/HeadingPlugin';

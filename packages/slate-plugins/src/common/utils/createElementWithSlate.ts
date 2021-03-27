@@ -1,7 +1,7 @@
-import * as React from 'react';
-import { createEditor } from 'slate';
-import { Slate, withReact } from 'slate-react';
-import { SlateProps } from '../types/Slate.types';
+import * as React from 'react'
+import { createEditor } from 'meow-slate'
+import { Slate, withReact } from 'meow-slate-react'
+import { SlateProps } from '../types/Slate.types'
 
 /**
  * Create a React element wrapped in a Slate provider.
@@ -12,10 +12,10 @@ export const createElementWithSlate = (slateProps?: Partial<SlateProps>) => {
   const {
     editor = withReact(createEditor()),
     value = [],
-    onChange = () => {},
+    onChange = () => { },
     children,
     ...props
-  } = slateProps || {};
+  } = slateProps || {}
 
   return React.createElement(
     Slate,
@@ -26,5 +26,5 @@ export const createElementWithSlate = (slateProps?: Partial<SlateProps>) => {
       ...props,
     } as any,
     children
-  );
-};
+  )
+}

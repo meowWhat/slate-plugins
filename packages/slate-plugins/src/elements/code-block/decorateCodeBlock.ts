@@ -43,44 +43,44 @@
 // import 'prismjs/components/prism-typescript';
 // import 'prismjs/components/prism-wasm';
 // import 'prismjs/components/prism-yaml';
-import { languages, Token, tokenize } from 'prismjs';
-import { Node, NodeEntry } from 'slate';
-import { setDefaults } from '../../common/utils/setDefaults';
-import { DEFAULTS_CODE_BLOCK } from './defaults';
-import { CodeBlockDecorateOptions } from './types';
+import { languages, Token, tokenize } from 'prismjs'
+import { Node, NodeEntry } from 'meow-slate'
+import { setDefaults } from '../../common/utils/setDefaults'
+import { DEFAULTS_CODE_BLOCK } from './defaults'
+import { CodeBlockDecorateOptions } from './types'
 
 export const decorateCodeBlock = (options?: CodeBlockDecorateOptions) => (
   entry: NodeEntry
 ) => {
-  const ranges: any = [];
-  const [node, path] = entry;
-  const { code_block } = setDefaults(options, DEFAULTS_CODE_BLOCK);
+  const ranges: any = []
+  const [node, path] = entry
+  const { code_block } = setDefaults(options, DEFAULTS_CODE_BLOCK)
 
   if (node.type === code_block.type) {
-    const text = Node.string(node);
+    const text = Node.string(node)
     // const langName: any = parent.lang || 'markup';
-    const langName: any = 'javascript';
-    const lang = languages[langName];
+    const langName: any = 'javascript'
+    const lang = languages[langName]
 
     // if (lang) {
-    const tokens = tokenize(text, lang);
-    let offset = 0;
+    const tokens = tokenize(text, lang)
+    let offset = 0
 
     for (const element of tokens) {
       if (typeof element === 'string') {
-        offset += element.length;
+        offset += element.length
       } else {
-        const token: Token = element;
+        const token: Token = element
         ranges.push({
           anchor: { path, offset },
           focus: { path, offset: offset + token.length },
           className: `prism-token token ${token.type} `,
           prism: true,
-        });
-        offset += token.length;
+        })
+        offset += token.length
       }
     }
     // }
   }
-  return ranges;
-};
+  return ranges
+}

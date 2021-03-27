@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { Editor, Range } from 'slate';
+import { Editor, Range } from 'meow-slate';
 import { jsx } from '../../../../__test-utils__/jsx';
 import { isPointAtWordEnd } from '../../../queries/index';
 

@@ -1,9 +1,9 @@
-import { RenderElementProps } from 'slate-react';
-import { RenderNodeOptions } from '../../common/types/PluginOptions.types';
-import { getRenderElements } from '../../common/utils/getRenderElement';
-import { setDefaults } from '../../common/utils/setDefaults';
-import { DEFAULTS_HEADING } from './defaults';
-import { HeadingRenderElementOptions } from './types';
+import { RenderElementProps } from 'meow-slate-react'
+import { RenderNodeOptions } from '../../common/types/PluginOptions.types'
+import { getRenderElements } from '../../common/utils/getRenderElement'
+import { setDefaults } from '../../common/utils/setDefaults'
+import { DEFAULTS_HEADING } from './defaults'
+import { HeadingRenderElementOptions } from './types'
 
 /**
  * Font sizes are relative to the base font size
@@ -20,20 +20,20 @@ export const renderElementHeading = (options?: HeadingRenderElementOptions) => (
   const { h1, h2, h3, h4, h5, h6, levels } = setDefaults(
     options,
     DEFAULTS_HEADING
-  );
+  )
 
-  const renderElementsOptions: Required<RenderNodeOptions>[] = [];
+  const renderElementsOptions: Required<RenderNodeOptions>[] = []
 
   const checkRenderElement = (level: number, optionsValues: any) => {
-    if (levels >= level) renderElementsOptions.push(optionsValues);
-  };
+    if (levels >= level) renderElementsOptions.push(optionsValues)
+  }
 
-  checkRenderElement(1, h1);
-  checkRenderElement(2, h2);
-  checkRenderElement(3, h3);
-  checkRenderElement(4, h4);
-  checkRenderElement(5, h5);
-  checkRenderElement(6, h6);
+  checkRenderElement(1, h1)
+  checkRenderElement(2, h2)
+  checkRenderElement(3, h3)
+  checkRenderElement(4, h4)
+  checkRenderElement(5, h5)
+  checkRenderElement(6, h6)
 
-  return getRenderElements(renderElementsOptions)(props);
-};
+  return getRenderElements(renderElementsOptions)(props)
+}

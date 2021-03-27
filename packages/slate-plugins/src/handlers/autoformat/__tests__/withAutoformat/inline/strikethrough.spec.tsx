@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { withReact } from 'slate-react';
+import { withReact } from 'meow-slate-react';
 import { autoformatRulesFixtures } from '../../../../../__fixtures__/autoformat.fixtures';
 import { jsx } from '../../../../../__test-utils__/jsx';
 import { withAutoformat } from '../../../withAutoformat';

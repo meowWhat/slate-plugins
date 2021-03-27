@@ -1,36 +1,36 @@
-import { Text } from 'slate';
-import { RenderLeafProps } from 'slate-react';
+import { Text } from 'meow-slate'
+import { RenderLeafProps } from 'meow-slate-react'
 
 // Data of Text node
-export interface TemplateNodeData {}
+export interface TemplateNodeData { }
 
 // Text node
-export interface TemplateNode extends Text, TemplateNodeData {}
+export interface TemplateNode extends Text, TemplateNodeData { }
 
 // Type option
 interface TypeOption {
-  typeTemplate?: string;
+  typeTemplate?: string
 }
 
 // renderLeaf options given as props
-interface TemplateRenderLeafOptionsProps {}
+interface TemplateRenderLeafOptionsProps { }
 
 // renderLeaf options
 export interface TemplateRenderLeafOptions
   extends TemplateRenderLeafOptionsProps,
-    TypeOption {}
+  TypeOption { }
 
 // renderLeaf props
 export interface TemplateRenderLeafProps
   extends RenderLeafProps,
-    TemplateRenderLeafOptionsProps {
-  leaf: TemplateNode;
+  TemplateRenderLeafOptionsProps {
+  leaf: TemplateNode
 }
 
 // deserialize options
-export interface TemplateDeserializeOptions extends TypeOption {}
+export interface TemplateDeserializeOptions extends TypeOption { }
 
 // Plugin options
 export interface TemplatePluginOptions
   extends TemplateRenderLeafOptions,
-    TemplateDeserializeOptions {}
+  TemplateDeserializeOptions { }

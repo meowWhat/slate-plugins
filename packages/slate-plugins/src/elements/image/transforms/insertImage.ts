@@ -1,4 +1,4 @@
-import { Editor, Path, Transforms } from 'slate'
+import { Editor, Path, Transforms } from 'meow-slate'
 import { setDefaults } from '../../../common/utils/setDefaults'
 import { DEFAULTS_IMAGE, DEFAULTS_FILE } from '../defaults'
 import { FileNode, ImageNode, ImagePluginOptions } from '../types'

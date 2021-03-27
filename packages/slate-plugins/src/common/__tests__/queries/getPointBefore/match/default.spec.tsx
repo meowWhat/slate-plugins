@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { Editor } from 'slate';
+import { Editor } from 'meow-slate';
 import { jsx } from '../../../../../__test-utils__/jsx';
 import { getPointBefore } from '../../../../queries/getPointBefore';
 
