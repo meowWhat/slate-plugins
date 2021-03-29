@@ -38,7 +38,7 @@ const SelectableBase = ({ children, element, className, styles, componentRef, dr
       </div>
 
       <div className={mergeStyles(classNames.blockAndGutter, classNames.gutterLeft)} contentEditable={false}>
-        <div className={classNames.blockToolbarWrapper }>
+        <div className={classNames.blockToolbarWrapper + ' slate-drag-button-wrapper'}>
           <div className={classNames.blockToolbar}>
             <Tippy {...grabberTooltipProps}>
               <div ref={multiDragRef}>

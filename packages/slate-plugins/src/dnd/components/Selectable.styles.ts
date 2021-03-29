@@ -44,8 +44,8 @@ export const getSelectableStyles = ({
     ],
     blockToolbarWrapper: {
       display: 'flex',
-      // alignItems: 'center',
       height: '1.5em',
+      lineHeight: '1.5em'
     },
     blockToolbar: {
       width: 18,
