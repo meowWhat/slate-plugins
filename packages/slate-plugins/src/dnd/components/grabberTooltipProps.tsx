@@ -10,7 +10,7 @@ export const grabberTooltipProps: TippyProps = {
   content: <GrabberTooltipContent />,
   placement: 'top',
   arrow: true,
-  offset: [0, 0],
+  offset: [3, 3],
   delay: [300, 0],
   duration: [0, 0],
   hideOnClick: true,

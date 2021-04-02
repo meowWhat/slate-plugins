@@ -1,6 +1,6 @@
 {
   "name": "meow-slate-plugins",
-  "version": "0.76.9",
+  "version": "0.76.10",
   "description": "fork by Slate Plugins",
   "keywords": [],
   "homepage": "https://github.com/udecode/slate-plugins/tree/master/packages/slate-plugins#readme",
@@ -36,7 +36,7 @@
     "react-use": "^15.1.0",
     "remark-parse": "^9.0.0",
     "remark-slate": "^1.4.0",
-    "slate-plugins-core": "^0.76.9",
+    "slate-plugins-core": "^0.76.10",
     "unified": "^9.1.0",
     "utility-types": "^3.10.0"
   },
